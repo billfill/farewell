@@ -1,0 +1,283 @@
+.page-black{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba( #000, .8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.fixed_pic{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../image/art/01/01_cover_WeiTing.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    transition: .8s ease-in-out;
+    opacity: 0;
+}
+.headPhone{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 80px;
+        height: auto;
+    }
+}
+.downArrow{
+    position: absolute;
+    bottom: 10vh;
+    color: #fff;
+    animation-name: down;
+    animation-duration: .6s;
+    animation-iteration-count: infinite;
+}
+@keyframes down {
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(10px);
+    }
+}
+.whiteP{
+    color: #fff;
+    padding: 0 20px;
+}
+.GB{
+    width: 100%;
+    height: 100vh;
+    background-color: red;
+}
+.voice-state{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    .mute_bar{
+        position: absolute;
+        height: 4px;
+        width: 40px;
+        background-clip: content-box;
+        background-color: rgb(160, 160, 160);
+        transition: .7s ease-in-out;
+        transform: rotate(45deg);
+        z-index: 1;
+        opacity: 0;
+    }
+    .mute_bar-mute{
+        opacity: 1;
+    }
+    img{
+        height: 30px;
+        width: 30px;
+        z-index: 0;
+    }
+}
+.fullpage{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 1;
+    transition: .6s ease-in-out;
+    .section{
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        h1{
+            position: absolute;
+            bottom: 15vh;
+        }
+        h2{
+            position: absolute;
+            bottom: 10vh;
+            margin-left: 30px;
+        }
+        canvas{
+            display: block;
+            margin: 0 auto;
+            transition: 5s ease-in-out;
+            opacity: 1;
+            background-color: lightblue;
+        }
+        #stage-2{
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .stage-2-words{
+            position: absolute;
+            right: 20px;
+            bottom: 5vh;
+            transition: opacity 1.2s ease-in-out;
+            opacity: 0;
+            h2{
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0;
+            }
+        }
+        #stage-3{
+            background-image: url(../image/animate-sprite/stage-3-bg.png);
+            background-position: center;
+            background-size: cover;
+        }
+        #stage-5{
+            transform: translate(-75%, -20%);
+            opacity: 0;
+        }
+        #stage-7{
+            opacity: 0;
+        }
+        #stage-9{
+            background-image: url(../image/animate-sprite/stage-9-bg.png);
+            background-repeat: no-repeat;
+            background-position: center 200px;
+            background-size: contain;            
+        }
+        #stage-10{
+            background-color: transparent;
+        }
+        #stage-11{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            opacity: 1;
+            background-position: center 150px;
+            background-repeat: no-repeat;
+            background-size: contain;      
+            transition: opacity 1.5s ease-in-out;
+        }
+        #stage-11_1{
+            position: absolute;
+            top: 0;
+            left: 0;            
+            z-index: 5;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+        #stage-11_2{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;   
+            background-image: url(../image/animate-sprite/stage-11-bg.png);
+            background-position: center 150px;
+            background-repeat: no-repeat;
+            background-size: contain;                      
+        }
+        .stage-13{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            opacity: 0;
+            transition: opacity 4s ease-in-out;
+            img{
+                margin: auto;
+                width: 100%;
+                height: auto;
+            }
+        }
+        .thanks{
+            position: absolute;
+            top: 160px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: -1;
+            transition: 3s;
+            transform: translateX(20%);
+            // transform: translateX(0);
+            // opacity: 1;
+            opacity: 0;
+            img{
+                width: auto;
+                height: 168px;
+            }
+            .bouzu-Img{
+                width: auto;
+                height: 250px;
+                transition: 6s;
+                transform: translateY(-120px);
+            }
+            .taxi-talk{
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: rotateY(180deg) translateX(30px) translateY(50px);
+                display: flex;
+                img{
+                    margin: auto;
+                    width: auto;
+                    height: 168px;
+                }
+                p{
+                    position: absolute;
+                    top: 25px;
+                    left: 110px;
+                    transform: rotateY(180deg) scale(.8);
+                    text-align: center;
+                }
+            }
+            .bouzu-talk{
+                position: relative;
+                top: 0;
+                left: 0;
+                transition: 6s;
+                z-index: 1;
+                transform: translate(0, -50px);
+                img{
+                    margin: auto;
+                    width: auto;
+                    height: 195px;
+                }
+                p{
+                  position: absolute;
+                  top: 0;
+                  left: 0;  
+                  transition: 6s;
+                  z-index: 3;
+                }
+                p:first-child{
+                    transform: translate(22px, 40px);
+                }
+                p:nth-child(2){
+                    transform: translate(155px, 95px);
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .fixed_pic{
+        background-size: cover;
+    
+    }    
+}
