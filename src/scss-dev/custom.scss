@@ -10,12 +10,14 @@
     top: 0;
     left: 0;
     z-index: 0;
+    transition: 1s;
+    transform: translate(0, 100%);
 }
 .fixed_pic{
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-image: url("../image/art/01/01_cover_WeiTing.png");
+    background-image: url("../image/01_cover.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -92,18 +94,17 @@
     height: 100vh;
     width: 100vw;
     position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
     opacity: 1;
-    transition: .6s ease-in-out;
+    transition: 5s;
     .section{
         height: 100vh;
         width: 100vw;
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 0;
         z-index: 0;
-        overflow: hidden;
+        opacity: 0;
+        transition: 1s;
         h1{
             position: absolute;
             bottom: 15vh;
@@ -118,7 +119,6 @@
             margin: 0 auto;
             transition: 5s ease-in-out;
             opacity: 1;
-            background-color: lightblue;
         }
         #stage-2{
             transform: translateX(-100%);
@@ -143,11 +143,68 @@
             background-image: url(../image/animate-sprite/stage-3-bg.png);
             background-position: center;
             background-size: cover;
-        }
+            background-repeat: no-repeat;
+        }              
         #stage-5{
             transform: translate(-75%, -20%);
             opacity: 0;
         }
+        #stage-6{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0;
+            transform: translate(0, 100%);
+            background:transparent url('../image/animate-sprite/stage-6-foodInfo-bg.png') no-repeat;
+            background-position: 130px 80px;
+            transition: 4s ease-in-out;
+        }
+        #stage-6_1{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            transform: translate(0, 100%);
+            background:transparent url('../image/animate-sprite/stage-6-foodSafe-bg.png') no-repeat;
+            background-position: 50px 270px;
+            transition: 4s ease-in-out;
+        }
+        #stage-6_2{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            opacity: 1;
+            transform: translate(0, 100%);
+            background-image: url('../image/animate-sprite/stage-6-speech-bg.png');
+            background-repeat: no-repeat;
+            background-position: 90px 200px;
+            transition: 4s ease-in-out;
+        }
+        #stage-6_3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            opacity: 0;
+            transform: translate(0, 100%);
+            background:url('../image/animate-sprite/stage-6-lab-bg.png') no-repeat;
+            background-position: 75px 150px;
+            transition: 4s ease-in-out;
+        }
+        #stage-6_4{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            transform: translate(0, 100%);
+            background: url('../image/animate-sprite/stage-6-lab-bg2.png') no-repeat;
+            background-position: left bottom;
+            transition: 4s ease-in-out;
+        }        
         #stage-7{
             opacity: 0;
         }
@@ -166,6 +223,7 @@
             left: 0;
             z-index: 10;
             opacity: 1;
+            background-color: #fff;
             background-position: center 150px;
             background-repeat: no-repeat;
             background-size: contain;      
@@ -177,6 +235,7 @@
             left: 0;            
             z-index: 5;
             opacity: 1;
+            background-color: #fff;
             transition: opacity 1.5s ease-in-out;
         }
         #stage-11_2{

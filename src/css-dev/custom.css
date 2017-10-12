@@ -19,13 +19,19 @@
   top: 0;
   left: 0;
   z-index: 0;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
 }
 
 .fixed_pic {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-image: url("../image/art/01/01_cover_WeiTing.png");
+  background-image: url("../image/01_cover.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -147,22 +153,23 @@
   height: 100vh;
   width: 100vw;
   position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   opacity: 1;
-  -webkit-transition: .6s ease-in-out;
-  -o-transition: .6s ease-in-out;
-  transition: .6s ease-in-out;
+  -webkit-transition: 5s;
+  -o-transition: 5s;
+  transition: 5s;
 }
 
 .fullpage .section {
   height: 100vh;
   width: 100vw;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 0;
-  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
 }
 
 .fullpage .section h1 {
@@ -183,7 +190,6 @@
   -o-transition: 5s ease-in-out;
   transition: 5s ease-in-out;
   opacity: 1;
-  background-color: lightblue;
 }
 
 .fullpage .section #stage-2 {
@@ -216,6 +222,7 @@
   background-image: url(../image/animate-sprite/stage-3-bg.png);
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .fullpage .section #stage-5 {
@@ -223,6 +230,87 @@
       -ms-transform: translate(-75%, -20%);
           transform: translate(-75%, -20%);
   opacity: 0;
+}
+
+.fullpage .section #stage-6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background: transparent url("../image/animate-sprite/stage-6-foodInfo-bg.png") no-repeat;
+  background-position: 130px 80px;
+  -webkit-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
+}
+
+.fullpage .section #stage-6_1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background: transparent url("../image/animate-sprite/stage-6-foodSafe-bg.png") no-repeat;
+  background-position: 50px 270px;
+  -webkit-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
+}
+
+.fullpage .section #stage-6_2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 1;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background-image: url("../image/animate-sprite/stage-6-speech-bg.png");
+  background-repeat: no-repeat;
+  background-position: 90px 200px;
+  -webkit-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
+}
+
+.fullpage .section #stage-6_3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  opacity: 0;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background: url("../image/animate-sprite/stage-6-lab-bg.png") no-repeat;
+  background-position: 75px 150px;
+  -webkit-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
+}
+
+.fullpage .section #stage-6_4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background: url("../image/animate-sprite/stage-6-lab-bg2.png") no-repeat;
+  background-position: left bottom;
+  -webkit-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
 }
 
 .fullpage .section #stage-7 {
@@ -246,6 +334,7 @@
   left: 0;
   z-index: 10;
   opacity: 1;
+  background-color: #fff;
   background-position: center 150px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -260,6 +349,7 @@
   left: 0;
   z-index: 5;
   opacity: 1;
+  background-color: #fff;
   -webkit-transition: opacity 1.5s ease-in-out;
   -o-transition: opacity 1.5s ease-in-out;
   transition: opacity 1.5s ease-in-out;

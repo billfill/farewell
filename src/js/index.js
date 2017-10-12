@@ -17,6 +17,11 @@
     var SIDdrawWave;
     var SIDdrawStrollToFade;
     var SIDdrawKitchen;
+    var SIDdrawFoodInfo;
+    var SIDdrawFoodSafe;
+    var SIDdrawSpeech;
+    var SIDdrawDoctor;
+    var SIDdrawCpu;
 
     var scroll_now;
     var read_progress = 10;
@@ -200,7 +205,27 @@
     var stage_6 = document.getElementById("stage-6");
     var ctx_6 = stage_6.getContext("2d");
     stage_6.width = canvasWidth;
-    stage_6.height = canvasHeight;     
+    stage_6.height = canvasHeight; 
+
+    var stage_6_1 = document.getElementById("stage-6_1");
+    var ctx_6_1 = stage_6_1.getContext("2d");
+    stage_6_1.width = canvasWidth;
+    stage_6_1.height = canvasHeight; 
+
+    var stage_6_2 = document.getElementById("stage-6_2");
+    var ctx_6_2 = stage_6_2.getContext("2d");
+    stage_6_2.width = canvasWidth;
+    stage_6_2.height = canvasHeight;
+
+    var stage_6_3 = document.getElementById("stage-6_3");
+    var ctx_6_3 = stage_6_3.getContext("2d");
+    stage_6_3.width = canvasWidth;
+    stage_6_3.height = canvasHeight;   
+
+    var stage_6_4 = document.getElementById("stage-6_4");
+    var ctx_6_4 = stage_6_4.getContext("2d");
+    stage_6_4.width = canvasWidth;
+    stage_6_4.height = canvasHeight;                  
 
     var stage_7 = document.getElementById("stage-7");
     var ctx_7 = stage_7.getContext("2d");
@@ -430,6 +455,183 @@
     }
 // stage-6
 
+    var foodInfoWidth = 213; 
+    var foodInfoHeight = 291; 
+    var foodInfoCurFrame = 0; 
+    var foodInfoFrameCount = 24;
+    var foodInfoSrcX = 0; 
+    var foodInfoSrcY = 0; 
+    var foodInfoX = 130;
+    var foodInfoY= 80; 
+    var foodInfoEnd = 0;
+
+    var foodInfo = new Image(); 
+    foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
+
+    function drawFoodInfo(){
+        //Updating the frame index 
+        foodInfoCurFrame = ++foodInfoCurFrame % foodInfoFrameCount; 
+        foodInfoSrcY = foodInfoCurFrame * foodInfoHeight; 
+        ctx_6.clearRect(foodInfoX, foodInfoY, foodInfoWidth+10, foodInfoHeight+10);
+        ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
+        if(foodInfoEnd == 120){
+            clearInterval(SIDdrawFoodInfo);
+        } else if(foodInfoEnd == 77){
+            foodInfoEnd++
+            $("#stage-6").css({
+                "opacity": "0",
+                "transform": "translate(0, -100%)",
+            });
+            foodInfoEnd++
+        } else {
+            foodInfoEnd++
+        }   
+    }
+
+    var foodSafeWidth = 140; 
+    var foodSafeHeight = 329; 
+    var foodSafeCurFrame = 0; 
+    var foodSafeFrameCount = 24;
+    var foodSafeSrcX = 0; 
+    var foodSafeSrcY = 0; 
+    var foodSafeX = 50;
+    var foodSafeY= 270; 
+    var foodSafeEnd = 0;
+
+    var foodSafe = new Image(); 
+    foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
+
+    function drawFoodSafe(){
+        //Updating the frame index 
+        foodSafeCurFrame = ++foodSafeCurFrame % foodSafeFrameCount; 
+        foodSafeSrcY = foodSafeCurFrame * foodSafeHeight; 
+        ctx_6_1.clearRect(foodSafeX, foodSafeY, foodSafeWidth+10, foodSafeHeight+10);
+        ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
+        if(foodSafeEnd == 100){
+            clearInterval(SIDdrawFoodSafe);
+            $("#stage-6_3").css({
+                "opacity": "1",
+                "transform": "translate(0, 0)",
+            });            
+            SIDdrawCpu = setInterval(drawCpu, 125)            
+        } else if(foodSafeEnd == 80){
+            console.log("food Stop")
+            $("#stage-6_1").css({
+                "opacity": "0",
+                "transform": "translate(0, -100%)",
+            });
+            foodSafeEnd++
+        } else {
+            foodSafeEnd++
+        }    
+    }
+
+    var speechWidth = 269; 
+    var speechHeight = 398; 
+    var speechCurFrame = 0; 
+    var speechFrameCount = 24;
+    var speechSrcX = 0; 
+    var speechSrcY = 0; 
+    var speechX = 90;
+    var speechY= 200;
+    var speechEnd = 0;
+
+
+    var speech = new Image(); 
+    speech.src = "src/image/animate-sprite/stage-6-speech.png";
+
+    function drawSpeech(){
+        //Updating the frame index 
+        $("#stage-6_2").css({
+            "background-image": "none"
+        })
+        speechCurFrame = ++speechCurFrame % speechFrameCount; 
+        speechSrcY = speechCurFrame * speechHeight; 
+        ctx_6_2.clearRect(speechX, speechY, speechWidth+10, speechHeight+10);
+        ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
+        if(speechEnd == 98){
+            clearInterval(SIDdrawSpeech);
+            $("#stage-6_4").css({
+                "opacity": "1",
+                "transform": "translate(0, 0)",
+            });
+            SIDdrawDoctor = setInterval(drawDoctor, 83)
+        } else if(speechEnd == 83) {
+            console.log("speech Stop")
+            $("#stage-6_2").css({
+                "opacity": "0",
+                "transform": "translate(0, -100%)",
+            });            
+            speechEnd++
+        } else{
+            speechEnd++
+        }
+    }    
+
+    var doctorWidth = 128; 
+    var doctorHeight = 221; 
+    var doctorCurFrame = 0; 
+    var doctorFrameCount = 36;
+    var doctorSrcX = 0; 
+    var doctorSrcY = 0; 
+    var doctorX = 140;
+    var doctorY = 310; 
+    var doctorEnd = 0
+
+    var doctor = new Image(); 
+    doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
+
+    function drawDoctor(){
+        //Updating the frame index 
+        doctorCurFrame = ++doctorCurFrame % doctorFrameCount; 
+        doctorSrcY = doctorCurFrame * doctorHeight; 
+        ctx_6_3.clearRect(doctorX, doctorY, doctorWidth, doctorHeight);
+        ctx_6_3.drawImage(doctor, doctorSrcX, doctorSrcY, doctorWidth, doctorHeight, doctorX, doctorY, doctorWidth, doctorHeight);
+        if(doctorEnd == 350){
+            clearInterval(SIDdrawDoctor);
+        } else if(doctorEnd == 111) {
+            console.log("speech Stop")
+            $("#stage-6_3").css({
+                "opacity": "0",
+                "transform": "translate(0, -100%)",
+            });            
+            doctorEnd++
+        } else{
+            doctorEnd++
+        }        
+    }
+
+    var cpuWidth = 124; 
+    var cpuHeight = 177; 
+    var cpuCurFrame = 0; 
+    var cpuFrameCount = 24;
+    var cpuSrcX = 0; 
+    var cpuSrcY = 0; 
+    var cpuX = 70;
+    var cpuY = 290; 
+    var cpuEnd = 0;
+
+    var cpu = new Image(); 
+    cpu.src = "src/image/animate-sprite/stage-6-cpu.png";
+
+    function drawCpu(){
+        //Updating the frame index 
+        cpuCurFrame = ++cpuCurFrame % cpuFrameCount; 
+        cpuSrcY = cpuCurFrame * cpuHeight; 
+        ctx_6_4.clearRect(cpuX, cpuY, cpuWidth, cpuHeight);
+        ctx_6_4.drawImage(cpu, cpuSrcX, cpuSrcY, cpuWidth, cpuHeight, cpuX, cpuY, cpuWidth, cpuHeight);
+        if(cpuEnd == 120){
+            clearInterval(SIDdrawCpu);
+        } else if(cpuEnd == 70){
+            $("#stage-6_4").css({
+                "opacity": "0",
+                "transform": "translate(0, -100%)",
+            });
+            cpuEnd++
+        } else {
+            cpuEnd++
+        }          
+    }
 
 /////stage-7
 
@@ -660,15 +862,31 @@
     }
 
     $('.fullpage').fullpage({
+        navigation: false,
         recordHistory: false,
         scrollingSpeed: 777,
-        scrollBar: true,
+        // scrollBar: true,
+        lazyLoading: true,
         afterLoad: function(anchorLink, index){
             console.log("afterLoad:" + index)
+            $("#section-"+index).css({
+                "opacity": "1",
+            })            
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
+
                 $.fn.fullpage.setAutoScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
+            }
+            if(index == 2 ){
+                $(".page-black").eq(0).css({
+                    "transform": "translate(0, 0)",
+                })                
+            }
+            if(index == 3){
+                $(".page-black").eq(1).css({
+                    "transform": "translate(0, 0)",
+                })                   
             }
             if(index == 4){
                 $("#stage-2").css({
@@ -701,7 +919,7 @@
                 
             }
             if(index == 6){
-                SIDdrawKitchen = setInterval(drawKitchen, 83);
+                SIDdrawKitchen = setInterval(drawKitchen, 125);
             }
             if(index == 7){
                 $("#stage-5").css({
@@ -712,7 +930,33 @@
                 // $.fn.fullpage.setAutoScrolling(false);
                 // $.fn.fullpage.setFitToSection(false);
                 SIDdrawCar = setInterval(drawCar, 125);
-
+            }
+            if(index == 8){
+                console.log("press")
+                $("#stage-6").css({
+                    "opacity": "1",
+                    "transform": "translate(0, 0)",
+                });
+                setTimeout(function(){
+                $("#stage-6_1").css({
+                    "opacity": "1",
+                    "transform": "translate(0, 0)",
+                });
+                }, 222)
+                setTimeout(function(){
+                    $("#stage-6_2").css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)",
+                    });
+                }, 555)                
+                setTimeout(function(){
+                    console.log("draw press")
+                    SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
+                    SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
+                    SIDdrawSpeech = setInterval(drawSpeech, 83);                    
+                },4000)                     
+                // SIDdrawDoctor = setInterval(drawDoctor, 83)
+                // SIDdrawCpu = setInterval(drawCpu, 125)
             }
             if(index == 9){
                 console.log("switch off");
@@ -771,6 +1015,9 @@
         },
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
+                $("#section-"+index).css({
+                    "opacity": "0"
+                })            
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
             }
