@@ -272,7 +272,8 @@ footer a {
 #indicator-bar{
 	height: 6px;
 	width: 0;
-	background-color: gray;
+	background-color: black;
+    transition: width .7s;
 }
 
 .quote-contain{

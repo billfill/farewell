@@ -1,9 +1,7 @@
 ($(document).ready(function(){
-    
-    var SIDdrawDoor;
-    var SIDdrawDoorBack;
-    var SIDdrawShadow;
-    var SIDdrawShadowBack;
+
+    var SIDdrawStart;
+    var SIDdrawEnd;
     var SIDdrawWalk1;
     var SIDdrawWalkBack;
     var SIDdrawCar;
@@ -29,6 +27,17 @@
     var platform = (isMob == true) ? 'Mob' : 'PC';
     var progress = []
     var movie_progress = [null]
+
+    function isFacebookApp() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+    }
+    
+    if(isFacebookApp()){
+        $('#cover-v').css('padding-bottom', '50px')
+        $('.flex-layout').css('padding-bottom', '50px')
+        $('.box-container').css('margin-top', '-75px')
+    }
 
     function detectmob() {
         if( navigator.userAgent.match(/Android/i)
@@ -98,6 +107,36 @@
         }
     }
 
+    function resetAll(){
+        clearInterval(SIDdrawStart)
+        clearInterval(SIDdrawWalk1)
+        clearInterval(SIDdrawWalkBack)
+        clearInterval(SIDdrawRoom)
+        clearInterval(SIDdrawBed)
+        clearInterval(SIDdrawSmoke)
+        clearInterval(SIDdrawMan)
+        clearInterval(SIDdrawWoman)
+        clearInterval(SIDdrawWash)
+        clearInterval(SIDdrawStroll)
+        clearInterval(SIDdrawWave)
+        clearInterval(SIDdrawStrollToFade)
+        clearInterval(SIDdrawKitchen)
+        clearInterval(SIDdrawFoodInfo)
+        clearInterval(SIDdrawFoodSafe)
+        clearInterval(SIDdrawSpeech)
+        clearInterval(SIDdrawDoctor)
+        clearInterval(SIDdrawCpu);
+        $("#music-door")[0].pause()
+        $("#music-walk")[0].pause()
+        $("#music-cooking")[0].pause()
+        $("#music-driving")[0].pause()
+        $("#music-camera")[0].pause()
+        $("#music-switch")[0].pause()
+        $("#music-stroll")[0].pause()
+        $("#music-street")[0].pause()    
+        console.log("clear") 
+    }
+
     let w = $(window).width()
     let h = $(window).height()
     let total_height = $('body').height() - h
@@ -137,11 +176,33 @@
 		}
     });
 
-    $(".voice-state").on("click", function(){
-        console.log("voice-state");
-        $(".mute_bar").toggleClass('mute_bar-mute');
+    $(".voice-state img").on("click", function(){
+        var voiceSrc = $(this).attr("src")
+        if(voiceSrc == "src/image/off.png"){
+            $(this).attr('src', 'src/image/on.png');
+            $("#music-main")[0].play();
+            $("#music-main")[0].muted = false;
+            $("#music-door")[0].muted = false;
+            $("#music-walk")[0].muted = false;
+            $("#music-cooking")[0].muted = false;
+            $("#music-driving")[0].muted = false;
+            $("#music-camera")[0].muted = false;
+            $("#music-switch")[0].muted = false;
+            $("#music-stroll")[0].muted = false;
+            $("#music-street")[0].muted = false;
+        } else {
+            $(this).attr('src', 'src/image/off.png');
+            $("#music-main")[0].muted = true;
+            $("#music-door")[0].muted = true;
+            $("#music-walk")[0].muted = true;
+            $("#music-cooking")[0].muted = true;
+            $("#music-driving")[0].muted = true;
+            $("#music-camera")[0].muted = true;
+            $("#music-switch")[0].muted = true;
+            $("#music-stroll")[0].muted = true;
+            $("#music-street")[0].muted = true;
+        }
     });
-
     $(window).on('scroll', function(){
 
         scroll_now = $(window).scrollTop();
@@ -167,17 +228,17 @@
         }
 
         $('#indicator-bar').css('width', scroll_now/total_height * 100 + '%');
+        if(scroll_now > 300){
+            $("#music-main")[0].pause();
+        }
+    })
 
-    })
-    $(".stage-2-words").click(function(){
-        ctx_2.clearRect(0, 0, stage_2.width, stage_2.height);
-        console.log("clear");
-        console.log(ctx_2);
-    })
 
     //Width and height for our canvas
     var canvasWidth = 375; 
     var canvasHeight = 667;
+    var canvasWidthPC = 1280;
+    var canvasHeightPC = 960;
 
     //Getting the canvas 
     // 放在哪個ID的canvas    
@@ -262,87 +323,78 @@
     stage_12.width = canvasWidth;
     stage_12.height = canvasHeight;       
 
-    var doorWidth = 312; 
-    var doorHeight = 487; 
-    var doorCurFrame = 0; 
-    var doorFrameCount = 20;
-    var doorSrcX = 0; 
-    var doorSrcY = 0; 
-    var doorX=20;
-    var doorY=100; 
+    var startWidth = 375; 
+    var startHeight = 667; 
+    var startCurFrame = 0; 
+    var startFrameCount = 37;
+    var startSrcX = 0; 
+    var startSrcY = 0; 
+    var startX=0;
+    var startY=0; 
 
-    var door = new Image(); 
-    door.src = "src/image/animate-sprite/stage-2-door.png";
+    var start = new Image(); 
+    // start.src = "src/image/animate-sprite/stage-2-start.png";
     
     /////////////////srage-2
     
-    function drawDoorTo(){
+    function drawStart(){
         //Updating the frame index 
-        if(doorCurFrame == doorFrameCount -1){
-            clearInterval(SIDdrawDoor);
-            
+        if(startCurFrame == startFrameCount -1){
+            clearInterval(SIDdrawStart);
+        } else if (startCurFrame == 10){
+            $("#music-door")[0].play();
+            startCurFrame++
         } else {
-            doorCurFrame++
+            startCurFrame++
         }
-        doorSrcY = doorCurFrame * doorHeight; 
-        ctx_2.clearRect(doorX, doorY, doorWidth, doorHeight);
+        startSrcY = startCurFrame * startHeight; 
+        ctx_2.clearRect(startX, startY, startWidth+10, startHeight+10);
         ctx_2.imageSmoothingEnabled = false;
         ctx_2.globalAlpha = 1;
-        ctx_2.drawImage(door,doorSrcX, doorSrcY, doorWidth, doorHeight, doorX, doorY, doorWidth, doorHeight); 
-    }
-    function drawDoorBack(){
-        if(doorCurFrame !== 0){
-            doorCurFrame --
-        } else{
-            clearInterval(SIDdrawDoorBack)
-        }
-        doorSrcY = doorCurFrame * doorHeight;
-        ctx_2.globalAlpha = 1; 
-        ctx_2.clearRect(doorX, doorY, 0, 0);
-        ctx_2.drawImage(door,doorSrcX, doorSrcY, doorWidth, doorHeight, doorX, doorY, doorWidth, doorHeight); 
+        ctx_2.drawImage(start, startSrcX, startSrcY, startWidth, startHeight, startX, startY, startWidth, startHeight); 
+        console.log("start")
     }
     
-    // shadow
+    // ＥＮＤ
     
-    var shadowWidth = 145; 
-    var shadowHeight = 251; 
-    var shadowCurFrame = 0; 
-    var shadowFrameCount = 8;
-    var shadowSrcX = 0; 
-    var shadowSrcY = 0; 
-    var shadowX= 100;
-    var shadowY= 335; 
+    var endWidth = 375; 
+    var endHeight = 667; 
+    var endCurFrame = 0; 
+    var endFrameCount = 37;
+    var endSrcX = 0; 
+    var endSrcY = 0; 
+    var endX= 0;
+    var endY= 0; 
     
-    var shadow = new Image(); 
-    shadow.src = "src/image/animate-sprite/stage-2-shadow.png";
+    var end = new Image(); 
+    // end.src = "src/image/animate-sprite/stage-2-end.png";
     /////////////////
     
-    function drawShadowTo(){
+    function drawEnd(){
         //Updating the frame index 
-        if(shadowCurFrame == shadowFrameCount -1){
-            clearInterval(SIDdrawShadow)
+        if(endCurFrame == endFrameCount -1){
+            clearInterval(SIDdrawEnd)
+            ctx_2.clearRect(0, 0, stage_2.width, stage_2.height);
+            $("#section-4").css({
+                "transition": "1s",
+            })               
+        } else if(endCurFrame == 26){
+            $("#stage-2").css({
+                "transform": "translateX(-100px)",
+                "opacity": 0,
+            })
+            endCurFrame++
         } else {
-            shadowCurFrame = ++shadowCurFrame % shadowFrameCount; 
+            endCurFrame++
+            // endCurFrame = ++endCurFrame % endFrameCount; 
         }
-        shadowSrcY = shadowCurFrame * shadowHeight; 
-        ctx_2.clearRect(shadowX, shadowY, 0, 0);
-        ctx_2.globalAlpha = 0.35;
-        ctx_2.drawImage(shadow, shadowSrcX, shadowSrcY, shadowWidth, shadowHeight, shadowX, shadowY, shadowWidth, shadowHeight);  
-    }
-    function drawShadowBack(){
-        //Updating the frame index 
-         if(shadowCurFrame !== 0){
-            shadowCurFrame --
-        } else{
-            clearInterval(SIDdrawShadowBack)
-        }
-        shadowSrcY = shadowCurFrame * shadowHeight; 
-        ctx_2.clearRect(shadowX, shadowY, 0, 0);
-        ctx_2.globalAlpha = 0.35;
-        ctx_2.drawImage(shadow, shadowSrcX, shadowSrcY, shadowWidth, shadowHeight, shadowX, shadowY, shadowWidth, shadowHeight);  
-    }    
+        endSrcY = endCurFrame * endHeight; 
+        ctx_2.clearRect(endX, endY, endWidth, endHeight);
+        ctx_2.drawImage(end, endSrcX, endSrcY, endWidth, endHeight, endX, endY, endWidth, endHeight);  
+        console.log("end")
+    }  
 
-//////srage-3
+//////stage-3
 
     var walk1Width = 75; 
     var walk1Height = 112; 
@@ -350,24 +402,25 @@
     var walk1FrameCount = 36;
     var walk1SrcX = 0; 
     var walk1SrcY = 0; 
-    var walk1X = 300;
-    var walk1Y= 340; 
+    var walk1X = 350;
+    var walk1Y= 390; 
 
 
     var walk1 = new Image(); 
-    walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
-
+    // walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
+    ctx_3.transform(.8, 0, 0, .8, 0, 0);
     function drawWalk1To(){
         //Updating the frame index 
         walk1CurFrame = ++walk1CurFrame % walk1FrameCount; 
         walk1SrcY = walk1CurFrame * walk1Height; 
         ctx_3.clearRect(walk1X, walk1Y, walk1Width+10, walk1Height+10);
         ctx_3.drawImage(walk1, walk1SrcX, walk1SrcY, walk1Width, walk1Height, walk1X, walk1Y, walk1Width, walk1Height);
-        if(walk1X < 80){
+        if(walk1X < 150){
             ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
             clearInterval(SIDdrawWalk1)
+            SIDdrawWalkBack = setInterval(drawWalkBack, 83);
         } else {
-            if( walk1X > 80 && walk1X < 130){
+            if( walk1X > 150 && walk1X < 200){
                 ctx_3.globalAlpha -= 0.05;
             }
             walk1X -= 3
@@ -380,12 +433,12 @@
     var walkBackFrameCount = 36;
     var walkBackSrcX = 0; 
     var walkBackSrcY = 0; 
-    var walkBackX = 100;
-    var walkBackY= 315; 
+    var walkBackX = 150;
+    var walkBackY= 390; 
 
 
     var walkBack = new Image(); 
-    walkBack.src = "src/image/animate-sprite/stage-3-walkback.png";
+    // walkBack.src = "src/image/animate-sprite/stage-3-walkback.png";
 
     function drawWalkBack(){
         //Updating the frame index 
@@ -396,31 +449,31 @@
         if(walkBackX > 250){
             ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
             clearInterval(SIDdrawWalkBack)
+            $("#music-walk")[0].pause();
         } else {
-            if( walkBackX > 100 && walkBackX < 110){
+            if( walkBackX > 150 && walkBackX < 170){
                 ctx_3.globalAlpha += 0.3;
-            } else if (walkBackX > 110 && walkBackX < 200){
+            } else if (walkBackX > 170 && walkBackX < 200){
                 ctx_3.globalAlpha = 1;
             } else if (walkBackX > 200 && walkBackX < 250){
                 ctx_3.globalAlpha -= 0.05;
             }
-            walkBackX += 3
+            walkBackX += 2
         }
     } 
 // stage-4
 
-    var kitchenWidth = 356; 
-    var kitchenHeight = 470; 
+    var kitchenWidth = 375; 
+    var kitchenHeight = 667; 
     var kitchenCurFrame = 0; 
-    var kitchenFrameCount = 36;
+    var kitchenFrameCount = 24;
     var kitchenSrcX = 0; 
     var kitchenSrcY = 0; 
-    var kitchenX = 90;
-    var kitchenY= 270; 
-
+    var kitchenX = 80;
+    var kitchenY= 200; 
 
     var kitchen = new Image(); 
-    kitchen.src = "src/image/animate-sprite/stage-4-kitchen.png";
+    // kitchen.src = "src/image/animate-sprite/stage-4-kitchen.png";
     ctx_4.transform(.8, 0, 0, .8, 0, 0);
     function drawKitchen(){
         //Updating the frame index 
@@ -434,17 +487,17 @@
 //////stage-5
 
     var carWidth = 375; 
-    var carHeight = 310; 
+    var carHeight = 667; 
     var carCurFrame = 0; 
     var carFrameCount = 24;
     var carSrcX = 0; 
     var carSrcY = 0; 
     var carX = 0;
-    var carY= 178.5; 
+    var carY= 0; 
 
 
     var car = new Image(); 
-    car.src = "src/image/animate-sprite/stage-5-car.png";
+    // car.src = "src/image/animate-sprite/stage-5-car.png";
 
     function drawCar(){
         //Updating the frame index 
@@ -462,11 +515,12 @@
     var foodInfoSrcX = 0; 
     var foodInfoSrcY = 0; 
     var foodInfoX = 130;
-    var foodInfoY= 80; 
+    var foodInfoY= 50; 
+
     var foodInfoEnd = 0;
 
     var foodInfo = new Image(); 
-    foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
+    // foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
 
     function drawFoodInfo(){
         //Updating the frame index 
@@ -474,9 +528,9 @@
         foodInfoSrcY = foodInfoCurFrame * foodInfoHeight; 
         ctx_6.clearRect(foodInfoX, foodInfoY, foodInfoWidth+10, foodInfoHeight+10);
         ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
-        if(foodInfoEnd == 120){
+        if(foodInfoEnd == 44){
             clearInterval(SIDdrawFoodInfo);
-        } else if(foodInfoEnd == 77){
+        } else if(foodInfoEnd == 30){
             foodInfoEnd++
             $("#stage-6").css({
                 "opacity": "0",
@@ -495,11 +549,11 @@
     var foodSafeSrcX = 0; 
     var foodSafeSrcY = 0; 
     var foodSafeX = 50;
-    var foodSafeY= 270; 
+    var foodSafeY= 240; 
     var foodSafeEnd = 0;
 
     var foodSafe = new Image(); 
-    foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
+    // foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
 
     function drawFoodSafe(){
         //Updating the frame index 
@@ -507,14 +561,14 @@
         foodSafeSrcY = foodSafeCurFrame * foodSafeHeight; 
         ctx_6_1.clearRect(foodSafeX, foodSafeY, foodSafeWidth+10, foodSafeHeight+10);
         ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
-        if(foodSafeEnd == 100){
+        if(foodSafeEnd == 42){
             clearInterval(SIDdrawFoodSafe);
             $("#stage-6_3").css({
                 "opacity": "1",
                 "transform": "translate(0, 0)",
             });            
             SIDdrawCpu = setInterval(drawCpu, 125)            
-        } else if(foodSafeEnd == 80){
+        } else if(foodSafeEnd == 32){
             console.log("food Stop")
             $("#stage-6_1").css({
                 "opacity": "0",
@@ -533,12 +587,12 @@
     var speechSrcX = 0; 
     var speechSrcY = 0; 
     var speechX = 90;
-    var speechY= 200;
+    var speechY= 170;
     var speechEnd = 0;
 
 
     var speech = new Image(); 
-    speech.src = "src/image/animate-sprite/stage-6-speech.png";
+    // speech.src = "src/image/animate-sprite/stage-6-speech.png";
 
     function drawSpeech(){
         //Updating the frame index 
@@ -549,19 +603,32 @@
         speechSrcY = speechCurFrame * speechHeight; 
         ctx_6_2.clearRect(speechX, speechY, speechWidth+10, speechHeight+10);
         ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
-        if(speechEnd == 98){
+        if(speechEnd == 47){
             clearInterval(SIDdrawSpeech);
             $("#stage-6_4").css({
                 "opacity": "1",
                 "transform": "translate(0, 0)",
             });
+            setTimeout(function(){
+                $(".stage-6-words p").eq(1).css({
+                    "opacity": "1",
+                    "transform": 'translate(0, 0px)',
+                })
+                }, 2000)
             SIDdrawDoctor = setInterval(drawDoctor, 83)
-        } else if(speechEnd == 83) {
+        } else if(speechEnd == 39){
+            $(".stage-6-words p").eq(0).css({
+                "opacity": "0",
+                "transform": 'translate(0, -50px)',
+            })
+            $("#music-camera")[0].pause();
+            speechEnd++
+        } else if(speechEnd == 36) {
             console.log("speech Stop")
             $("#stage-6_2").css({
                 "opacity": "0",
                 "transform": "translate(0, -100%)",
-            });            
+            });
             speechEnd++
         } else{
             speechEnd++
@@ -576,10 +643,9 @@
     var doctorSrcY = 0; 
     var doctorX = 140;
     var doctorY = 310; 
-    var doctorEnd = 0
 
     var doctor = new Image(); 
-    doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
+    // doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
 
     function drawDoctor(){
         //Updating the frame index 
@@ -587,18 +653,6 @@
         doctorSrcY = doctorCurFrame * doctorHeight; 
         ctx_6_3.clearRect(doctorX, doctorY, doctorWidth, doctorHeight);
         ctx_6_3.drawImage(doctor, doctorSrcX, doctorSrcY, doctorWidth, doctorHeight, doctorX, doctorY, doctorWidth, doctorHeight);
-        if(doctorEnd == 350){
-            clearInterval(SIDdrawDoctor);
-        } else if(doctorEnd == 111) {
-            console.log("speech Stop")
-            $("#stage-6_3").css({
-                "opacity": "0",
-                "transform": "translate(0, -100%)",
-            });            
-            doctorEnd++
-        } else{
-            doctorEnd++
-        }        
     }
 
     var cpuWidth = 124; 
@@ -609,10 +663,9 @@
     var cpuSrcY = 0; 
     var cpuX = 70;
     var cpuY = 290; 
-    var cpuEnd = 0;
 
     var cpu = new Image(); 
-    cpu.src = "src/image/animate-sprite/stage-6-cpu.png";
+    // cpu.src = "src/image/animate-sprite/stage-6-cpu.png";
 
     function drawCpu(){
         //Updating the frame index 
@@ -620,17 +673,6 @@
         cpuSrcY = cpuCurFrame * cpuHeight; 
         ctx_6_4.clearRect(cpuX, cpuY, cpuWidth, cpuHeight);
         ctx_6_4.drawImage(cpu, cpuSrcX, cpuSrcY, cpuWidth, cpuHeight, cpuX, cpuY, cpuWidth, cpuHeight);
-        if(cpuEnd == 120){
-            clearInterval(SIDdrawCpu);
-        } else if(cpuEnd == 70){
-            $("#stage-6_4").css({
-                "opacity": "0",
-                "transform": "translate(0, -100%)",
-            });
-            cpuEnd++
-        } else {
-            cpuEnd++
-        }          
     }
 
 /////stage-7
@@ -645,10 +687,17 @@
     var roomY= 20; 
 
     var room = new Image(); 
-    room.src = "src/image/animate-sprite/stage-7-room.png";
+    // room.src = "src/image/animate-sprite/stage-7-room.png";
 
     function drawRoom(){
         //Updating the frame index 
+        if(roomCurFrame == 5){
+            $(".stage-7-words").css({
+                "visibility": "visible",
+            })
+        } else if(roomCurFrame == 23){
+            $("#music-switch")[0].play(0);
+        }
         roomCurFrame = ++roomCurFrame % roomFrameCount; 
         roomSrcY = roomCurFrame * roomHeight; 
         ctx_7.clearRect(roomX, roomY, roomWidth+10, roomHeight+10);
@@ -660,17 +709,17 @@
 
 //////stage-8
 
-    var bedWidth = 352; 
-    var bedHeight = 215; 
+    var bedWidth = 375; 
+    var bedHeight = 667; 
     var bedCurFrame = 0; 
     var bedFrameCount = 24;
     var bedSrcX = 0; 
     var bedSrcY = 0; 
-    var bedX = 11.5;
-    var bedY= 226; 
+    var bedX = 0;
+    var bedY= 0; 
 
     var bed = new Image(); 
-    bed.src = "src/image/animate-sprite/stage-8-bed.png";
+    // bed.src = "src/image/animate-sprite/stage-8-bed.png";
 
     function drawBed(){
         //Updating the frame index 
@@ -681,22 +730,27 @@
         if(bedCurFrame == bedFrameCount -1){
             clearInterval(SIDdrawBed);
             console.log("stop bed")
-        }
+        } else if(bedCurFrame == 8){
+            $(".stage-8-words").eq(1).css({
+                "transform": "translate(0, 0)",
+                "opacity": "1",
+            })
+        }  
     }
 
 // stage-9
 
-    var smokeWidth = 132; 
-    var smokeHeight = 162; 
+    var smokeWidth = 166; 
+    var smokeHeight = 148; 
     var smokeCurFrame = 0; 
-    var smokeFrameCount = 29;
+    var smokeFrameCount = 25;
     var smokeSrcX = 0; 
     var smokeSrcY = 0; 
-    var smokeX = 125;
-    var smokeY= 190; 
+    var smokeX = 120;
+    var smokeY= 200; 
 
     var smoke = new Image(); 
-    smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
+    // smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
 
     function drawSmoke(){
         //Updating the frame index 
@@ -722,7 +776,7 @@
     var strollY= 250; 
 
     var stroll= new Image(); 
-    stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
+    // stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
 
     function drawStroll(){
         //Updating the frame index 
@@ -734,12 +788,29 @@
         if(toWave == 32){
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
+            $("#music-stroll")[0].pause();
             $(".thanks").eq(thanksIndex).css({
                 "opacity": "1",
-                "transform": "translateX(0)"
+                "transform": "translateX(0)",
             })
-        }
-        console.log("stroll GO");
+        } else if(toWave == 6){
+            $(".stage-10-words p").eq(0).css({
+                "opacity": 1,
+                "transform": "translate(0, 0)",
+            })
+        } else if(toWave == 14){
+            $(".stage-10-words p").eq(1).css({
+                "opacity": 1,
+                "transform": "translate(0, 0)",
+            })            
+        } else if(toWave == 22){
+            $(".stage-10-words p").eq(2).css({
+                "opacity": 1,
+                "transform": "translate(0, 0)",
+            })            
+        } else if(toWave == 2) {
+            $("#music-stroll")[0].play();
+        }         
     }
 
     function drawStrollFade(){
@@ -752,6 +823,7 @@
         ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
         if(strollToFade < 0.01){
             clearInterval(SIDdrawStrollToFade);
+            $("#music-stroll")[0].pause();
         }
     };
 
@@ -765,7 +837,7 @@
     var waveY= 250; 
 
     var wave= new Image(); 
-    wave.src = "src/image/animate-sprite/stage-10-wave.png";
+    // wave.src = "src/image/animate-sprite/stage-10-wave.png";
 
     function drawWave(){
         //Updating the frame index 
@@ -773,7 +845,6 @@
         waveSrcY = waveCurFrame * waveHeight; 
         ctx_10.clearRect(waveX, waveY, waveWidth+10, waveHeight+10);
         ctx_10.drawImage(wave, waveSrcX, waveSrcY, waveWidth, waveHeight, waveX, waveY, waveWidth, waveHeight);
-        console.log("wave GO");
         clearInterval(SIDdrawStroll);
         if(waveCurFrame == waveFrameCount -1){
             clearInterval(SIDdrawWave);
@@ -784,25 +855,29 @@
             })
             if(thanksIndex < 1){
                 thanksIndex++
+                $(".stage-10-words").css({
+                    "opacity": 0,
+                    "tranistion": "translate(0, -50px)",
+                })                     
             } else {
-                SIDdrawStrollToFade = setInterval(drawStrollFade, 125);
+                SIDdrawStrollToFade = setInterval(drawStrollFade, 125);                 
             }
         }
     }
 
 // stage-11
 
-    var manWidth = 258; 
-    var manHeight = 350; 
+    var manWidth = 375; 
+    var manHeight = 667; 
     var manCurFrame = 0; 
     var manFrameCount = 24;
     var manSrcX = 0; 
     var manSrcY = 0; 
-    var manX = 58.5;
-    var manY= 158.5; 
+    var manX = 0;
+    var manY= 0; 
 
     var man = new Image(); 
-    man.src = "src/image/animate-sprite/stage-11-man.png";
+    // man.src = "src/image/animate-sprite/stage-11-man.png";
 
     function drawMan(){
         //Updating the frame index 
@@ -813,17 +888,17 @@
         console.log("man GO");
     }
 
-    var womanWidth = 237; 
-    var womanHeight = 335; 
+    var womanWidth = 375; 
+    var womanHeight = 667; 
     var womanCurFrame = 0; 
     var womanFrameCount = 24;
     var womanSrcX = 0; 
     var womanSrcY = 0; 
-    var womanX = 58.5;
-    var womanY= 158.5; 
+    var womanX = 0;
+    var womanY = 0; 
 
     var woman = new Image(); 
-    woman.src = "src/image/animate-sprite/stage-11-woman.png";
+    // woman.src = "src/image/animate-sprite/stage-11-woman.png";
 
     function drawWoman(){
         //Updating the frame index 
@@ -837,16 +912,16 @@
 // stage-12
 
     var washWidth = 375; 
-    var washHeight = 410; 
+    var washHeight = 667; 
     var washCurFrame = 0; 
-    var washFrameCount = 24;
+    var washFrameCount = 36;
     var washSrcX = 0; 
     var washSrcY = 0; 
     var washX = 0;
-    var washY= 128.5; 
+    var washY= 0; 
 
     var wash = new Image(); 
-    wash.src = "src/image/animate-sprite/stage-12-wash.png";
+    // wash.src = "src/image/animate-sprite/stage-12-wash.png";
 
     function drawWash(){
         //Updating the frame index 
@@ -862,77 +937,143 @@
     }
 
     $('.fullpage').fullpage({
-        navigation: false,
+        navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
         lazyLoading: true,
         afterLoad: function(anchorLink, index){
             console.log("afterLoad:" + index)
+            // console.log("style:"+$('.fp-tableCell').children().removeAttr('style'))
             $("#section-"+index).css({
                 "opacity": "1",
-            })            
+            })      
+            bar_witdh = (index) / ($(".fullpage").children().length-1) * 100
+            $('#indicator-bar').css('width', bar_witdh+'%')            
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
-
                 $.fn.fullpage.setAutoScrolling(true);
-                $.fn.fullpage.setFitToSection(true);
+                $.fn.fullpage.setFitToSection(true);  
             }
             if(index == 2 ){
+                start.src = "src/image/animate-sprite/stage-2-start.jpg";
+                end.src = "src/image/animate-sprite/stage-2-end.jpg";
+                walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
+                walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
+
                 $(".page-black").eq(0).css({
                     "transform": "translate(0, 0)",
-                })                
+                })                               
             }
             if(index == 3){
+                kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
+                foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
+                foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
+                speech.src = "src/image/animate-sprite/stage-6-speech.png";                 
+                // reset
+                $(".page-black").eq(0).removeAttr('style')
+
                 $(".page-black").eq(1).css({
                     "transform": "translate(0, 0)",
-                })                   
+                })               
             }
             if(index == 4){
+                car.src = "src/image/animate-sprite/stage-5-car.jpg";
+                doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
+                cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
+                // reset
+                $(".page-black").eq(1).removeAttr('style')
                 $("#stage-2").css({
                     "transform": "translateX(0)",
                     "opacity": "1",
                 });
-                setTimeout(function(){
-                    SIDdrawDoor = setInterval(drawDoorTo, 125);
-                }, 2500);
-                setTimeout(function(){
-                    SIDdrawShadow = setInterval(drawShadowTo, 83);
-                }, 5500);
+                
+                SIDdrawStart = setInterval(drawStart, 100);
                 setTimeout(function(){
                     $(".stage-2-words").css({
                         "opacity": "1",
                     })
-                },6500)
-                // $.fn.fullpage.setScrollingSpeed(5000);
+                },1666)          
             }
             if(index == 5){
-                $("#stage-2").css({
-                    "transfrom": "translateX(-100%)",
-                })     
+                room.src = "src/image/animate-sprite/stage-7-room.jpg";
+                // reset Stage-2
                 ctx_2.clearRect(0, 0, stage_2.width, stage_2.height);
+                startCurFrame = 0;
+                endCurFrame = 0;
+                $("#stage-2").removeAttr('style')
+                $(".stage-2-words").removeAttr('style')
 
+
+                $(".stage-3-words").css({
+                    "transform": "translate(0, 15%)",
+                    "opacity": "1",
+                })
+                $("#music-walk")[0].play();
                 SIDdrawWalk1 = setInterval(drawWalk1To, 83);
-                setTimeout(function(){
-                    SIDdrawWalkBack = setInterval(drawWalkBack, 83);  
-                }, 7000);
-                
+                $.fn.fullpage.setScrollingSpeed(777);                  
             }
             if(index == 6){
-                SIDdrawKitchen = setInterval(drawKitchen, 125);
+                bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
+                // reset Stage-3
+                ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
+                ctx_3.globalAlpha = 1;
+                walk1X = 350;
+                walkBackX = 150;
+                $(".stage-3-words").removeAttr("style");
+
+                // do stage-4
+                $(".stage-4-words p").css({
+                    "transform": "translate(0, 0)",
+                    "opacity": "1",
+                })
+                setTimeout(function(){
+                    $("#stage-4").css({
+                        "transform": "translate(0, 0)",
+                        "opacity": "1",                    
+                    })
+                }, 1000)
+                $("#music-cooking")[0].play();
+                SIDdrawKitchen = setInterval(drawKitchen, 125);          
             }
             if(index == 7){
+                smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
+                stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
+                wave.src = "src/image/animate-sprite/stage-10-wave.png";                
+                // reset Stage-4
+                ctx_4.clearRect(0, 0, stage_4.width, stage_4.height)
+                $(".stage-4-words p").removeAttr('style')
+                $("#stage-4").removeAttr('style')             
+
+
+                // do stage-5
                 $("#stage-5").css({
                     "transform": "translate(0, 0)",
                     "opacity": "1",
                 })                   
-
-                // $.fn.fullpage.setAutoScrolling(false);
-                // $.fn.fullpage.setFitToSection(false);
-                SIDdrawCar = setInterval(drawCar, 125);
+                $(".stage-5-words p").css({
+                    "opacity": "1",
+                })
+                setTimeout(function(){
+                    $(".stage-5-words h2").css({
+                        "opacity": "1",
+                    })                                        
+                }, 3000)
+                $("#music-driving")[0].play();
+                SIDdrawCar = setInterval(drawCar, 125);        
             }
             if(index == 8){
-                console.log("press")
+                man.src = "src/image/animate-sprite/stage-11-man.jpg";
+                woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
+                wash.src = "src/image/animate-sprite/stage-12-wash.jpg";                
+                //reset Stage-5
+                ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
+                $("#stage-5").removeAttr('style')
+                $("#stage-5-words p").removeAttr('style');
+                $("#stage-5-words h2").removeAttr('style');
+
+
+                console.log("press")            
                 $("#stage-6").css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
@@ -951,39 +1092,123 @@
                 }, 555)                
                 setTimeout(function(){
                     console.log("draw press")
+                    $("#music-camera")[0].play();
                     SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
                     SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
                     SIDdrawSpeech = setInterval(drawSpeech, 83);                    
-                },4000)                     
-                // SIDdrawDoctor = setInterval(drawDoctor, 83)
-                // SIDdrawCpu = setInterval(drawCpu, 125)
+                }, 2333)
+                setTimeout(function(){
+                    $(".stage-6-words p").eq(0).css({
+                        "opacity": "1",
+                        "transform": 'translate(0, 0)',
+                    })
+                }, 2666)                     
             }
             if(index == 9){
                 console.log("switch off");
+                // reset stage-6
+                ctx_6.clearRect(0, 0, stage_6.width, stage_6.height);
+                ctx_6_1.clearRect(0, 0, stage_6_1.width, stage_6_1.height);
+                ctx_6_2.clearRect(0, 0, stage_6_2.width, stage_6_2.height);
+                ctx_6_3.clearRect(0, 0, stage_6_3.width, stage_6_3.height);
+                ctx_6_4.clearRect(0, 0, stage_6_4.width, stage_6_4.height);
+                $("#stage-6").removeAttr('style')
+                $("#stage-6_1").removeAttr('style')
+                $("#stage-6_2").removeAttr('style')
+                $("#stage-6_3").removeAttr('style')
+                $("#stage-6_4").removeAttr('style')
+                $(".stage-6-words p").eq(0).removeAttr('style')
+                $(".stage-6-words p").eq(1).removeAttr('style')
+                foodInfoEnd = 0;
+                foodSafeEnd = 0;
+                speechEnd = 0;          
+            
+                $.fn.fullpage.setScrollingSpeed(777);
                 SIDdrawRoom = setInterval(drawRoom, 125);
                 $("#stage-7").css({
                     "opacity": "1",
                 })
             }
             if(index == 10){
+                // reset stage-7
+                ctx_7.clearRect(0, 0, stage_7.width, stage_7.height);
+                $("#stage-7").removeAttr('style')
+                $(".stage-7-words").removeAttr('style');
+                      
                 console.log("bed");
-                SIDdrawBed = setInterval(drawBed, 125);
+                $(".stage-8-words").eq(0).css({
+                    "opacity": "1",
+                    "transform": "translate(0, 0)",
+                })
+                setTimeout(function(){
+                    $("#stage-8").css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)",
+                    })
+                    SIDdrawBed = setInterval(drawBed, 125);    
+                }, 1000)
+                
             }
             if(index == 11){
                 console.log("smoke");
-                SIDdrawSmoke = setInterval(drawSmoke, 125);
+                // reset stage-8
+                $(".stage-8-words").removeAttr('style');
+                $("#stage-8").removeAttr('style');
+                ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
+
+
+                $(".stage-9-words p").eq(0).css({
+                    "opacity": "1",
+                    "transform": "translate(0, 0)",
+                })
+                setTimeout(function(){
+                    $("#stage-9").css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)",                    
+                    })
+                    SIDdrawSmoke = setInterval(drawSmoke, 125);
+                }, 1222)
+                setTimeout(function(){
+                    $(".stage-9-words p").eq(1).css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)",
+                    })                    
+                }, 2666)
             }
             if(index == 12){
                 console.log("thanks");
+                // reset stage-9
+                ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
+                $(".stage-9-words p").removeAttr('style');
+                $("#stage-9").removeAttr('style');
+
+                $("#music-street")[0].play();
                 SIDdrawStroll = setInterval(drawStroll, 125);
-                console.log(ctx_10)
             }
             if(index == 13){
+                // reset stage-10
+                toWave = 0;
+                thanksIndex = 0;
+                strollToFade = 1;
+                ctx_10.globalAlpha = strollToFade;
+                ctx_10.clearRect(0, 0, stage_10.width, stage_10.height);
+                $(".thanks").removeAttr('style');
+                $(".stage-10-words").removeAttr('style');
+                $(".stage-10-words p").removeAttr('style');
+
+
+                $(".stage-11-words p").eq(0).css({
+                    "opacity": '1',
+                })
+
                 SIDdrawMan = setInterval(drawMan, 125);
                 setTimeout(function(){
                     $("#stage-11").css({
                         "opacity": "0",
                     })
+                    $(".stage-11-words p").eq(1).css({
+                        "opacity": '1',
+                    })                    
                     clearInterval(SIDdrawMan);
                     SIDdrawWoman = setInterval(drawWoman, 125);
                 }, 2500);
@@ -991,65 +1216,228 @@
                     $("#stage-11_1").css({
                         "opacity": "0",
                     })
+                    $(".stage-11-words p").eq(2).css({
+                        "opacity": '1',
+                    })                    
                     clearInterval(SIDdrawWoman);
-                }, 6500)
+                }, 5000)
             }
             if(index == 14){
-                SIDdrawWash = setInterval(drawWash, 125);
+                // reset stage-11
+                ctx_11.clearRect(0, 0, stage_11.width, stage_11.height);
+                ctx_11_1.clearRect(0, 0, stage_11_1.width, stage_11_1.height);
+                $("#stage-11").removeAttr('style');
+                $("#stage-11_1").removeAttr('style');
+                $(".stage-11-words p").removeAttr('style');
+
+                $(".stage-12-words p").eq(0).css({
+                    "opacity": 1,
+                })
+                setTimeout(function(){
+                    $(".stage-12-words p").eq(1).css({
+                        "opacity": 1,
+                    })                    
+                }, 1000)
+                setTimeout(function(){
+                    $(".stage-12-words p").eq(2).css({
+                        "opacity": 1,
+                    })                    
+                }, 2000)
+                setTimeout(function(){
+                    $("#stage-12").css({
+                        "opacity": 1,
+                    })
+                    SIDdrawWash = setInterval(drawWash, 125);            
+                }, 1666)                                
             }
             if(index == 15){
+                //reset stage-12
+                ctx_12.clearRect(0, 0, stage_12.width, stage_12.height);
+                $(".stage-12-words p").removeAttr('style');
+                $("#stage-12").removeAttr('style');
+
                 $(".stage-13").eq(0).css({
+                    "opacity": "1",
+                })
+                $(".stage-13-words p").eq(0).css({
                     "opacity": "1",
                 })
                 setTimeout(function(){
                     $(".stage-13").eq(1).css({
                         "opacity": "1",
-                    })
-                }, 5000)
+                    })         
+                }, 2000)
                 setTimeout(function(){
                     $(".stage-13").eq(2).css({
                         "opacity": "1",
                     })
-                },10000)
+                    $(".stage-13-words p").eq(1).css({
+                        "opacity": "1",
+                    })                               
+                },4000)
+                $.fn.fullpage.setAutoScrolling(false);
+                $.fn.fullpage.setFitToSection(false);                
             }
         },
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
-                $("#section-"+index).css({
-                    "opacity": "0"
-                })            
+            resetAll();
+            $("#section-"+index).css({
+                "opacity": "0"
+            })
+
+            if($("#indicator").css("opacity") != 1){
+                $("#indicator").css({
+                    "opacity": 1,
+                })                
+                $('#indicator-bar').css('width', '0')
+            }  
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
             }
             if(index == 2){
 
             }
-            if(index == 4){                 
-                setTimeout(function(){
-                    SIDdrawDoorBack = setInterval(drawDoorBack, 125);
-                }, 800);   
-                SIDdrawShadowBack = setInterval(drawShadowBack, 83);
-                $("#stage-2").css({
-                    "opacity": "0",
-                })   
+            if(index == 3){
+                 
+            }
+            if(index == 4){
+                if(direction == "up"){
+                    startCurFrame = 0;
+                    endCurFrame = 0;
+                    ctx_2.clearRect(0, 0, stage_2.width, stage_2.height);
+                    $(".stage-2-words").removeAttr('style')
+                    $("#stage-2").removeAttr('style')                         
+                } else{
+                    $("#section-4").css({
+                        "transition": "6s",
+                    })   
+                    SIDdrawEnd = setInterval(drawEnd, 100)
+                    $.fn.fullpage.setScrollingSpeed(4000);               
+                }
             }
             if(index == 5){
-                
-                console.log("");
+                if(direction == "up"){
+                    ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
+                    ctx_3.globalAlpha = 1;
+                    walk1X = 350;
+                    walkBackX = 150;
+                    $(".stage-3-words").removeAttr("style");                
+                }
+            }
+            if(index == 6){
+                if(direction == "up"){
+                    ctx_4.clearRect(kitchenX, kitchenY, stage_4.width, stage_4.height)
+                    $(".stage-4-words p").removeAttr('style')
+                    $("#stage-4").removeAttr('style')                        
+                }
             }
             if(index == 7){
-                $("#stage-5").css({
-                    "transform": "translate(75%, 20%)",
-                    "opacity": "0",
-                })                  
+                if(direction == "up"){
+                    ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
+                    $("#stage-5").removeAttr('style')
+                    $(".stage-5-words p").removeAttr('style');
+                    $(".stage-5-words h2").removeAttr('style');
+                } else {
+                    $("#stage-5").css({
+                        "transform": "translate(75%, 20%)",
+                        "opacity": "0",
+                    })
+                }                  
+            }
+            if(index == 8){
+                if(direction =="up"){
+                    ctx_6.clearRect(0, 0, stage_6.width, stage_6.height);
+                    ctx_6_1.clearRect(0, 0, stage_6_1.width, stage_6_1.height);
+                    ctx_6_2.clearRect(0, 0, stage_6_2.width, stage_6_2.height);
+                    ctx_6_3.clearRect(0, 0, stage_6_3.width, stage_6_3.height);
+                    ctx_6_4.clearRect(0, 0, stage_6_4.width, stage_6_4.height);
+                    $("#stage-6").removeAttr('style')
+                    $("#stage-6_1").removeAttr('style')
+                    $("#stage-6_2").removeAttr('style')
+                    $("#stage-6_3").removeAttr('style')
+                    $("#stage-6_4").removeAttr('style')
+                    $(".stage-6-words p").eq(0).removeAttr('style')
+                    $(".stage-6-words p").eq(1).removeAttr('style')
+                    foodInfoEnd = 0;
+                    foodSafeEnd = 0;
+                    speechEnd = 0; 
+                } else {
+                    $("#section-8").css({
+                        "transition": "3s",
+                    })
+                    $.fn.fullpage.setScrollingSpeed(2000);
+                    $("#stage-6_3").css({
+                        "opacity": "0",
+                        "transform": "translate(0, -130px)",
+                    });
+                    $(".stage-6-words p").eq(1).css({
+                        "opacity": "0",
+                        "transform": 'translate(0, -70px)',
+                    })
+                    setTimeout(function(){
+                        $("#stage-6_4").css({
+                            "opacity": "0",
+                            "transform": "translate(0, -140px)",
+                        });                    
+                    }, 111)  
+                }                  
+            }
+            if(index == 9){
+                if(direction == "up"){
+                    ctx_7.clearRect(0, 0, stage_7.width, stage_7.height);
+                    $("#stage-7").removeAttr('style')
+                    $(".stage-7-words").removeAttr('style');
+                }
+            }
+            if(index == 10){
+                if(direction == "up"){
+                    ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
+                    $(".stage-8-words").removeAttr('style');
+                    $("#stage-8").removeAttr('style');                    
+                }
             }
             if(index == 11){
-                clearInterval(SIDdrawSmoke);
+                if(direction == "up"){
+                    ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
+                    $(".stage-9-words p").removeAttr('style');
+                    $("#stage-9").removeAttr('style');                    
+                }
             }
-
-
-
-
+            if(index == 12){
+                if(direction == "up"){
+                    toWave = 0;
+                    thanksIndex = 0;
+                    strollToFade = 1;
+                    ctx_10.globalAlpha = strollToFade;
+                    ctx_10.clearRect(0, 0, stage_10.width, stage_10.height);
+                    $(".thanks").removeAttr('style');
+                    $(".stage-10-words").removeAttr('style');
+                    $(".stage-10-words p").removeAttr('style');                    
+                }
+            }
+            if(index == 13){
+                if(direction == "up"){
+                    ctx_11.clearRect(0, 0, stage_11.width, stage_11.height);
+                    ctx_11_1.clearRect(0, 0, stage_11_1.width, stage_11_1.height);
+                    $("#stage-11").removeAttr('style');
+                    $("#stage-11_1").removeAttr('style');
+                    $(".stage-11-words p").removeAttr('style');                    
+                }
+            }
+            if(index == 14){
+                if(direction == "up"){
+                    ctx_12.clearRect(0, 0, stage_12.width, stage_12.height);
+                    $(".stage-12-words p").removeAttr('style');
+                    $("#stage-12").removeAttr('style');                    
+                }
+            }
+            if(index == 15){
+                if(direction == "up"){
+                    $(".stage-13-words p").removeAttr('style');
+                    $(".stage-13").removeAttr('style');
+                }
+            }
             if(nextIndex == 3){
                 $(".fixed_pic").css("opacity", "1");
             }
@@ -1057,8 +1445,5 @@
                 $(".fixed_pic").css("opacity", "0");
             }
         },
-    });            
-    
-    
-
+    });   
 }));
