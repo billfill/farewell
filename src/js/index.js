@@ -937,7 +937,7 @@
     }
 
     $('.fullpage').fullpage({
-        navigation: true,
+        navigation: false,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
