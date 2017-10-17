@@ -125,8 +125,8 @@
         }
         .stage-2-words{
             position: absolute;
-            top: 75%;
-            left: 80%;
+            right: 20px;
+            bottom: 50px;
             transition: opacity 1.2s ease-in-out;
             opacity: 0;
             z-index: 15;
@@ -143,7 +143,6 @@
             background-image: url(../image/animate-sprite/stage-3-bg.png);
             background-position: center;
             background-size: 810px 369px;
-            // background-size: cover;
             background-repeat: no-repeat;
             background-color: transparent;
             transform: translate(0, 100px);
@@ -383,8 +382,6 @@
             z-index: -1;
             transition: 3s;
             transform: translateX(20%);
-            // transform: translateX(0);
-            // opacity: 1;
             opacity: 0;
             img{
                 width: auto;
@@ -465,8 +462,6 @@
             transition: opacity 1.5s ease-in-out;
         }
         #stage-11_2{
-            width: 100vw;
-            height: 100vh;
             position: absolute;
             top: 0;
             left: 0;   
@@ -502,8 +497,6 @@
             }
         }
         .stage-13{
-            width: 100vw;
-            height: 100vh;
             position: absolute;
             top: 0;
             left: 0;
@@ -530,10 +523,10 @@
                 transition: opacity 2s ease-in-out;
             }
             p:first-child{
-                margin-top: 30%;
+                margin-top: 15%;
             }
             p:last-child{
-                margin-bottom: 20%;
+                margin-bottom: 15%;
             }
         }
     }
@@ -548,467 +541,5 @@
 
 }
 @media screen and (min-width: 1280px){
-.fixed_pic{
-    background-size: contain;
-}    
-.fp-tableCell{
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    width: 80% !important;
-    margin: 0 auto;
-}
-    .fullpage{
-        // height: 100vh !important;
-        // position: relative;
-        // opacity: 1;
-        // transition: 5s;
-        // background-color: #f4f2ec;
-        // overflow: hidden;    
-        .section{
-            // height: 100vh;
-            // width: 100vw;
-            // position: absolute;
-            // top: 0;
-            // z-index: 0;
-            // opacity: 0;
-            // transition: 1s;
-            .cover_Title{
-                position: absolute;
-                left: 65%;
-                bottom: 15%;
-                h1{
-                    margin: 0;
-                }
-                h2{
-                    padding-left: 0;
-                }
-            }
-            canvas{
-                width: 50%;
-                height: 100%;
-                display: block;
-                // margin: 0 auto;
-                transition: 5s ease-in-out;
-                opacity: 1;
-                pointer-events: none;
-            }
-            #stage-2{
-                position: relative;
-                width: 50%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                transform: translateX(-100px);
-                opacity: 0;
-                transition: 3s;
-            }
-            .stage-2-words{
-                position: relative;
-                width: 50%;
-                display: flex;
-                right: 0;
-                bottom: 0;
-                transition: opacity 1.2s ease-in-out;
-                opacity: 0;
-                z-index: 15;
-            }
-            #stage-3{
-                width: 100%;
-                height: 100%;
-                background-image: url(../image/animate-sprite/stage-3-bg.png);
-                background-position: center;
-                background-size: 810px 369px;
-                background-repeat: no-repeat;
-                background-color: transparent;
-                transform: translate(0, 0) scale(1.3);
-            }
-            .stage-3-words{
-                position: absolute;
-                top: 0;
-                bottom: 10vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                opacity: 0;
-                transition: opacity 4s, transform 3s;
-                transform: translate(0, 0);
-                p{
-                    margin-left: 20%;
-                }
-            }
-            #stage-4{
-                transform: translate(0, -30px);
-                opacity: 0;
-                transition: 5s;
-            }
-            .stage-4-words{
-                position: absolute;
-                top: 15%;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                opacity: 1;
-                z-index: 10;
-                transition: opacity 3.5s, transform 2s;
-                transform: translate(0, 0);
-                p{
-                    margin-left: 15%;
-                    opacity: 0;
-                }
-                p:first-child{
-                    transition: 3s;
-                    transform: translate(0, -20px);
-                }
-                p:nth-child(2){
-                    transition: 3.5s;
-                    transform: translate(0, -40px);
-                }
-                p:last-child{
-                    transition: 4s;
-                    transform: translate(0, -60px);
-                }
-            }
-            #stage-5{
-                transform: translate(-75%, -20%);
-                transition: 3s ease-in-out;
-                opacity: 0;
-            }
-            .stage-5-words{
-                position: absolute;
-                top: 15%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                opacity: 1;
-                transition: opacity 4s, transform 3s;
-                transform: translate(0, 0);
-                p{
-                    opacity: 0;
-                    transition: opacity 4s;
-                }
-                h2{
-                    position: relative;
-                    opacity: 0;
-                    transition: opacity 4s;
-                    margin: 0;
-                    bottom: 0;
-                }
-            }
-            #stage-6{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 0;
-                opacity: 0;
-                transform: translate(0, 100%);
-                background:transparent url('../image/animate-sprite/stage-6-foodInfo-bg.png') no-repeat;
-                background-position: 130px 50px;
-                transition: 2.5s ease-in-out;
-            }
-            .stage-6-words{
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100vh;
-                opacity: 1;
-                transition: opacity 3s, transform 2s;
-                transform: translate(0, 0);
-                z-index: 10;
-                p{
-                    position: absolute;
-                    transition: 1s;
-                }
-                p:first-child{
-                    bottom: 8%;
-                    opacity: 0;
-                    transform: translate(0, 30px);
-                }
-                p:nth-child(2){
-                    top: 15%;
-                    opacity: 0;
-                    transform: translate(0, 30px);
-                }
-            }
-            #stage-6_1{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                opacity: 0;
-                transform: translate(0, 100%);
-                background:transparent url('../image/animate-sprite/stage-6-foodSafe-bg.png') no-repeat;
-                background-position: 50px 240px;
-                transition: 2.5s ease-in-out;
-            }
-            #stage-6_2{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 2;
-                opacity: 1;
-                transform: translate(0, 100%);
-                background-image: url('../image/animate-sprite/stage-6-speech-bg.png');
-                background-repeat: no-repeat;
-                background-position: 90px 200px;
-                transition: 2.5s ease-in-out;
-            }
-            #stage-6_3{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 3;
-                opacity: 0;
-                transform: translate(0, 100%);
-                background:url('../image/animate-sprite/stage-6-lab-bg.png') no-repeat;
-                background-position: 75px 150px;
-                transition: 2.5s ease-in-out;
-            }
-            #stage-6_4{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                opacity: 0;
-                transform: translate(0, 100%);
-                background: url('../image/animate-sprite/stage-6-lab-bg2.png') no-repeat;
-                background-position: left bottom;
-                transition: 2.5s ease-in-out;
-            }        
-            #stage-7{
-                opacity: 0;
-                transition: 1s;
-            }
-            .stage-7-words{
-                position: absolute;
-                top: 39%;
-                left: 44%;
-                transform: scale(.9);
-                visibility: hidden;
-                background-color: transparent;
-                z-index: 10;
-            }
-            #stage-8{
-                opacity: 0;
-                transition: 1s;
-                transform: translate(0 ,100px);
-            }
-            .stage-8-words{
-                position: absolute;
-                transform: translate(0, 50px);
-                opacity: 0;
-                transition: 1.5s;
-            }
-            .stage-8-words:first-child{
-                top: 23%;
-                left: 15%;
-            }
-            .stage-8-words:nth-child(2){
-                bottom: 23%;
-                right: 15%;
-            }
-            #stage-9{
-                background-image: url(../image/animate-sprite/stage-9-bg.png);
-                background-repeat: no-repeat;
-                background-position: center 200px;
-                background-size: contain; 
-                transition: 3.5s;
-                transform: translate(0, 20px);  
-                opacity: 0;         
-            }
-            .stage-9-words{
-                position: absolute;
-                transition: 3s;
-                top: 15%;
-                left: 15%;
-                p{
-                    transition: 2s;
-                    opacity: 0;
-                    transform: translate(0, -5px);
-                }
-            }
-            #stage-10{
-                background-color: transparent;
-            }
-            .stage-10-words{
-                position: absolute;
-                transition: 2.5s;
-                top: 15%;
-                left: 15%;
-                p{
-                    transition: 2.5s;
-                    opacity: 0;
-                    transform: translate(0 , 30px);
-                }
-            }
-            .thanks{
-                position: absolute;
-                top: 160px;
-                right: 0;
-                display: flex;
-                flex-direction: column;
-                z-index: -1;
-                transition: 3s;
-                transform: translateX(20%);
-                // transform: translateX(0);
-                // opacity: 1;
-                opacity: 0;
-                img{
-                    width: auto;
-                    height: 168px;
-                }
-                .bouzu-Img{
-                    width: auto;
-                    height: 250px;
-                    transition: 6s;
-                    transform: translateY(-120px);
-                }
-                .taxi-talk{
-                    position: relative;
-                    top: 0;
-                    left: 0;
-                    transform: rotateY(180deg) translateX(30px) translateY(50px);
-                    display: flex;
-                    img{
-                        margin: auto;
-                        width: auto;
-                        height: 168px;
-                    }
-                    p{
-                        position: absolute;
-                        top: 25px;
-                        left: 110px;
-                        transform: rotateY(180deg) scale(.8);
-                        text-align: center;
-                    }
-                }
-                .bouzu-talk{
-                    position: relative;
-                    top: 0;
-                    left: 0;
-                    transition: 6s;
-                    z-index: 1;
-                    background-color: transparent;
-                    transform: translate(0, -50px);
-                    img{
-                        margin: auto;
-                        width: auto;
-                        height: 195px;
-                    }
-                    p{
-                      position: absolute;
-                      top: 0;
-                      left: 0;  
-                      transition: 6s;
-                      z-index: 3;
-                    }
-                    p:first-child{
-                        transform: translate(22px, 40px);
-                    }
-                    p:nth-child(2){
-                        transform: translate(155px, 95px);
-                    }
-                }
-            }
-            #stage-11{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 10;
-                opacity: 1;
-                background-color: #f4f2ec;
-                background-position: center 150px;
-                background-repeat: no-repeat;
-                background-size: contain;      
-                transition: opacity 1.5s ease-in-out;
-            }
-            #stage-11_1{
-                position: absolute;
-                top: 0;
-                left: 0;            
-                z-index: 5;
-                opacity: 1;
-                background-color: #f4f2ec;
-                transition: opacity 1.5s ease-in-out;
-            }
-            #stage-11_2{
-                width: 100vw;
-                height: 100vh;
-                position: absolute;
-                top: 0;
-                left: 0;   
-                z-index: 0;
-                background-image: url(../image/animate-sprite/stage-11-bg.png);
-                background-position: center 180px;
-                background-repeat: no-repeat;
-                background-size: 302 323;                      
-            }
-            .stage-11-words{
-                position: absolute;
-                top: 13%;
-                left: 25%;
-                z-index: 15;
-                transition: 4s;
-                p{
-                    opacity: 0;
-                    transition: 4s;
-                }
-            }
-            #stage-12{
-                opacity: 0;
-                transition: 5s;
-            }
-            .stage-12-words{
-                position: absolute;
-                top: 20%;
-                left: 25%;
-                p{
-                    opacity: 0;
-                    transition: 3s;
-                }
-            }
-            .stage-13{
-                width: 100vw;
-                height: 100vh;
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: flex;
-                opacity: 0;
-                transition: opacity 2s ease-in-out;
-                img{
-                    margin: auto;
-                    width: auto;
-                    height: 80%;
-                }
-            }
-            .stage-13-words{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                p{
-                    margin: auto;
-                    opacity: 0;
-                    transition: opacity 2s ease-in-out;
-                }
-                p:first-child{
-                    margin-top: 30%;
-                }
-                p:last-child{
-                    margin-bottom: 30%;
-                }
-            }
-        }
-    }
+
 }
