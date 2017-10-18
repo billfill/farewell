@@ -1,3 +1,7 @@
+function isFacebookApp() {
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+}
 ($(document).ready(function(){
 
     var SIDdrawStart;
@@ -27,11 +31,6 @@
     var platform = (isMob == true) ? 'Mob' : 'PC';
     var progress = []
     var movie_progress = [null]
-
-    function isFacebookApp() {
-        var ua = navigator.userAgent || navigator.vendor || window.opera;
-        return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-    }
     
     if(isFacebookApp()){
         $('#cover-v').css('padding-bottom', '50px')
@@ -1311,10 +1310,16 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     $(".stage-13-words p").eq(1).css({
                         "opacity": "1",
                     })                               
-                },4000)
+                },4000)   
                 $.fn.fullpage.setAutoScrolling(false);
-                $.fn.fullpage.setFitToSection(false);                
-            }
+                $.fn.fullpage.setFitToSection(false);                   
+            }          
+            // if(index == 16){
+            //     $(".stage-13-words p").removeAttr('style');
+            //     $(".stage-13").removeAttr('style');                
+            //     $.fn.fullpage.setAutoScrolling(false);
+            //     $.fn.fullpage.setFitToSection(false); 
+            // }
         },
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
@@ -1473,8 +1478,17 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 if(direction == "up"){
                     $(".stage-13-words p").removeAttr('style');
                     $(".stage-13").removeAttr('style');
+                } else{
+                    $.fn.fullpage.setAutoScrolling(false);
+                    $.fn.fullpage.setFitToSection(false);                     
                 }
             }
+            // if(index == 16){
+            //     if(direction == "up"){
+            //         $.fn.fullpage.setAutoScrolling(true);
+            //         $.fn.fullpage.setFitToSection(true);                     
+            //     }
+            // }
             if(nextIndex == 3){
                 $(".fixed_pic").css("opacity", "1");
             }
