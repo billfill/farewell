@@ -89,6 +89,7 @@
     height: 100vh !important;
     #section-1, #section-2, #section-3{
         transition: .777s;
+        z-index: 0;
     }
     .section{
         position: absolute;
@@ -99,6 +100,7 @@
         transition: 2s;
         z-index: 50;
         background-color: transparent;
+        z-index: -1;
         .cover_Title{
             position: absolute;
             left: 10%;
