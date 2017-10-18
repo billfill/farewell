@@ -76,8 +76,8 @@
   position: fixed;
   z-index: 100;
   left: 50%;
+  bottom: 5%;
   margin-left: -10.28px;
-  bottom: 50px;
   color: #fff;
   opacity: 0;
   -webkit-animation-name: down;
