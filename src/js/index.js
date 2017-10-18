@@ -2,8 +2,8 @@ function isFacebookApp() {
     var ua = navigator.userAgent || navigator.vendor || window.opera;
     return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
 }
-($(document).ready(function(){
 
+($(document).ready(function(){
     var SIDdrawStart;
     var SIDdrawEnd;
     var SIDdrawWalk1;
@@ -37,7 +37,6 @@ function isFacebookApp() {
         $('.flex-layout').css('padding-bottom', '50px')
         $('.box-container').css('margin-top', '-75px')
     }
-
     function detectmob() {
         if( navigator.userAgent.match(/Android/i)
             || navigator.userAgent.match(/webOS/i)
@@ -53,7 +52,6 @@ function isFacebookApp() {
             return false;
         }
     }
-
     function moviePlay(id){
         $('#movie-' + id).get(0).play();
         if(progress[id - 1] == null){
