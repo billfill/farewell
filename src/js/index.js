@@ -36,12 +36,13 @@
         $('.box-container').css('margin-top', '-75px')
     }
 
-    if(isMob == true && navigator.vendor.match(/Apple Computer/)){
+    if((isMob == true) && (navigator.vendor.match(/Apple Computer/) == true)){
         $(".downArrow").css({
             "bottom": "15%",
         })
+        console.log("phone safari")
     }
-
+    console.log(navigator.vendor.match(/Apple Computer/))
     console.log(navigator)
 
     function isFacebookApp() {
