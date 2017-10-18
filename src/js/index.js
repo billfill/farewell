@@ -29,20 +29,24 @@
     var platform = (isMob == true) ? 'Mob' : 'PC';
     var progress = []
     var movie_progress = [null]
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);    
     
+
     if(isFacebookApp()){
         $('#cover-v').css('padding-bottom', '50px')
         $('.flex-layout').css('padding-bottom', '50px')
         $('.box-container').css('margin-top', '-75px')
     }
 
-    if((isMob == true) && (navigator.vendor.match(/Apple Computer/) == true)){
+    if(iOSSafari){
         $(".downArrow").css({
             "bottom": "15%",
         })
         console.log("phone safari")
     }
-    console.log(navigator.vendor.match(/Apple Computer/))
     console.log(navigator)
 
     function isFacebookApp() {
