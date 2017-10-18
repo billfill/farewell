@@ -4,6 +4,7 @@ html, body {
     font-family: Arial, "微軟正黑體", sans-serif;
     word-wrap: break-word;
     text-align: justify;
+    background-color: #f4f2ec;
 }
 
 img{
@@ -98,7 +99,7 @@ footer a {
 
 #head{
   position: fixed;
-  background: transparent;
+  background-color: #f4f2ec;
   height: 50px;
   width: 100%;
   top: 0;
@@ -267,6 +268,7 @@ footer a {
 	opacity: 1;
     transition: opacity 0.7s ease;
 	background-color: transparent;
+    /* background-color: #f4f2ec; */
 }
 
 #indicator-bar{

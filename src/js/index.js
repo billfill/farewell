@@ -29,7 +29,7 @@
     var platform = (isMob == true) ? 'Mob' : 'PC';
     var progress = []
     var movie_progress = [null]
-    
+
     var ua = window.navigator.userAgent;
     var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
     var webkit = !!ua.match(/WebKit/i);
@@ -254,6 +254,8 @@
         if(scroll_now > 300 && scroll_now < 400){
             $("#music-main")[0].pause();
             $(".voice-state img").attr('src', 'src/image/off.png');
+            $("#head").removeClass("Bgc-TP");
+            $("#indicator").addClass("mainColor")
             voiceOff();
         }
     })
@@ -1079,9 +1081,11 @@
             // console.log("style:"+$('.fp-tableCell').children().removeAttr('style'))
             $("#section-"+index).css({
                 "opacity": "1",
-            })      
+            })
+            $("#head").addClass('Bgc-TP')
             bar_witdh = (index) / ($(".fullpage").children().length-1) * 100
-            $('#indicator-bar').css('width', bar_witdh+'%')            
+            $('#indicator-bar').css('width', bar_witdh+'%')
+            $("#indicator").removeClass("mainColor")          
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
                 $.fn.fullpage.setAutoScrolling(true);
