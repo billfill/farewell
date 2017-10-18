@@ -159,6 +159,9 @@
             </div>
         </div>
         <div class="fullpage">
+            <div class="downArrow">
+                <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>
+            </div>            
             <div class="fixed_pic"></div>
             <div class="section" id="section-1">
                 <div class="cover_Title">
@@ -175,9 +178,6 @@
                         <p><br/></p>
                         <p class="whiteP">前面需要一個開聲音提醒嗎?前面需要一個開聲音提醒嗎?前面需要一個開聲音提醒嗎?</p>
                         <p><br/></p>
-                    </div>
-                    <div class="downArrow">
-                        <i class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
                     </div>
                 </div>                    
             </div>
@@ -196,10 +196,7 @@
                                 <img class="line-share" style="position:relative;" src="//media.line.me/img/button/zh-hant/84x20.png" width="86" height="22" alt="LINE分享給朋友">
                             </div>
                         </div>                         
-                    </div>                    
-                    <div class="downArrow">
-                        <i class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
-                    </div>                                       
+                    </div>                                                       
                 </div>
             </div>
             <div class="section" id="section-4">
@@ -208,7 +205,6 @@
                     <p>四年前的那一天，</p>
                     <p>你的心跳停止了。</p>
                 </div>
-
             </div> 
             <div class="section" id="section-5">
                 <div class="stage-3-words">
@@ -243,11 +239,13 @@
                 <canvas id="stage-6_1"></canvas>
                 <canvas id="stage-6_2"></canvas>
                 <canvas id="stage-6_3"></canvas>
+                <canvas id="stage-6_3_bg"></canvas>
                 <canvas id="stage-6_4"></canvas>
             </div>  
             <div class="section" id="section-9">
                 <p class="stage-7-words">爸爸進房間囉</p>
                 <canvas id="stage-7"></canvas>          
+                <canvas id="stage-7_1"></canvas>          
             </div>    
             <div class="section" id="section-10">
                 <p class="stage-8-words">但其實，爸爸</p>
@@ -259,7 +257,8 @@
                     <p>永遠為你空下</p>
                     <p>專屬的座位, 一副碗筷</p>                    
                 </div>
-                <canvas id="stage-9"></canvas>   
+                <canvas id="stage-9"></canvas>
+                <canvas id="stage-9_bg"></canvas> 
             </div> 
             <div class="section" id="section-12">
                 <div class="stage-10-words">
@@ -267,23 +266,25 @@
                     <p>還有很多人</p>
                     <p>也都很想念你</p>
                 </div>
-                <canvas id="stage-10"></canvas>  
-                <div class="thanks">
-                    <div class="taxi-talk">
-                        <img src="src/image/animate-sprite/stage-10-taxi-talk.png" alt="">
-                        <p>感恩林醫師<br/>帶給我們的一切</p>
+                <div class="stage-10-box">
+                    <canvas id="stage-10"></canvas>  
+                    <div class="thanks">
+                        <div class="taxi-talk">
+                            <img src="src/image/animate-sprite/stage-10-taxi-talk.png" alt="">
+                            <p>感恩林醫師<br/>帶給我們的一切</p>
+                        </div>
+                        <img src="src/image/animate-sprite/stage-10-taxi.png" alt="">
                     </div>
-                    <img src="src/image/animate-sprite/stage-10-taxi.png" alt="">
+                    <div class="thanks">
+                        <div class="bouzu-talk">
+                            <p>謝謝你們</p>
+                            <p>師母加油</p>
+                            <img src="src/image/animate-sprite/stage-10-bouzu-talk.png" alt="">
+                        </div>
+                        <img class="bouzu-Img" src="src/image/animate-sprite/stage-10-bouzu.png" alt="">
+                    </div>     
                 </div>
-                <div class="thanks">
-                    <div class="bouzu-talk">
-                        <p>謝謝你們</p>
-                        <p>師母加油</p>
-                        <img src="src/image/animate-sprite/stage-10-bouzu-talk.png" alt="">
-                    </div>
-                    <img class="bouzu-Img" src="src/image/animate-sprite/stage-10-bouzu.png" alt="">
-                </div>     
-            </div> 
+            </div>                     
             <div class="section" id="section-13">
                 <div class="stage-11-words">
                     <p>你說過要照顧我一輩子</p>
@@ -317,7 +318,6 @@
                     <img src="src/image/animate-sprite/stage-13-end.png" alt="">
                 </div>                                 
             </div>
-            <!-- <div class="section" id="section-16"></div> -->
         </div>
         <div class="content container">
             <h2>他走的第1500天 早晨咖啡依然熱著</h2>

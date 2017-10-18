@@ -188,15 +188,15 @@ function isFacebookApp() {
     }
 
     function voiceOn(){
-            $("#music-main")[0].muted = true;
-            $("#music-door")[0].muted = true;
-            $("#music-walk")[0].muted = true;
-            $("#music-cooking")[0].muted = true;
-            $("#music-driving")[0].muted = true;
-            $("#music-camera")[0].muted = true;
-            $("#music-switch")[0].muted = true;
-            $("#music-stroll")[0].muted = true;
-            $("#music-street")[0].muted = true;
+        $("#music-main")[0].muted = true;
+        $("#music-door")[0].muted = true;
+        $("#music-walk")[0].muted = true;
+        $("#music-cooking")[0].muted = true;
+        $("#music-driving")[0].muted = true;
+        $("#music-camera")[0].muted = true;
+        $("#music-switch")[0].muted = true;
+        $("#music-stroll")[0].muted = true;
+        $("#music-street")[0].muted = true;
     }
 
     $(".voice-state img").on("click", function(){
@@ -296,7 +296,12 @@ function isFacebookApp() {
     var stage_6_3 = document.getElementById("stage-6_3");
     var ctx_6_3 = stage_6_3.getContext("2d");
     stage_6_3.width = canvasWidth;
-    stage_6_3.height = canvasHeight;   
+    stage_6_3.height = canvasHeight;
+
+    var stage_6_3_bg = document.getElementById("stage-6_3_bg");
+    var ctx_6_3_bg = stage_6_3_bg.getContext("2d");
+    stage_6_3_bg.width = canvasWidth;
+    stage_6_3_bg.height = canvasHeight;       
 
     var stage_6_4 = document.getElementById("stage-6_4");
     var ctx_6_4 = stage_6_4.getContext("2d");
@@ -318,6 +323,11 @@ function isFacebookApp() {
     stage_9.width = canvasWidth;
     stage_9.height = canvasHeight;
 
+    var stage_9_bg = document.getElementById("stage-9_bg");
+    var ctx_9_bg = stage_9_bg.getContext("2d");
+    stage_9_bg.width = canvasWidth;
+    stage_9_bg.height = canvasHeight;    
+
     var stage_10 = document.getElementById("stage-10");
     var ctx_10 = stage_10.getContext("2d");
     stage_10.width = canvasWidth;
@@ -333,6 +343,11 @@ function isFacebookApp() {
     stage_11_1.width = canvasWidth;
     stage_11_1.height = canvasHeight;
 
+    var stage_11_2 = document.getElementById("stage-11_2");
+    var ctx_11_2 = stage_11_2.getContext("2d");
+    stage_11_2.width = canvasWidth;
+    stage_11_2.height = canvasHeight;    
+
     var stage_12 = document.getElementById("stage-12");
     var ctx_12 = stage_12.getContext("2d");
     stage_12.width = canvasWidth;
@@ -341,7 +356,7 @@ function isFacebookApp() {
     var startWidth = 375; 
     var startHeight = 667; 
     var startCurFrame = 0; 
-    var startFrameCount = 37;
+    var startFrameCount = 25;
     var startSrcX = 0; 
     var startSrcY = 0; 
     var startX=0;
@@ -356,7 +371,13 @@ function isFacebookApp() {
         //Updating the frame index 
         if(startCurFrame == startFrameCount -1){
             clearInterval(SIDdrawStart);
-        } else if (startCurFrame == 10){
+        } else if(startCurFrame == 23){
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })
+            startCurFrame++
+        } else if (startCurFrame == 8){
             $("#music-door")[0].play();
             startCurFrame++
         } else {
@@ -375,7 +396,7 @@ function isFacebookApp() {
     var endWidth = 375; 
     var endHeight = 667; 
     var endCurFrame = 0; 
-    var endFrameCount = 37;
+    var endFrameCount = 25;
     var endSrcX = 0; 
     var endSrcY = 0; 
     var endX= 0;
@@ -393,7 +414,7 @@ function isFacebookApp() {
             $("#section-4").css({
                 "transition": "1s",
             })               
-        } else if(endCurFrame == 26){
+        } else if(endCurFrame == 13){
             $("#stage-2").css({
                 "transform": "translateX(-100px)",
                 "opacity": 0,
@@ -438,8 +459,14 @@ function isFacebookApp() {
             if( walk1X > 150 && walk1X < 200){
                 ctx_3.globalAlpha -= 0.05;
             }
+            if(walk1X < 260){
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "black",
+                })                
+            }                 
             walk1X -= 3
-        }
+        }   
     }
 
     var walkBackWidth = 39; 
@@ -485,7 +512,7 @@ function isFacebookApp() {
     var treeY= 230;
 
     var tree = new Image(); 
-    tree.src = 'src/image/animate-sprite/stage-3-bg.png'
+    // tree.src = 'src/image/animate-sprite/stage-3-bg.png'
 
     ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);   
 // stage-4
@@ -590,7 +617,7 @@ function isFacebookApp() {
         ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
         if(foodSafeEnd == 42){
             clearInterval(SIDdrawFoodSafe);
-            $("#stage-6_3").css({
+            $("#stage-6_3, #stage-6_3_bg").css({
                 "opacity": "1",
                 "transform": "translate(0, 0)",
             });            
@@ -623,9 +650,6 @@ function isFacebookApp() {
 
     function drawSpeech(){
         //Updating the frame index 
-        $("#stage-6_2").css({
-            "background-image": "none"
-        })
         speechCurFrame = ++speechCurFrame % speechFrameCount; 
         speechSrcY = speechCurFrame * speechHeight; 
         ctx_6_2.clearRect(speechX, speechY, speechWidth+10, speechHeight+10);
@@ -641,7 +665,13 @@ function isFacebookApp() {
                     "opacity": "1",
                     "transform": 'translate(0, 0px)',
                 })
-                }, 2000)
+            }, 2000)
+            setTimeout(function(){
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "black",
+                })                 
+            }, 2444)
             SIDdrawDoctor = setInterval(drawDoctor, 83)
         } else if(speechEnd == 39){
             $(".stage-6-words p").eq(0).css({
@@ -674,6 +704,10 @@ function isFacebookApp() {
     var doctor = new Image(); 
     // doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
 
+    var labTool = new Image();
+    // labTool.src = "src/image/animate-sprite/stage-6-lab-bg.png";
+    // ctx_6_3_bg.drawImage(labTool, 0, 0, 360, 395, 75, 150, 360, 395);
+
     function drawDoctor(){
         //Updating the frame index 
         doctorCurFrame = ++doctorCurFrame % doctorFrameCount; 
@@ -693,6 +727,10 @@ function isFacebookApp() {
 
     var cpu = new Image(); 
     // cpu.src = "src/image/animate-sprite/stage-6-cpu.png";
+
+    var labLocker = new Image();
+    // labLocker.src = "src/image/animate-sprite/stage-6-lab-bg2.png";
+    // ctx_6_3_bg.drawImage(labLocker, 0, 0, 124, 208, 0, 459, 124, 208);
 
     function drawCpu(){
         //Updating the frame index 
@@ -718,19 +756,25 @@ function isFacebookApp() {
 
     function drawRoom(){
         //Updating the frame index 
-        if(roomCurFrame == 5){
-            $(".stage-7-words").css({
-                "visibility": "visible",
-            })
-        } else if(roomCurFrame == 23){
-            $("#music-switch")[0].play(0);
-        }
         roomCurFrame = ++roomCurFrame % roomFrameCount; 
         roomSrcY = roomCurFrame * roomHeight; 
         ctx_7.clearRect(roomX, roomY, roomWidth+10, roomHeight+10);
         ctx_7.drawImage(room, roomSrcX, roomSrcY, roomWidth, roomHeight, roomX, roomY, roomWidth, roomHeight);
-        if(roomCurFrame == roomFrameCount -1){
-            clearInterval(SIDdrawRoom);
+        if(roomCurFrame > 4){
+            $(".stage-7-words").css({
+                "visibility": "visible",
+            })
+            // ctx_7.font = "14px Arial";
+            // ctx_7.fillText("爸爸進房間囉", 175, 282);
+            if(roomCurFrame == 23){
+                $("#music-switch")[0].play(0);    
+            } else if(roomCurFrame == roomFrameCount -1){
+                clearInterval(SIDdrawRoom);
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "black",
+                })                
+            }
         }
     }    
 
@@ -752,11 +796,14 @@ function isFacebookApp() {
         //Updating the frame index 
         bedCurFrame = ++bedCurFrame % bedFrameCount; 
         bedSrcY = bedCurFrame * bedHeight; 
-        ctx_8.clearRect(bedX, bedY, bedWidth+10, bedHeight+10);
+        ctx_8.clearRect(bedX, bedY, bedWidth, bedHeight);
         ctx_8.drawImage(bed, bedSrcX, bedSrcY, bedWidth, bedHeight, bedX, bedY, bedWidth, bedHeight);
         if(bedCurFrame == bedFrameCount -1){
             clearInterval(SIDdrawBed);
-            console.log("stop bed")
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })                
         } else if(bedCurFrame == 8){
             $(".stage-8-words").eq(1).css({
                 "transform": "translate(0, 0)",
@@ -778,6 +825,14 @@ function isFacebookApp() {
 
     var smoke = new Image(); 
     // smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
+
+    var table = new Image();
+
+    function drawTable(){
+        ctx_9_bg.transform(.85, 0, 0, .85, 0, 0);
+        ctx_9_bg.drawImage(table, 0, 0, 413, 416, 12, 250, 413, 416);        
+    }
+
 
     function drawSmoke(){
         //Updating the frame index 
@@ -887,7 +942,11 @@ function isFacebookApp() {
                     "tranistion": "translate(0, -50px)",
                 })                     
             } else {
-                SIDdrawStrollToFade = setInterval(drawStrollFade, 125);                 
+                SIDdrawStrollToFade = setInterval(drawStrollFade, 125);
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "black",
+                })                
             }
         }
     }
@@ -936,6 +995,8 @@ function isFacebookApp() {
         console.log("woman GO");
     }
 
+    var present = new Image();
+
 // stage-12
 
     var washWidth = 375; 
@@ -960,30 +1021,41 @@ function isFacebookApp() {
         if(washCurFrame == washFrameCount -1){
             clearInterval(SIDdrawWash);
             console.log("stop wash");
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })                            
         }
     }
-start.src = "src/image/animate-sprite/stage-2-start.jpg";
-end.src = "src/image/animate-sprite/stage-2-end.jpg";
-walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
-walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
-kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
-foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
-foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
-speech.src = "src/image/animate-sprite/stage-6-speech.png";      
-car.src = "src/image/animate-sprite/stage-5-car.jpg";
-doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
-cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
-room.src = "src/image/animate-sprite/stage-7-room.jpg";
-bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
-smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
-stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
-wave.src = "src/image/animate-sprite/stage-10-wave.png";                
-man.src = "src/image/animate-sprite/stage-11-man.jpg";
-woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
-wash.src = "src/image/animate-sprite/stage-12-wash.jpg";                
+// start.src = "src/image/animate-sprite/stage-2-start.jpg";
+// end.src = "src/image/animate-sprite/stage-2-end.jpg";
+// walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
+// walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
+// kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
+// foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
+// foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
+// speech.src = "src/image/animate-sprite/stage-6-speech.png";      
+// car.src = "src/image/animate-sprite/stage-5-car.jpg";
+// doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
+// cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
+// room.src = "src/image/animate-sprite/stage-7-room.jpg";
+// bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
+// smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
+// stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
+// wave.src = "src/image/animate-sprite/stage-10-wave.png";                
+// man.src = "src/image/animate-sprite/stage-11-man.jpg";
+// woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
+// wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
+// // stage-bg-src            
+// tree.src = 'src/image/animate-sprite/stage-3-bg.png'
+// labTool.src = "src/image/animate-sprite/stage-6-lab-bg.png";
+// labLocker.src = "src/image/animate-sprite/stage-6-lab-bg2.png";
+// table.src = "src/image/animate-sprite/stage-9-bg.png";
+// present.src = "src/image/animate-sprite/stage-11-bg.png";
 
     $('.fullpage').fullpage({
-        navigation: true,
+        navigation: false,
+        // navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
@@ -999,34 +1071,48 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
                 $.fn.fullpage.setAutoScrolling(true);
-                $.fn.fullpage.setFitToSection(true);  
+                $.fn.fullpage.setFitToSection(true);
+                $.fn.fullpage.setScrollingSpeed(777);        
             }
             if(index == 2 ){
                 start.src = "src/image/animate-sprite/stage-2-start.jpg";
                 end.src = "src/image/animate-sprite/stage-2-end.jpg";
                 walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
                 walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
+                tree.src = 'src/image/animate-sprite/stage-3-bg.png'
 
                 $(".page-black").eq(0).css({
                     "transform": "translate(0, 0)",
-                })                               
+                })
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "white",
+                })                           
             }
             if(index == 3){
                 kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
                 foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
                 foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
-                speech.src = "src/image/animate-sprite/stage-6-speech.png";                 
+                speech.src = "src/image/animate-sprite/stage-6-speech.png";
+                labTool.src = "src/image/animate-sprite/stage-6-lab-bg.png";
+                labLocker.src = "src/image/animate-sprite/stage-6-lab-bg2.png";                                
                 // reset
                 $(".page-black").eq(0).removeAttr('style')
 
                 $(".page-black").eq(1).css({
                     "transform": "translate(0, 0)",
-                })               
+                })
+                $(".downArrow").css({
+                    "opacity": 1,
+                    "color": "white",
+                })                
             }
             if(index == 4){
                 car.src = "src/image/animate-sprite/stage-5-car.jpg";
                 doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
-                cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
+                cpu.src = "src/image/animate-sprite/stage-6-cpu.png";
+                table.src = "src/image/animate-sprite/stage-9-bg.png";
+                present.src = "src/image/animate-sprite/stage-11-bg.png";                                
                 // reset
                 $(".page-black").eq(1).removeAttr('style')
                 $("#stage-2").css({
@@ -1058,7 +1144,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 $("#music-walk")[0].play();
                 ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
                 SIDdrawWalk1 = setInterval(drawWalk1To, 83);
-                $.fn.fullpage.setScrollingSpeed(777);                  
+                $.fn.fullpage.setScrollingSpeed(1777);                  
             }
             if(index == 6){
                 bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
@@ -1080,6 +1166,12 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                         "opacity": "1",                    
                     })
                 }, 1000)
+                setTimeout(function(){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })                
+                }, 4000)
                 $("#music-cooking")[0].play();
                 SIDdrawKitchen = setInterval(drawKitchen, 125);          
             }
@@ -1106,6 +1198,12 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                         "opacity": "1",
                     })                                        
                 }, 3000)
+                setTimeout(function(){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    }) 
+                }, 5444)
                 $("#music-driving")[0].play();
                 SIDdrawCar = setInterval(drawCar, 125);        
             }
@@ -1123,7 +1221,10 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 console.log("press")
                 ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
                 ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
-                ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);                
+                ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
+                ctx_6_3_bg.drawImage(labTool, 0, 0, 360, 395, 75, 150, 360, 395);
+                ctx_6_4.drawImage(labLocker, 0, 0, 124, 208, 0, 459, 124, 208);
+
                 $("#stage-6").css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
@@ -1166,6 +1267,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 $("#stage-6_1").removeAttr('style')
                 $("#stage-6_2").removeAttr('style')
                 $("#stage-6_3").removeAttr('style')
+                $("#stage-6_3_bg").removeAttr('style')
                 $("#stage-6_4").removeAttr('style')
                 $(".stage-6-words p").eq(0).removeAttr('style')
                 $(".stage-6-words p").eq(1).removeAttr('style')
@@ -1173,7 +1275,6 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 foodSafeEnd = 0;
                 speechEnd = 0;          
             
-                $.fn.fullpage.setScrollingSpeed(777);
                 SIDdrawRoom = setInterval(drawRoom, 125);
                 $("#stage-7").css({
                     "opacity": "1",
@@ -1206,13 +1307,13 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                 $("#stage-8").removeAttr('style');
                 ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
 
-
+                drawTable();
                 $(".stage-9-words p").eq(0).css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
                 })
                 setTimeout(function(){
-                    $("#stage-9").css({
+                    $("#stage-9, #stage-9_bg").css({
                         "opacity": "1",
                         "transform": "translate(0, 0)",                    
                     })
@@ -1224,6 +1325,12 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                         "transform": "translate(0, 0)",
                     })                    
                 }, 2666)
+                setTimeout(function(){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })                                    
+                }, 3333)
             }
             if(index == 12){
                 console.log("thanks");
@@ -1251,6 +1358,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     "opacity": '1',
                 })
 
+                ctx_11_2.drawImage(present, 0, 0, 303, 323, 36, 180, 303, 323);
                 SIDdrawMan = setInterval(drawMan, 125);
                 setTimeout(function(){
                     $("#stage-11").css({
@@ -1271,6 +1379,12 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     })                    
                     clearInterval(SIDdrawWoman);
                 }, 5000)
+                setTimeout(function(){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })                
+                }, 5555)
             }
             if(index == 14){
                 // reset stage-11
@@ -1325,8 +1439,14 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                         "opacity": "1",
                     })                               
                 }, 4000)
-                $.fn.fullpage.setAutoScrolling(false);
-                $.fn.fullpage.setFitToSection(false);              
+                setTimeout(function(){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })  
+                    $.fn.fullpage.setAutoScrolling(false);
+                    $.fn.fullpage.setFitToSection(false);                                   
+                }, 4888)             
             }          
             // if(index == 16){
             //     $(".stage-13-words p").removeAttr('style');
@@ -1338,6 +1458,9 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
             resetAll();
+            $(".downArrow").css({
+                "opacity": 0,
+            })             
             $("#section-"+index).css({
                 "opacity": "0"
             })
@@ -1366,10 +1489,10 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     $("#stage-2").removeAttr('style')                         
                 } else{
                     $("#section-4").css({
-                        "transition": "6s",
+                        "transition": "3s",
                     })   
                     SIDdrawEnd = setInterval(drawEnd, 100)
-                    $.fn.fullpage.setScrollingSpeed(4000);               
+                    $.fn.fullpage.setScrollingSpeed(2333);               
                 }
             }
             if(index == 5){
@@ -1412,6 +1535,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     $("#stage-6_1").removeAttr('style')
                     $("#stage-6_2").removeAttr('style')
                     $("#stage-6_3").removeAttr('style')
+                    $("#stage-6_3_bg").removeAttr('style')
                     $("#stage-6_4").removeAttr('style')
                     $(".stage-6-words p").eq(0).removeAttr('style')
                     $(".stage-6-words p").eq(1).removeAttr('style')
@@ -1422,8 +1546,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     $("#section-8").css({
                         "transition": "3s",
                     })
-                    $.fn.fullpage.setScrollingSpeed(2000);
-                    $("#stage-6_3").css({
+                    $("#stage-6_3, #stage-6_3_bg").css({
                         "opacity": "0",
                         "transform": "translate(0, -130px)",
                     });
@@ -1494,7 +1617,7 @@ wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
                     $(".stage-13").removeAttr('style');
                 } else{
                     $.fn.fullpage.setAutoScrolling(false);
-                    $.fn.fullpage.setFitToSection(false);                     
+                    $.fn.fullpage.setFitToSection(false);                 
                 }
             }
             // if(index == 16){
