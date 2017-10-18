@@ -253,6 +253,11 @@
     stage_3.width = canvasWidth;
     stage_3.height = canvasHeight; 
 
+    var stage_3_1 = document.getElementById("stage-3_1");
+    var ctx_3_1 = stage_3_1.getContext("2d");
+    stage_3_1.width = canvasWidth;
+    stage_3_1.height = canvasHeight;     
+
     var stage_4 = document.getElementById("stage-4");
     var ctx_4 = stage_4.getContext("2d");
     stage_4.width = canvasWidth;
@@ -402,21 +407,21 @@
     var walk1FrameCount = 36;
     var walk1SrcX = 0; 
     var walk1SrcY = 0; 
-    var walk1X = 350;
-    var walk1Y= 390; 
+    var walk1X = 390;
+    var walk1Y= 575; 
 
 
     var walk1 = new Image(); 
     // walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
-    ctx_3.transform(.8, 0, 0, .8, 0, 0);
+    ctx_3.transform(.7, 0, 0, .7, 0, 0);
     function drawWalk1To(){
         //Updating the frame index 
         walk1CurFrame = ++walk1CurFrame % walk1FrameCount; 
         walk1SrcY = walk1CurFrame * walk1Height; 
-        ctx_3.clearRect(walk1X, walk1Y, walk1Width+10, walk1Height+10);
+        ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
         ctx_3.drawImage(walk1, walk1SrcX, walk1SrcY, walk1Width, walk1Height, walk1X, walk1Y, walk1Width, walk1Height);
         if(walk1X < 150){
-            ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
+            ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
             clearInterval(SIDdrawWalk1)
             SIDdrawWalkBack = setInterval(drawWalkBack, 83);
         } else {
@@ -433,8 +438,8 @@
     var walkBackFrameCount = 36;
     var walkBackSrcX = 0; 
     var walkBackSrcY = 0; 
-    var walkBackX = 150;
-    var walkBackY= 390; 
+    var walkBackX = 180;
+    var walkBackY= 565; 
 
 
     var walkBack = new Image(); 
@@ -444,23 +449,35 @@
         //Updating the frame index 
         walkBackCurFrame = ++walkBackCurFrame % walkBackFrameCount; 
         walkBackSrcY = walkBackCurFrame * walkBackHeight; 
-        ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth+10, walkBackHeight+10);
+        ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
         ctx_3.drawImage(walkBack, walkBackSrcX, walkBackSrcY, walkBackWidth, walkBackHeight, walkBackX, walkBackY, walkBackWidth, walkBackHeight);
-        if(walkBackX > 250){
-            ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
+        if(walkBackX > 270){
+            ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
             clearInterval(SIDdrawWalkBack)
             $("#music-walk")[0].pause();
         } else {
-            if( walkBackX > 150 && walkBackX < 170){
+            if( walkBackX > 150 && walkBackX < 190){
                 ctx_3.globalAlpha += 0.3;
-            } else if (walkBackX > 170 && walkBackX < 200){
+            } else if (walkBackX > 190 && walkBackX < 220){
                 ctx_3.globalAlpha = 1;
-            } else if (walkBackX > 200 && walkBackX < 250){
+            } else if (walkBackX > 220 && walkBackX < 270){
                 ctx_3.globalAlpha -= 0.05;
             }
             walkBackX += 2
         }
     } 
+
+    var treeWidth = 810; 
+    var treeHeight = 369; 
+    var treeSrcX = 0; 
+    var treeSrcY = 0; 
+    var treeX = -230;
+    var treeY= 230;
+
+    var tree = new Image(); 
+    tree.src = 'src/image/animate-sprite/stage-3-bg.png'
+
+    ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);   
 // stage-4
 
     var kitchenWidth = 375; 
@@ -935,9 +952,28 @@
             console.log("stop wash");
         }
     }
+start.src = "src/image/animate-sprite/stage-2-start.jpg";
+end.src = "src/image/animate-sprite/stage-2-end.jpg";
+walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
+walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
+kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
+foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
+foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
+speech.src = "src/image/animate-sprite/stage-6-speech.png";      
+car.src = "src/image/animate-sprite/stage-5-car.jpg";
+doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
+cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
+room.src = "src/image/animate-sprite/stage-7-room.jpg";
+bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
+smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
+stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
+wave.src = "src/image/animate-sprite/stage-10-wave.png";                
+man.src = "src/image/animate-sprite/stage-11-man.jpg";
+woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
+wash.src = "src/image/animate-sprite/stage-12-wash.jpg";                
 
     $('.fullpage').fullpage({
-        navigation: false,
+        navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
@@ -1010,6 +1046,7 @@
                     "opacity": "1",
                 })
                 $("#music-walk")[0].play();
+                ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
                 SIDdrawWalk1 = setInterval(drawWalk1To, 83);
                 $.fn.fullpage.setScrollingSpeed(777);                  
             }
@@ -1096,7 +1133,7 @@
                     SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
                     SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
                     SIDdrawSpeech = setInterval(drawSpeech, 83);                    
-                }, 2333)
+                }, 4000)
                 setTimeout(function(){
                     $(".stage-6-words p").eq(0).css({
                         "opacity": "1",
