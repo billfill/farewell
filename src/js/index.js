@@ -1,16 +1,7 @@
-function isFacebookApp() {
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
-    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-}
-function detectSafari(){
 
-  var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-
-  return isSafari;
-}
 
 ($(document).ready(function(){
-    console.log(/Safari/.test());
+    
     var SIDdrawStart;
     var SIDdrawEnd;
     var SIDdrawWalk1;
@@ -43,6 +34,19 @@ function detectSafari(){
         $('#cover-v').css('padding-bottom', '50px')
         $('.flex-layout').css('padding-bottom', '50px')
         $('.box-container').css('margin-top', '-75px')
+    }
+
+    if(isMob == true && navigator.vendor.match(/Apple Computer/)){
+        $(".downArrow").css({
+            "bottom": "15%",
+        })
+    }
+
+    console.log(navigator)
+
+    function isFacebookApp() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
     }
     function detectmob() {
         if( navigator.userAgent.match(/Android/i)
@@ -542,7 +546,6 @@ function detectSafari(){
         ctx_4.clearRect(kitchenX, kitchenY, kitchenWidth+10, kitchenHeight+10);
         ctx_4.drawImage(kitchen, kitchenSrcX, kitchenSrcY, kitchenWidth, kitchenHeight, kitchenX, kitchenY, kitchenWidth, kitchenHeight);
     }
-    console.log(ctx_4);
 //////stage-5
 
     var carWidth = 375; 
