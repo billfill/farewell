@@ -2,8 +2,15 @@ function isFacebookApp() {
     var ua = navigator.userAgent || navigator.vendor || window.opera;
     return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
 }
+function detectSafari(){
+
+  var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+  return isSafari;
+}
 
 ($(document).ready(function(){
+    console.log(/Safari/.test());
     var SIDdrawStart;
     var SIDdrawEnd;
     var SIDdrawWalk1;
@@ -1631,5 +1638,7 @@ function isFacebookApp() {
                 $(".fixed_pic").css("opacity", "0");
             }
         },
-    });   
+    }); 
+    // console.log(navigator.userAgent)
+
 }));
