@@ -42,12 +42,12 @@
         $('.box-container').css('margin-top', '-75px')
     }
 
-    if(iOSSafari){
-        $(".downArrow").css({
-            "bottom": "15%",
-        })
-        console.log("phone safari")
-    }
+    // if(iOSSafari){
+    //     $(".downArrow").css({
+    //         "bottom": "15%",
+    //     })
+    //     console.log("phone safari")
+    // }
     console.log(navigator)
 
     function isFacebookApp() {
@@ -190,7 +190,7 @@
 		}
     });
 
-    function voiceOff(){
+    function voiceOn(){
         $("#music-main")[0].muted = false;
         $("#music-door")[0].muted = false;
         $("#music-walk")[0].muted = false;
@@ -202,7 +202,7 @@
         $("#music-street")[0].muted = false;
     }
 
-    function voiceOn(){
+    function voiceOff(){
         $("#music-main")[0].muted = true;
         $("#music-door")[0].muted = true;
         $("#music-walk")[0].muted = true;
@@ -219,10 +219,10 @@
         if(voiceSrc == "src/image/off.png"){
             $(this).attr('src', 'src/image/on.png');
             $("#music-main")[0].play();
-            voiceOff()
+            voiceOn()
         } else {
             $(this).attr('src', 'src/image/off.png');
-            voiceOn()
+            voiceOff()
         }
     });
 
@@ -252,14 +252,21 @@
 
         $('#indicator-bar').css('width', scroll_now/total_height * 100 + '%');
         if(scroll_now > 300 && scroll_now < 400){
+            $(".downArrow").css({
+                "opacity": 0,
+            })                       
             $("#music-main")[0].pause();
-            $(".voice-state img").attr('src', 'src/image/off.png');
             $("#head").removeClass("Bgc-TP");
             $("#indicator").addClass("mainColor")
-            voiceOff();
+            var voiceSrc = $(".voice-state img").attr("src")
+            if(voiceSrc == 'src/image/on.png'){
+                $(".voice-state img").attr('src', 'src/image/off.png');
+                voiceOff();
+                console.log("good")        
+            }
+            
         }
     })
-
 
     //Width and height for our canvas
     var canvasWidth = 375; 
@@ -780,8 +787,8 @@
             $(".stage-7-words").css({
                 "visibility": "visible",
             })
-            // ctx_7.font = "14px Arial";
-            // ctx_7.fillText("爸爸進房間囉", 175, 282);
+            ctx_7.font = "14px Arial";
+            ctx_7.fillText("爸爸進房間囉", 175, 282);
             if(roomCurFrame == 23){
                 $("#music-switch")[0].play(0);    
             } else if(roomCurFrame == roomFrameCount -1){
@@ -843,12 +850,7 @@
     // smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
 
     var table = new Image();
-
-    function drawTable(){
-        ctx_9_bg.transform(.85, 0, 0, .85, 0, 0);
-        ctx_9_bg.drawImage(table, 0, 0, 413, 416, 12, 250, 413, 416);        
-    }
-
+    ctx_9_bg.transform(.85, 0, 0, .85, 0, 0);
 
     function drawSmoke(){
         //Updating the frame index 
@@ -1069,9 +1071,13 @@
 // table.src = "src/image/animate-sprite/stage-9-bg.png";
 // present.src = "src/image/animate-sprite/stage-11-bg.png";
 
+
+    // $('.fullpage').css({
+    //     "height": h,
+    // })
     $('.fullpage').fullpage({
-        navigation: false,
-        // navigation: true,
+        // navigation: false,
+        navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
@@ -1081,6 +1087,7 @@
             // console.log("style:"+$('.fp-tableCell').children().removeAttr('style'))
             $("#section-"+index).css({
                 "opacity": "1",
+                "z-index": 50,
             })
             $("#head").addClass('Bgc-TP')
             bar_witdh = (index) / ($(".fullpage").children().length-1) * 100
@@ -1232,8 +1239,8 @@
                 //reset Stage-5
                 ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
                 $("#stage-5").removeAttr('style')
-                $("#stage-5-words p").removeAttr('style');
-                $("#stage-5-words h2").removeAttr('style');
+                $(".stage-5-words p").removeAttr('style');
+                $(".stage-5-words h2").removeAttr('style');
 
 
                 console.log("press")
@@ -1325,11 +1332,11 @@
                 $("#stage-8").removeAttr('style');
                 ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
 
-                drawTable();
                 $(".stage-9-words p").eq(0).css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
                 })
+                ctx_9_bg.drawImage(table, 0, 0, 413, 416, 12, 250, 413, 416);                
                 setTimeout(function(){
                     $("#stage-9, #stage-9_bg").css({
                         "opacity": "1",
@@ -1354,8 +1361,10 @@
                 console.log("thanks");
                 // reset stage-9
                 ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
+                ctx_9_bg.clearRect(0, 0, stage_9_bg.width+100, stage_9_bg.height+100);
                 $(".stage-9-words p").removeAttr('style');
                 $("#stage-9").removeAttr('style');
+                $("#stage-9_bg").removeAttr('style');
 
                 $("#music-street")[0].play();
                 SIDdrawStroll = setInterval(drawStroll, 125);
@@ -1480,7 +1489,8 @@
                 "opacity": 0,
             })             
             $("#section-"+index).css({
-                "opacity": "0"
+                "opacity": 0,
+                "z-index": 0,
             })
 
             if($("#indicator").css("opacity") != 1){
@@ -1597,8 +1607,10 @@
             if(index == 11){
                 if(direction == "up"){
                     ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
+                    ctx_9_bg.clearRect(0, 0, stage_9_bg.width, stage_9_bg.height);
                     $(".stage-9-words p").removeAttr('style');
-                    $("#stage-9").removeAttr('style');                    
+                    $("#stage-9").removeAttr('style');
+                    $("#stage-9_bg").removeAttr('style');    
                 }
             }
             if(index == 12){
