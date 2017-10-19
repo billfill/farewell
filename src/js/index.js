@@ -1,5 +1,3 @@
-
-
 ($(document).ready(function(){
     
     var SIDdrawStart;
@@ -271,8 +269,8 @@
     //Width and height for our canvas
     var canvasWidth = 375; 
     var canvasHeight = 667;
-    var canvasWidthPC = 1280;
-    var canvasHeightPC = 960;
+    var canvasWidthPC = 880;
+    var canvasHeightPC = 495;
 
     //Getting the canvas 
     // 放在哪個ID的canvas    
@@ -284,13 +282,22 @@
     
     var stage_3 = document.getElementById("stage-3");
     var ctx_3 = stage_3.getContext("2d");
-    stage_3.width = canvasWidth;
-    stage_3.height = canvasHeight; 
 
     var stage_3_1 = document.getElementById("stage-3_1");
     var ctx_3_1 = stage_3_1.getContext("2d");
-    stage_3_1.width = canvasWidth;
-    stage_3_1.height = canvasHeight;     
+    if(w >= 1280){
+        stage_3.width = canvasWidthPC;
+        stage_3.height = canvasHeightPC;        
+        stage_3_1.width = canvasWidthPC;
+        stage_3_1.height = canvasHeightPC;
+        console.log("PC tree")
+    } else {
+        stage_3.width = canvasWidth;
+        stage_3.height = canvasHeight;         
+        stage_3_1.width = canvasWidth;
+        stage_3_1.height = canvasHeight; 
+        console.log("Mob tree")
+    }
 
     var stage_4 = document.getElementById("stage-4");
     var ctx_4 = stage_4.getContext("2d");
@@ -462,9 +469,18 @@
     var walk1FrameCount = 36;
     var walk1SrcX = 0; 
     var walk1SrcY = 0; 
-    var walk1X = 390;
-    var walk1Y= 575; 
-
+    var walk1X = 0;
+    var walk1Y= 0; 
+    if(w >= 1280){
+        // cwPC= 880
+        // chPC= 495
+        console.log("tree");
+        walk1X = 880;
+        walk1Y = 425;
+    } else{
+        walk1X = 390;
+        walk1Y = 575;         
+    }
 
     var walk1 = new Image(); 
     // walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
@@ -475,22 +491,41 @@
         walk1SrcY = walk1CurFrame * walk1Height; 
         ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
         ctx_3.drawImage(walk1, walk1SrcX, walk1SrcY, walk1Width, walk1Height, walk1X, walk1Y, walk1Width, walk1Height);
-        if(walk1X < 150){
-            ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
-            clearInterval(SIDdrawWalk1)
-            SIDdrawWalkBack = setInterval(drawWalkBack, 83);
+        if(w >= 1280){
+            if(walk1X < 550){
+                ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
+                clearInterval(SIDdrawWalk1)
+                SIDdrawWalkBack = setInterval(drawWalkBack, 83);
+            } else {
+                if(walk1X < 625){
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                if(walk1X < 560){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })                
+                }                 
+                walk1X -= 3
+            }            
         } else {
-            if( walk1X > 150 && walk1X < 200){
-                ctx_3.globalAlpha -= 0.05;
-            }
-            if(walk1X < 260){
-                $(".downArrow").css({
-                    "opacity": 1,
-                    "color": "black",
-                })                
-            }                 
-            walk1X -= 3
-        }   
+            if(walk1X < 150){
+                ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
+                clearInterval(SIDdrawWalk1)
+                SIDdrawWalkBack = setInterval(drawWalkBack, 83);
+            } else {
+                if( walk1X > 150 && walk1X < 200){
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                if(walk1X < 260){
+                    $(".downArrow").css({
+                        "opacity": 1,
+                        "color": "black",
+                    })                
+                }                 
+                walk1X -= 3
+            } 
+        }  
     }
 
     var walkBackWidth = 39; 
@@ -499,8 +534,16 @@
     var walkBackFrameCount = 36;
     var walkBackSrcX = 0; 
     var walkBackSrcY = 0; 
-    var walkBackX = 180;
-    var walkBackY= 565; 
+    var walkBackX = 0;
+    var walkBackY= 0; 
+
+    if(w >= 1280){
+        walkBackX = 560;
+        walkBackY= 417;
+    } else {
+        walkBackX = 180;
+        walkBackY= 565;        
+    }
 
 
     var walkBack = new Image(); 
@@ -512,19 +555,36 @@
         walkBackSrcY = walkBackCurFrame * walkBackHeight; 
         ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
         ctx_3.drawImage(walkBack, walkBackSrcX, walkBackSrcY, walkBackWidth, walkBackHeight, walkBackX, walkBackY, walkBackWidth, walkBackHeight);
-        if(walkBackX > 270){
-            ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
-            clearInterval(SIDdrawWalkBack)
-            $("#music-walk")[0].pause();
-        } else {
-            if( walkBackX > 150 && walkBackX < 190){
-                ctx_3.globalAlpha += 0.3;
-            } else if (walkBackX > 190 && walkBackX < 220){
-                ctx_3.globalAlpha = 1;
-            } else if (walkBackX > 220 && walkBackX < 270){
-                ctx_3.globalAlpha -= 0.05;
+        if( w>= 1280){
+            if(walkBackX > 650){
+                ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
+                clearInterval(SIDdrawWalkBack)
+                $("#music-walk")[0].pause();
+            } else {
+                if(walkBackX < 590){
+                    ctx_3.globalAlpha += 0.3;
+                } else if (walkBackX > 590 && walkBackX < 600){
+                    ctx_3.globalAlpha = 1;
+                } else if (walkBackX > 620){
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                walkBackX += 2
             }
-            walkBackX += 2
+        } else {
+            if(walkBackX > 270){
+                ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
+                clearInterval(SIDdrawWalkBack)
+                $("#music-walk")[0].pause();
+            } else {
+                if( walkBackX > 150 && walkBackX < 190){
+                    ctx_3.globalAlpha += 0.3;
+                } else if (walkBackX > 190 && walkBackX < 220){
+                    ctx_3.globalAlpha = 1;
+                } else if (walkBackX > 220 && walkBackX < 270){
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                walkBackX += 2
+            }
         }
     } 
 
@@ -538,7 +598,8 @@
     var tree = new Image(); 
     // tree.src = 'src/image/animate-sprite/stage-3-bg.png'
 
-    ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);   
+    ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
+    ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight); 
 // stage-4
 
     var kitchenWidth = 375; 
@@ -828,7 +889,7 @@
                 "color": "black",
             })                
         } else if(bedCurFrame == 8){
-            $(".stage-8-words").eq(1).css({
+            $(".stage-8-words p").eq(1).css({
                 "transform": "translate(0, 0)",
                 "opacity": "1",
             })
@@ -1176,7 +1237,14 @@
                     "opacity": "1",
                 })
                 $("#music-walk")[0].play();
-                ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
+                if(w >= 1280){
+                    ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight); 
+                    console.log("PC tree");
+                } else{
+                    ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
+                    console.log("mob tree")    
+                }
+                
                 SIDdrawWalk1 = setInterval(drawWalk1To, 83);
                 $.fn.fullpage.setScrollingSpeed(1777);                  
             }
@@ -1185,8 +1253,17 @@
                 // reset Stage-3
                 ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
                 ctx_3.globalAlpha = 1;
-                walk1X = 350;
-                walkBackX = 150;
+                if(w >= 1280){
+                    // cwPC= 880
+                    // chPC= 495
+                    console.log("tree");
+                    walk1X = 880;
+                    walkBackX = 560;
+                } else{
+                    walk1X = 390;
+                    walkBackX = 180;       
+                }
+               
                 $(".stage-3-words").removeAttr("style");
 
                 // do stage-4
@@ -1321,7 +1398,7 @@
                 $(".stage-7-words").removeAttr('style');
                       
                 console.log("bed");
-                $(".stage-8-words").eq(0).css({
+                $(".stage-8-words p").eq(0).css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
                 })
@@ -1337,7 +1414,7 @@
             if(index == 11){
                 console.log("smoke");
                 // reset stage-8
-                $(".stage-8-words").removeAttr('style');
+                $(".stage-8-words p").removeAttr('style');
                 $("#stage-8").removeAttr('style');
                 ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
 
@@ -1488,12 +1565,6 @@
                     })                              
                 }, 4888)             
             }          
-            // if(index == 16){
-            //     $(".stage-13-words p").removeAttr('style');
-            //     $(".stage-13").removeAttr('style');                
-            //     $.fn.fullpage.setAutoScrolling(false);
-            //     $.fn.fullpage.setFitToSection(false); 
-            // }
         },
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
@@ -1540,8 +1611,13 @@
                 if(direction == "up"){
                     ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
                     ctx_3.globalAlpha = 1;
-                    walk1X = 350;
-                    walkBackX = 150;
+                    if(w >= 1280){
+                        walk1X = 880;
+                        walkBackX = 560;
+                    } else{
+                        walk1X = 390;
+                        walkBackX = 180;       
+                    }
                     $(".stage-3-words").removeAttr("style");                
                 }
             }
@@ -1613,7 +1689,7 @@
             if(index == 10){
                 if(direction == "up"){
                     ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
-                    $(".stage-8-words").removeAttr('style');
+                    $(".stage-8-words p").removeAttr('style');
                     $("#stage-8").removeAttr('style');                    
                 }
             }
