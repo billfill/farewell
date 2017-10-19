@@ -1482,7 +1482,7 @@
                     })  
                     $.fn.fullpage.setAutoScrolling(false);
                     $.fn.fullpage.setFitToSection(false);
-                    $("html body").css({
+                    $("html, body").css({
                         "overflow-x": "hidden",
                         "height": "initail",
                     })                              
