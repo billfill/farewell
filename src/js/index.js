@@ -888,7 +888,6 @@
         if(toWave == 32){
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
-            $("#music-stroll")[0].pause();
             $(".thanks").eq(thanksIndex).css({
                 "opacity": "1",
                 "transform": "translateX(0)",
@@ -903,6 +902,15 @@
                 "opacity": 1,
                 "transform": "translate(0, 0)",
             })            
+        } else if (toWave == 16){
+            if(thanksIndex == 1){
+                SIDdrawWave = setInterval(drawWave, 125);
+                toWave = 0;
+                $(".thanks").eq(thanksIndex).css({
+                    "opacity": "1",
+                    "transform": "translateX(0)",
+                })                
+            }
         } else if(toWave == 22){
             $(".stage-10-words p").eq(2).css({
                 "opacity": 1,
@@ -941,6 +949,7 @@
 
     function drawWave(){
         //Updating the frame index 
+        $("#music-stroll")[0].pause();
         waveCurFrame = ++waveCurFrame % waveFrameCount; 
         waveSrcY = waveCurFrame * waveHeight; 
         ctx_10.clearRect(waveX, waveY, waveWidth+10, waveHeight+10);
@@ -1472,7 +1481,11 @@
                         "color": "black",
                     })  
                     $.fn.fullpage.setAutoScrolling(false);
-                    $.fn.fullpage.setFitToSection(false);                                   
+                    $.fn.fullpage.setFitToSection(false);
+                    $("html body").css({
+                        "overflow-x": "hidden",
+                        "height": "initail",
+                    })                              
                 }, 4888)             
             }          
             // if(index == 16){
@@ -1645,9 +1658,6 @@
                 if(direction == "up"){
                     $(".stage-13-words p").removeAttr('style');
                     $(".stage-13").removeAttr('style');
-                } else{
-                    $.fn.fullpage.setAutoScrolling(false);
-                    $.fn.fullpage.setFitToSection(false);                 
                 }
             }
             // if(index == 16){

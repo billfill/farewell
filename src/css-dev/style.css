@@ -5,6 +5,7 @@ html, body {
     word-wrap: break-word;
     text-align: justify;
     background-color: #f4f2ec;
+    width: 100vw;
 }
 
 img{
