@@ -894,11 +894,9 @@
   .fullpage .section .stage-11-words {
     top: 8%;
   }
-  .fullpage .section .stage-13-words p:first-child {
-    margin-left: 5%;
-  }
-  .fullpage .section .stage-13-words p:last-child {
-    margin-left: 10%;
+  .fullpage .section .stage-13-words p {
+    width: 100%;
+    text-align: center;
   }
 }
 

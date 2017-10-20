@@ -574,11 +574,9 @@
                 top: 8%;
             }
             .stage-13-words{
-                p:first-child{
-                    margin-left: 5%;
-                }
-                p:last-child{
-                    margin-left: 10%;
+                p{
+                    width: 100%;
+                    text-align: center;
                 }
             }
         }
