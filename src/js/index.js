@@ -1179,7 +1179,6 @@
             $("#indicator").removeClass("mainColor")          
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
-                $("#stage-1")[0].play()
                 $.fn.fullpage.setAutoScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
                 $.fn.fullpage.setScrollingSpeed(777);        
