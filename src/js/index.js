@@ -856,9 +856,9 @@
         roomSrcY = roomCurFrame * roomHeight; 
         ctx_7.clearRect(roomX, roomY, roomWidth+10, roomHeight+10);
         ctx_7.drawImage(room, roomSrcX, roomSrcY, roomWidth, roomHeight, roomX, roomY, roomWidth, roomHeight);
+        ctx_7.font = "14px Arial";            
         if(roomCurFrame > 4){
-            (w >= 1024) ? (ctx_7.font = "26px Arial") : (ctx_7.font = "14px Arial")
-            (w >= 1024) ? (ctx_7.fillText("爸爸進房間囉", 250, 282)) : (ctx_7.fillText("爸爸進房間囉", 175, 282));
+            (w >= 1024) ? (ctx_7.fillText("爸爸進房間囉", 250, 282)): (ctx_7.fillText("爸爸進房間囉", 175, 282));
             if(roomCurFrame == 23){
                 $("#music-switch")[0].play(0);    
             } else if(roomCurFrame == roomFrameCount -1){
@@ -1179,6 +1179,7 @@
             $("#indicator").removeClass("mainColor")          
             if(index == 1){
                 $(".fixed_pic").css("opacity", "1");
+                $("#stage-1")[0].play()
                 $.fn.fullpage.setAutoScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
                 $.fn.fullpage.setScrollingSpeed(777);        

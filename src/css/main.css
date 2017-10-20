@@ -77,15 +77,16 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  background-image: url("../image/01_cover.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   -webkit-transition: opacity .8s ease-in-out;
   -o-transition: opacity .8s ease-in-out;
   transition: opacity .8s ease-in-out;
   opacity: 0;
+}
+
+.fixed_pic video {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .headPhone {
@@ -268,6 +269,7 @@
 .fullpage .section .stage-3-words {
   position: absolute;
   top: 15%;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -729,11 +731,12 @@
 
 .fullpage .section .taxi {
   top: 10%;
-  left: 3%;
+  left: 10%;
 }
 
 .fullpage .section .bouzu {
   top: 10%;
+  left: 5%;
 }
 
 .fullpage .section #stage-11 {
