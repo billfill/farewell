@@ -269,8 +269,12 @@
     //Width and height for our canvas
     var canvasWidth = 375; 
     var canvasHeight = 667;
+
     var canvasWidthPC = 880;
     var canvasHeightPC = 495;
+
+    var canvasWidthRoom = 520;
+    var canvasHeightRoom = 667;
 
     //Getting the canvas 
     // 放在哪個ID的canvas    
@@ -341,8 +345,13 @@
 
     var stage_7 = document.getElementById("stage-7");
     var ctx_7 = stage_7.getContext("2d");
-    stage_7.width = canvasWidth;
-    stage_7.height = canvasHeight;    
+    if(w >= 1024){
+        stage_7.width = canvasWidthRoom;
+        stage_7.height = canvasHeightRoom; 
+    } else {
+        stage_7.width = canvasWidth;
+        stage_7.height = canvasHeight;    
+    }
 
     var stage_8 = document.getElementById("stage-8");
     var ctx_8 = stage_8.getContext("2d");
@@ -824,8 +833,12 @@
     }
 
 /////stage-7
-
-    var roomWidth = 375; 
+    var roomWidth = 0;
+    if(w >= 1024){
+        roomWidth = 520
+    } else{
+        roomWidth = 375
+    }  
     var roomHeight = 667; 
     var roomCurFrame = 0; 
     var roomFrameCount = 32;
@@ -844,11 +857,8 @@
         ctx_7.clearRect(roomX, roomY, roomWidth+10, roomHeight+10);
         ctx_7.drawImage(room, roomSrcX, roomSrcY, roomWidth, roomHeight, roomX, roomY, roomWidth, roomHeight);
         if(roomCurFrame > 4){
-            $(".stage-7-words").css({
-                "visibility": "visible",
-            })
-            ctx_7.font = "14px Arial";
-            ctx_7.fillText("爸爸進房間囉", 175, 282);
+            (w >= 1024) ? (ctx_7.font = "26px Arial") : (ctx_7.font = "14px Arial")
+            (w >= 1024) ? (ctx_7.fillText("爸爸進房間囉", 250, 282)) : (ctx_7.fillText("爸爸進房間囉", 175, 282));
             if(roomCurFrame == 23){
                 $("#music-switch")[0].play(0);    
             } else if(roomCurFrame == roomFrameCount -1){
@@ -1227,7 +1237,11 @@
                 },1666)          
             }
             if(index == 5){
-                room.src = "src/image/animate-sprite/stage-7-room.jpg";
+                if(w >= 1024){
+                    room.src = "src/image/animate-sprite/stage-7-roomW.jpg";
+                } else {
+                    room.src = "src/image/animate-sprite/stage-7-room.jpg";
+                }
                 // reset Stage-2
                 ctx_2.clearRect(0, 0, stage_2.width, stage_2.height);
                 startCurFrame = 0;
