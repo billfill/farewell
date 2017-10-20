@@ -886,10 +886,13 @@
     left: 0;
   }
   .fullpage .section .stage-6-words p {
-    left: 30%;
+    left: 20%;
   }
   .fullpage .section .stage-11-words {
     top: 8%;
+  }
+  .fullpage .section .stage-13-words p {
+    margin: 0 auto;
   }
 }
 
