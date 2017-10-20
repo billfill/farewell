@@ -879,11 +879,8 @@
   .whiteP {
     font-size: 12px;
   }
-  #stage-1 {
-    width: 120%;
-    -webkit-transform: translate(-10%, 0);
-        -ms-transform: translate(-10%, 0);
-            transform: translate(-10%, 0);
+  .fullpage .section .stage-3-words {
+    top: 8%;
   }
   .fullpage .section .stage-4-words {
     left: 0;
@@ -891,14 +888,18 @@
   .fullpage .section .stage-5-words {
     left: 0;
   }
-  .fullpage .section .stage-6-words p {
+  .fullpage .section .stage-6-words p:first-child {
+    left: 30%;
+  }
+  .fullpage .section .stage-6-words p:nth-child(2) {
     left: 20%;
   }
   .fullpage .section .stage-11-words {
     top: 8%;
   }
   .fullpage .section .stage-13-words p {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

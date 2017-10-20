@@ -552,12 +552,11 @@
     .whiteP{
         font-size: 12px;
     }
-    #stage-1{
-        width: 120%;
-        transform: translate(-10%, 0);
-    }
     .fullpage{
         .section{
+            .stage-3-words{
+                top: 8%;
+            }
             .stage-4-words{
                 left: 0;
             }
@@ -565,7 +564,10 @@
                 left: 0;
             }
             .stage-6-words{
-                p{
+                p:first-child{
+                    left: 30%;
+                }
+                p:nth-child(2){
                     left: 20%;
                 }
             }
@@ -574,7 +576,8 @@
             }
             .stage-13-words{
                 p{
-                    margin: 0 auto;
+                    margin-left: auto;
+                    margin-right: auto;
                 }
             }
         }
