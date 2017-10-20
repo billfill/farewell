@@ -663,7 +663,15 @@
   position: relative;
   top: 0;
   left: 0;
-  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   height: 100%;
 }
@@ -693,8 +701,8 @@
 
 .fullpage .section .thanks {
   position: absolute;
-  top: 160px;
-  right: 0;
+  top: 0;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -702,6 +710,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
+  height: auto;
   z-index: -1;
   -webkit-transition: 3s;
   -o-transition: 3s;
@@ -713,95 +723,17 @@
 }
 
 .fullpage .section .thanks img {
-  width: auto;
-  height: 168px;
+  width: 100%;
+  height: 100%;
 }
 
-.fullpage .section .thanks .bouzu-Img {
-  width: auto;
-  height: 250px;
-  -webkit-transition: 6s;
-  -o-transition: 6s;
-  transition: 6s;
-  -webkit-transform: translateY(-120px);
-      -ms-transform: translateY(-120px);
-          transform: translateY(-120px);
+.fullpage .section .taxi {
+  top: 10%;
+  left: 3%;
 }
 
-.fullpage .section .thanks .taxi-talk {
-  position: relative;
-  top: 0;
-  left: 0;
-  -webkit-transform: rotateY(180deg) translateX(30px) translateY(50px);
-          transform: rotateY(180deg) translateX(30px) translateY(50px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.fullpage .section .thanks .taxi-talk img {
-  margin: auto;
-  width: auto;
-  height: 90%;
-}
-
-.fullpage .section .thanks .taxi-talk p {
-  position: absolute;
-  -webkit-transform: rotateY(180deg) scale(0.8);
-          transform: rotateY(180deg) scale(0.8);
-  text-align: center;
-}
-
-.fullpage .section .thanks .taxi-talk p:nth-child(2) {
-  top: 16%;
-  right: 32%;
-}
-
-.fullpage .section .thanks .taxi-talk p:last-child {
-  top: 30%;
-  right: 31%;
-}
-
-.fullpage .section .thanks .bouzu-talk {
-  position: relative;
-  top: 0;
-  left: 0;
-  -webkit-transition: 6s;
-  -o-transition: 6s;
-  transition: 6s;
-  z-index: 1;
-  background-color: transparent;
-  -webkit-transform: translate(0, -50px);
-      -ms-transform: translate(0, -50px);
-          transform: translate(0, -50px);
-}
-
-.fullpage .section .thanks .bouzu-talk img {
-  margin: auto;
-  width: auto;
-  height: 195px;
-}
-
-.fullpage .section .thanks .bouzu-talk p {
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: 6s;
-  -o-transition: 6s;
-  transition: 6s;
-  z-index: 3;
-}
-
-.fullpage .section .thanks .bouzu-talk p:first-child {
-  -webkit-transform: translate(22px, 40px);
-      -ms-transform: translate(22px, 40px);
-          transform: translate(22px, 40px);
-}
-
-.fullpage .section .thanks .bouzu-talk p:nth-child(2) {
-  -webkit-transform: translate(155px, 95px);
-      -ms-transform: translate(155px, 95px);
-          transform: translate(155px, 95px);
+.fullpage .section .bouzu {
+  top: 10%;
 }
 
 .fullpage .section #stage-11 {
@@ -935,13 +867,16 @@
   margin-bottom: 15%;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .canvas_container {
-    width: 100%;
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .fullpage .section .taxi {
+    top: 0;
+  }
+  .fullpage .section .bouzu {
+    top: 0;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   .canvas_container {
     width: 880px;
   }

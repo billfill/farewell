@@ -285,7 +285,7 @@
 
     var stage_3_1 = document.getElementById("stage-3_1");
     var ctx_3_1 = stage_3_1.getContext("2d");
-    if(w >= 1280){
+    if(w >= 1024){
         stage_3.width = canvasWidthPC;
         stage_3.height = canvasHeightPC;        
         stage_3_1.width = canvasWidthPC;
@@ -471,7 +471,7 @@
     var walk1SrcY = 0; 
     var walk1X = 0;
     var walk1Y= 0; 
-    if(w >= 1280){
+    if(w >= 1024){
         // cwPC= 880
         // chPC= 495
         console.log("tree");
@@ -491,7 +491,7 @@
         walk1SrcY = walk1CurFrame * walk1Height; 
         ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
         ctx_3.drawImage(walk1, walk1SrcX, walk1SrcY, walk1Width, walk1Height, walk1X, walk1Y, walk1Width, walk1Height);
-        if(w >= 1280){
+        if(w >= 1024){
             if(walk1X < 550){
                 ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
                 clearInterval(SIDdrawWalk1)
@@ -537,7 +537,7 @@
     var walkBackX = 0;
     var walkBackY= 0; 
 
-    if(w >= 1280){
+    if(w >= 1024){
         walkBackX = 560;
         walkBackY= 417;
     } else {
@@ -555,7 +555,7 @@
         walkBackSrcY = walkBackCurFrame * walkBackHeight; 
         ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
         ctx_3.drawImage(walkBack, walkBackSrcX, walkBackSrcY, walkBackWidth, walkBackHeight, walkBackX, walkBackY, walkBackWidth, walkBackHeight);
-        if( w>= 1280){
+        if( w>= 1024){
             if(walkBackX > 650){
                 ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
                 clearInterval(SIDdrawWalkBack)
@@ -632,7 +632,6 @@
     var carSrcY = 0; 
     var carX = 0;
     var carY= 0; 
-
 
     var car = new Image(); 
     // car.src = "src/image/animate-sprite/stage-5-car.png";
@@ -946,12 +945,17 @@
         ctx_10.clearRect(strollX, strollY, strollWidth+10, strollHeight+10);
         ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
         toWave ++
-        if(toWave == 32){
+        console.log("toWave: "+toWave )
+        if(toWave == 48){
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
             $(".thanks").eq(thanksIndex).css({
                 "opacity": "1",
                 "transform": "translateX(0)",
+            })
+        } else if(toWave == 36){
+            $(".stage-10-words p").css({
+                "opacity": 0,
             })
         } else if(toWave == 6){
             $(".stage-10-words p").eq(0).css({
@@ -1237,7 +1241,7 @@
                     "opacity": "1",
                 })
                 $("#music-walk")[0].play();
-                if(w >= 1280){
+                if(w >= 1024){
                     ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight); 
                     console.log("PC tree");
                 } else{
@@ -1253,7 +1257,7 @@
                 // reset Stage-3
                 ctx_3.clearRect(0, 0, stage_3.width, stage_3.height);
                 ctx_3.globalAlpha = 1;
-                if(w >= 1280){
+                if(w >= 1024){
                     // cwPC= 880
                     // chPC= 495
                     console.log("tree");
