@@ -592,14 +592,12 @@
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
     .canvas_container{
-        width: calc(100% - 200px);
+        // width: calc(100% - 200px);
+        width: 100%;
     }
 }
-@media screen and (min-width:1024px)and (max-width: 1279px){
-
-}
-@media screen and (min-width: 1280px){
-    .canvas_container{
+@media screen and (min-width:1025px){
+.canvas_container{
         width: 880px;
     }    
     .fixed_pic{
@@ -761,5 +759,8 @@
                 }
             }
         }
-    }
+    }    
+}
+@media screen and (min-width: 1280px){
+    
 }
