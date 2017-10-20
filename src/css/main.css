@@ -879,6 +879,9 @@
   .whiteP {
     font-size: 12px;
   }
+  #stage-1 {
+    width: 120%;
+  }
   .fullpage .section .stage-4-words {
     left: 0;
   }
