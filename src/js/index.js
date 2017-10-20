@@ -1161,7 +1161,7 @@
     // })
     $('.fullpage').fullpage({
         // navigation: false,
-        navigation: true,
+        // navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         // scrollBar: true,
