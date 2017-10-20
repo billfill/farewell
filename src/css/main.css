@@ -854,9 +854,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .fullpage .section .stage-13-words p {
@@ -897,9 +894,11 @@
   .fullpage .section .stage-11-words {
     top: 8%;
   }
-  .fullpage .section .stage-13-words p {
-    margin-left: auto;
-    margin-right: auto;
+  .fullpage .section .stage-13-words p:first-child {
+    margin-left: 5%;
+  }
+  .fullpage .section .stage-13-words p:last-child {
+    margin-left: 10%;
   }
 }
 
