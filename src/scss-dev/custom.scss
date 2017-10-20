@@ -533,6 +533,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             p{
                 margin: auto;
                 opacity: 0;
@@ -543,6 +544,29 @@
             }
             p:last-child{
                 margin-bottom: 15%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 374px){
+    .whiteP{
+        font-size: 12px;
+    }
+    .fullpage{
+        .section{
+            .stage-4-words{
+                left: 0;
+            }
+            .stage-5-words{
+                left: 0;
+            }
+            .stage-6-words{
+                p{
+                    left: 30%;
+                }
+            }
+            .stage-11-words{
+                top: 8%;
             }
         }
     }

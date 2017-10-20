@@ -854,6 +854,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .fullpage .section .stage-13-words p {
@@ -870,6 +873,24 @@
 
 .fullpage .section .stage-13-words p:last-child {
   margin-bottom: 15%;
+}
+
+@media screen and (max-width: 374px) {
+  .whiteP {
+    font-size: 12px;
+  }
+  .fullpage .section .stage-4-words {
+    left: 0;
+  }
+  .fullpage .section .stage-5-words {
+    left: 0;
+  }
+  .fullpage .section .stage-6-words p {
+    left: 30%;
+  }
+  .fullpage .section .stage-11-words {
+    top: 8%;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
