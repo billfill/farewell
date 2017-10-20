@@ -881,6 +881,9 @@
   }
   #stage-1 {
     width: 120%;
+    -webkit-transform: translate(-10%, 0);
+        -ms-transform: translate(-10%, 0);
+            transform: translate(-10%, 0);
   }
   .fullpage .section .stage-4-words {
     left: 0;
