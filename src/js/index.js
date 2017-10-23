@@ -262,7 +262,6 @@
                 voiceOff();
                 console.log("good")        
             }
-            
         }
     })
 
@@ -415,6 +414,11 @@
             $(".downArrow").css({
                 "opacity": 1,
                 "color": "black",
+            })
+            startCurFrame++
+        } else if(startCurFrame == 13){
+            $(".stage-2-words").css({
+                "opacity": 1,
             })
             startCurFrame++
         } else if (startCurFrame == 8){
@@ -620,6 +624,8 @@
     var kitchenX = 80;
     var kitchenY= 200; 
 
+    var kitchenArrow = 0;
+
     var kitchen = new Image(); 
     // kitchen.src = "src/image/animate-sprite/stage-4-kitchen.png";
     ctx_4.transform(.8, 0, 0, .8, 0, 0);
@@ -627,9 +633,15 @@
         //Updating the frame index 
         kitchenCurFrame = ++kitchenCurFrame % kitchenFrameCount; 
         kitchenSrcY = kitchenCurFrame * kitchenHeight; 
-        
         ctx_4.clearRect(kitchenX, kitchenY, kitchenWidth+10, kitchenHeight+10);
         ctx_4.drawImage(kitchen, kitchenSrcX, kitchenSrcY, kitchenWidth, kitchenHeight, kitchenX, kitchenY, kitchenWidth, kitchenHeight);
+        kitchenArrow++
+        if(kitchenArrow == 30){
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })                            
+        }
     }
 //////stage-5
 
@@ -642,6 +654,8 @@
     var carX = 0;
     var carY= 0; 
 
+    var carArrow = 0;
+
     var car = new Image(); 
     // car.src = "src/image/animate-sprite/stage-5-car.png";
 
@@ -651,6 +665,13 @@
         carSrcY = carCurFrame * carHeight; 
         ctx_5.clearRect(carX, carY, carWidth+10, carHeight+10);
         ctx_5.drawImage(car, carSrcX, carSrcY, carWidth, carHeight, carX, carY, carWidth, carHeight);
+        carArrow++
+        if(carArrow == 40){
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })             
+        }
     }
 // stage-6
 
@@ -865,7 +886,7 @@
                 clearInterval(SIDdrawRoom);
                 $(".downArrow").css({
                     "opacity": 1,
-                    "color": "black",
+                    "color": "white",
                 })                
             }
         }
@@ -916,6 +937,8 @@
     var smokeX = 120;
     var smokeY= 200; 
 
+    var smokeArrow = 0;
+
     var smoke = new Image(); 
     // smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
 
@@ -928,6 +951,13 @@
         smokeSrcY = smokeCurFrame * smokeHeight; 
         ctx_9.clearRect(smokeX, smokeY, smokeWidth+10, smokeHeight+10);
         ctx_9.drawImage(smoke, smokeSrcX, smokeSrcY, smokeWidth, smokeHeight, smokeX, smokeY, smokeWidth, smokeHeight);
+        smokeArrow++
+        if(smokeArrow == 30){
+            $(".downArrow").css({
+                "opacity": 1,
+                "color": "black",
+            })                     
+        }
         console.log("smoke GO");
     }
 // stage-10
@@ -1229,12 +1259,7 @@
                     "opacity": "1",
                 });
                 
-                SIDdrawStart = setInterval(drawStart, 100);
-                setTimeout(function(){
-                    $(".stage-2-words").css({
-                        "opacity": "1",
-                    })
-                },1666)          
+                SIDdrawStart = setInterval(drawStart, 100);       
             }
             if(index == 5){
                 if(w >= 1024){
@@ -1295,12 +1320,6 @@
                         "opacity": "1",                    
                     })
                 }, 1000)
-                setTimeout(function(){
-                    $(".downArrow").css({
-                        "opacity": 1,
-                        "color": "black",
-                    })                
-                }, 4000)
                 $("#music-cooking")[0].play();
                 SIDdrawKitchen = setInterval(drawKitchen, 125);          
             }
@@ -1327,12 +1346,12 @@
                         "opacity": "1",
                     })                                        
                 }, 3000)
-                setTimeout(function(){
-                    $(".downArrow").css({
-                        "opacity": 1,
-                        "color": "black",
-                    }) 
-                }, 5444)
+                // setTimeout(function(){
+                //     $(".downArrow").css({
+                //         "opacity": 1,
+                //         "color": "black",
+                //     }) 
+                // }, 5444)
                 $("#music-driving")[0].play();
                 SIDdrawCar = setInterval(drawCar, 125);        
             }

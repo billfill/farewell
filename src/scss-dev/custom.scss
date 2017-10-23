@@ -56,9 +56,14 @@
     overflow: hidden;
 }
 #stage-1{
-    display: block;
+    display: flex;
+    margin: auto;
+    margin-top: 0;
     width: 100%;
-    height: 101%;
+    height: 100%;
+}
+#stage-1::-webkit-media-controls-start-playback-button {
+  display: none;
 }
 .headPhone{
     width: 100px;
@@ -176,8 +181,6 @@
             background-color: transparent;
             z-index: 10;
         }
-        #stage-3_1{
-        }
         .stage-3-words{
             position: absolute;
             top: 15%;
@@ -186,7 +189,7 @@
             flex-direction: column;
             width: 100%;
             opacity: 0;
-            transition: opacity 4s, transform 3s;
+            transition: opacity 3.5s, transform 3s;
             transform: translate(0, 0);
             z-index: 15;
             p{
@@ -196,11 +199,12 @@
         #stage-4{
             transform: translate(0, -30px);
             opacity: 0;
-            transition: 5s;
+            transition: 3.5s;
         }
         .stage-4-words{
             position: absolute;
             top: 15%;
+            left: 0;
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -233,6 +237,7 @@
         .stage-5-words{
             position: absolute;
             top: 15%;
+            left: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -269,6 +274,9 @@
             transform: translate(0, 0);
             z-index: 10;
             p{
+                width: 100%;
+                left: 0;
+                text-align: center;
                 position: absolute;
                 transition: 1s;
             }
