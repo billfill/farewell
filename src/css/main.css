@@ -190,6 +190,8 @@
 .fullpage {
   width: 100%;
   background-color: #f4f2ec;
+  z-index: auto;
+  overflow: visible;
 }
 
 .fullpage #section-1, .fullpage #section-2, .fullpage #section-3 {
@@ -992,14 +994,14 @@
   }
   .fullpage .section .stage-6-words p:first-child {
     bottom: 50%;
-    left: 10%;
+    left: -30%;
   }
   .fullpage .section .stage-6-words p:nth-child(2) {
     top: 40%;
-    left: 65%;
+    left: 30%;
   }
   .fullpage .section #stage-7 {
-    max-width: 100%;
+    max-width: 80%;
   }
   .fullpage .section #stage-8 {
     position: absolute;

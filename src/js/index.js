@@ -253,6 +253,9 @@
             $(".downArrow").css({
                 "opacity": 0,
             })                       
+            $(".fullpage").css({
+                "z-index": -1,
+            })
             $("#music-main")[0].pause();
             $("#head").removeClass("Bgc-TP");
             $("#indicator").addClass("mainColor")
@@ -1208,7 +1211,7 @@
             $('#indicator-bar').css('width', bar_witdh+'%')
             $("#indicator").removeClass("mainColor")          
             if(index == 1){
-                $(".fixed_pic").css("opacity", "1");
+                $(".fixed_pic").css("opacity", "1");               
                 $.fn.fullpage.setAutoScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
                 $.fn.fullpage.setScrollingSpeed(777);        
@@ -1771,6 +1774,9 @@
                 if(direction == "up"){
                     $(".stage-13-words p").removeAttr('style');
                     $(".stage-13").removeAttr('style');
+                    $(".fullpage").css({
+                        "z-index": "auto",
+                    })                     
                 }
             }
             // if(index == 16){

@@ -119,7 +119,8 @@
 .fullpage{
     width: 100%;
     background-color: #f4f2ec;
-    // height: 100vh !important;
+    z-index: auto;
+    overflow: visible;
     #section-1, #section-2, #section-3{
         transition: .777s;
     }
@@ -671,15 +672,15 @@
             .stage-6-words{
                 p:first-child{
                     bottom: 50%;
-                    left: 10%;
+                    left: -30%;
                 }
                 p:nth-child(2){
                     top: 40%;
-                    left: 65%;
+                    left: 30%;
                 }
             }
             #stage-7{
-                max-width: 100%;
+                max-width: 80%;
                 // margin: 0 auto 0 10%;
             }
             #stage-8{
