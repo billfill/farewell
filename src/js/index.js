@@ -1527,7 +1527,7 @@
                     "opacity": '1',
                 })
 
-                ctx_11_2.drawImage(present, 0, 0, 303, 323, 36, 180, 303, 323);
+                ctx_11_2.drawImage(present, 0, 0, 302, 322, 36, 180, 302, 322);
                 SIDdrawMan = setInterval(drawMan, 125);
                 setTimeout(function(){
                     $("#stage-11").css({
