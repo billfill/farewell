@@ -217,7 +217,7 @@
 .fullpage .section .cover_Title {
   position: absolute;
   left: 10%;
-  bottom: 15%;
+  top: 15%;
 }
 
 .fullpage .section .cover_Title h1 {
