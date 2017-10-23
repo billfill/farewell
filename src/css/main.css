@@ -93,6 +93,7 @@
   margin-top: 0;
   width: 100%;
   height: 100%;
+  background-color: #F6F5F0;
 }
 
 #stage-1::-webkit-media-controls-start-playback-button {
@@ -964,9 +965,9 @@
             transform: translate(-100%, 200%);
   }
   .fullpage .section .stage-5-words h2 {
-    -webkit-transform: translate(210%, 400%);
-        -ms-transform: translate(210%, 400%);
-            transform: translate(210%, 400%);
+    -webkit-transform: translate(150%, 400%);
+        -ms-transform: translate(150%, 400%);
+            transform: translate(150%, 400%);
   }
   .fullpage .section #stage-6, .fullpage .section #stage-6_1, .fullpage .section #stage-6_2 {
     position: absolute;
