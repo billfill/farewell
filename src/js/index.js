@@ -267,7 +267,13 @@
             }
         }
     })
-
+    if(w >= 1024){
+        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
+        console.log("333")
+    } else {
+        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
+        console.log("222")
+    }
     //Width and height for our canvas
     var canvasWidth = 375; 
     var canvasHeight = 667;
@@ -516,7 +522,7 @@
                 if(walk1X < 625){
                     ctx_3.globalAlpha -= 0.05;
                 }
-                if(walk1X < 560){
+                if(walk1X < 800){
                     $(".downArrow").css({
                         "opacity": 1,
                         "color": "black",
@@ -669,11 +675,16 @@
         ctx_5.clearRect(carX, carY, carWidth+10, carHeight+10);
         ctx_5.drawImage(car, carSrcX, carSrcY, carWidth, carHeight, carX, carY, carWidth, carHeight);
         carArrow++
-        if(carArrow == 40){
+        console.log(carArrow)
+        if(carArrow == 35){
             $(".downArrow").css({
                 "opacity": 1,
                 "color": "black",
             })             
+        } else if (carArrow == 22){
+            $(".stage-5-words h2").css({
+                "opacity": "1",
+            })                  
         }
     }
 // stage-6
@@ -884,7 +895,10 @@
         if(roomCurFrame > 4){
             (w >= 1024) ? (ctx_7.fillText("爸爸進房間囉", 250, 282)): (ctx_7.fillText("爸爸進房間囉", 175, 282));
             if(roomCurFrame == 23){
-                $("#music-switch")[0].play(0);    
+                $("#music-switch")[0].play(0);
+                // $(".switchOff").css({
+                //     "background-color": "#6E736C",
+                // }) 
             } else if(roomCurFrame == roomFrameCount -1){
                 clearInterval(SIDdrawRoom);
                 $(".downArrow").css({
@@ -922,7 +936,7 @@
                 "color": "black",
             })                
         } else if(bedCurFrame == 8){
-            $(".stage-8-words p").eq(1).css({
+            $(".stage-8-words h2").css({
                 "transform": "translate(0, 0)",
                 "opacity": "1",
             })
@@ -989,7 +1003,8 @@
         ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
         toWave ++
         console.log("toWave: "+toWave )
-        if(toWave == 48){
+        console.log(thanksIndex)
+        if(toWave == 48 && thanksIndex < 2){
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
             $(".thanks").eq(thanksIndex).css({
@@ -1071,18 +1086,17 @@
                 "transform": "translateX(-10%)",
             })
             if(thanksIndex < 1){
-                thanksIndex++
                 $(".stage-10-words").css({
                     "opacity": 0,
                     "tranistion": "translate(0, -50px)",
                 })                     
             } else {
-                SIDdrawStrollToFade = setInterval(drawStrollFade, 125);
                 $(".downArrow").css({
                     "opacity": 1,
                     "color": "black",
                 })                
             }
+            thanksIndex++
         }
     }
 
@@ -1211,6 +1225,7 @@
             $('#indicator-bar').css('width', bar_witdh+'%')
             $("#indicator").removeClass("mainColor")          
             if(index == 1){
+                $("#stage-1")[0].play();
                 $(".fixed_pic").css("opacity", "1");               
                 $.fn.fullpage.setAutoScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
@@ -1344,11 +1359,11 @@
                 $(".stage-5-words p").css({
                     "opacity": "1",
                 })
-                setTimeout(function(){
-                    $(".stage-5-words h2").css({
-                        "opacity": "1",
-                    })                                        
-                }, 3000)
+                // setTimeout(function(){
+                //     $(".stage-5-words h2").css({
+                //         "opacity": "1",
+                //     })                                        
+                // }, 3000)
                 // setTimeout(function(){
                 //     $(".downArrow").css({
                 //         "opacity": 1,
@@ -1364,6 +1379,7 @@
                 wash.src = "src/image/animate-sprite/stage-12-wash.jpg";                
                 //reset Stage-5
                 ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
+                clearInterval(SIDdrawCar);
                 $("#stage-5").removeAttr('style')
                 $(".stage-5-words p").removeAttr('style');
                 $(".stage-5-words h2").removeAttr('style');
@@ -1475,7 +1491,7 @@
                         "opacity": "1",
                         "transform": "translate(0, 0)",
                     })                    
-                }, 2666)
+                }, 2888)
                 setTimeout(function(){
                     $(".downArrow").css({
                         "opacity": 1,
@@ -1576,8 +1592,9 @@
                 $(".stage-13").eq(0).css({
                     "opacity": "1",
                 })
-                $(".stage-13-words p").eq(0).css({
-                    "opacity": "1",
+                $(".stage-13-words").css({
+                    "transform": "translate(0, -20%)",
+                    "opacity": 1,
                 })
                 setTimeout(function(){
                     $(".stage-13").eq(1).css({
@@ -1588,7 +1605,7 @@
                     $(".stage-13").eq(2).css({
                         "opacity": "1",
                     })
-                    $(".stage-13-words p").eq(1).css({
+                    $(".stage-13-words h2").css({
                         "opacity": "1",
                     })                               
                 }, 4000)
@@ -1751,7 +1768,9 @@
                     ctx_10.clearRect(0, 0, stage_10.width, stage_10.height);
                     $(".thanks").removeAttr('style');
                     $(".stage-10-words").removeAttr('style');
-                    $(".stage-10-words p").removeAttr('style');                    
+                    $(".stage-10-words p").removeAttr('style');                   
+                } else{
+                    SIDdrawStrollToFade = setInterval(drawStrollFade, 125);
                 }
             }
             if(index == 13){
