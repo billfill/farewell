@@ -81,7 +81,7 @@
   -o-transition: opacity .8s ease-in-out;
   transition: opacity .8s ease-in-out;
   opacity: 0;
-  background-color: transparent;
+  background-color: #F6F5F0;
   overflow: hidden;
 }
 
@@ -956,9 +956,6 @@
     position: absolute;
     top: 20%;
   }
-  .fullpage .section #stage-5 {
-    margin: 0 auto;
-  }
   .fullpage .section .stage-5-words p {
     -webkit-transform: translate(-100%, 200%);
         -ms-transform: translate(-100%, 200%);
@@ -992,12 +989,12 @@
   }
   .fullpage .section #stage-8 {
     position: absolute;
-    top: 0;
+    top: 10%;
     left: 25%;
   }
   .fullpage .section .stage-8-words {
     position: absolute;
-    top: 15%;
+    top: 25%;
     left: 25%;
   }
   .fullpage .section .stage-8-words p {
