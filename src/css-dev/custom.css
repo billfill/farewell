@@ -920,6 +920,10 @@
   .fixed_pic {
     background-size: contain;
   }
+  .fixed_pic #stage-1 {
+    display: block;
+    max-width: 100%;
+  }
   .fullpage .section .cover_Title {
     padding-top: 10%;
   }
