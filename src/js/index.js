@@ -267,6 +267,7 @@
             }
         }
     })
+    console.log($('#stage-1'))
     if(w >= 1024){
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
         console.log("333")
