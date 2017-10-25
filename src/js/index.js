@@ -1836,6 +1836,11 @@
     })    
 
     if(isFacebookApp()){
-        alert("2height: "+$("html").height()+ "width: "+ $("html").width()) 
+        $(".downArrow").css({
+            "bottom": "15%",
+        })
+        $(".skip").css({
+            "bottom": "15%",
+        })
     }
 }));
