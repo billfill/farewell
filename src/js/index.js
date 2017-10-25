@@ -20,6 +20,7 @@
     var SIDdrawSpeech;
     var SIDdrawDoctor;
     var SIDdrawCpu;
+    var animeIndex;
 
     var scroll_now;
     var read_progress = 10;
@@ -33,20 +34,6 @@
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);    
     
-
-    if(isFacebookApp()){
-        $('#cover-v').css('padding-bottom', '50px')
-        $('.flex-layout').css('padding-bottom', '50px')
-        $('.box-container').css('margin-top', '-75px')
-    }
-
-    // if(iOSSafari){
-    //     $(".downArrow").css({
-    //         "bottom": "15%",
-    //     })
-    //     console.log("phone safari")
-    // }
-    console.log(navigator)
 
     function isFacebookApp() {
         var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -213,14 +200,35 @@
     }
 
     $(".voice-state img").on("click", function(){
-        var voiceSrc = $(this).attr("src")
+        var voiceSrc = $(this).attr("src")      
         if(voiceSrc == "src/image/off.png"){
             $(this).attr('src', 'src/image/on.png');
             $("#music-main")[0].play();
             voiceOn()
+            if(scroll_now > $(".content").eq(0).offset().top){
+                ga("send", {
+                    "hitType": "event",
+                    "eventCategory": "閱讀時開聲音",
+                    "eventAction": "click",
+                    "eventLabel": "閱讀時開聲音",
+                });
+            } else {
+                ga("send", {
+                    "hitType": "event",
+                    "eventCategory": "開聲音",
+                    "eventAction": "click",
+                    "eventLabel": "開聲音",
+                });
+            }
         } else {
             $(this).attr('src', 'src/image/off.png');
             voiceOff()
+            ga("send", {
+                "hitType": "event",
+                "eventCategory": "關聲音",
+                "eventAction": "click",
+                "eventLabel": "關聲音",
+            });              
         }
     });
 
@@ -249,13 +257,7 @@
         }
 
         $('#indicator-bar').css('width', scroll_now/total_height * 100 + '%');
-        if(scroll_now > 300 && scroll_now < 400){
-            $(".downArrow").css({
-                "opacity": 0,
-            })                       
-            $(".fullpage").css({
-                "z-index": -1,
-            })
+        if(scroll_now > ($(".content").eq(0).offset().top -0.07*h) && scroll_now < ($(".content").eq(0).offset().top)){                    
             $("#music-main")[0].pause();
             $("#head").removeClass("Bgc-TP");
             $("#indicator").addClass("mainColor")
@@ -265,6 +267,11 @@
                 voiceOff();
                 console.log("good")        
             }
+        }
+        if(scroll_now > $(".section").eq(0).offset().top){
+            $(".downArrow").css({
+                "display": "none",
+            })   
         }
     })
     console.log($('#stage-1'))
@@ -422,9 +429,10 @@
             clearInterval(SIDdrawStart);
         } else if(startCurFrame == 23){
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
             })
+            $.fn.fullpage.setAllowScrolling(true)
             startCurFrame++
         } else if(startCurFrame == 13){
             $(".stage-2-words").css({
@@ -525,11 +533,12 @@
                 }
                 if(walk1X < 800){
                     $(".downArrow").css({
-                        "opacity": 1,
+                        "display": "block",
                         "color": "black",
-                    })                
+                    })
+                    $.fn.fullpage.setAllowScrolling(true)
                 }                 
-                walk1X -= 3
+                walk1X -= 5
             }            
         } else {
             if(walk1X < 150){
@@ -540,13 +549,14 @@
                 if( walk1X > 150 && walk1X < 200){
                     ctx_3.globalAlpha -= 0.05;
                 }
-                if(walk1X < 260){
+                if(walk1X < 300){
                     $(".downArrow").css({
-                        "opacity": 1,
+                        "display": "block",
                         "color": "black",
                     })                
+                    $.fn.fullpage.setAllowScrolling(true)
                 }                 
-                walk1X -= 3
+                walk1X -= 4
             } 
         }  
     }
@@ -591,7 +601,7 @@
                 } else if (walkBackX > 620){
                     ctx_3.globalAlpha -= 0.05;
                 }
-                walkBackX += 2
+                walkBackX += 3
             }
         } else {
             if(walkBackX > 270){
@@ -621,8 +631,6 @@
     var tree = new Image(); 
     // tree.src = 'src/image/animate-sprite/stage-3-bg.png'
 
-    ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
-    ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight); 
 // stage-4
 
     var kitchenWidth = 375; 
@@ -646,11 +654,12 @@
         ctx_4.clearRect(kitchenX, kitchenY, kitchenWidth+10, kitchenHeight+10);
         ctx_4.drawImage(kitchen, kitchenSrcX, kitchenSrcY, kitchenWidth, kitchenHeight, kitchenX, kitchenY, kitchenWidth, kitchenHeight);
         kitchenArrow++
-        if(kitchenArrow == 30){
+        if(kitchenArrow == 15){
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
             })                            
+            $.fn.fullpage.setAllowScrolling(true)
         }
     }
 //////stage-5
@@ -677,15 +686,16 @@
         ctx_5.drawImage(car, carSrcX, carSrcY, carWidth, carHeight, carX, carY, carWidth, carHeight);
         carArrow++
         console.log(carArrow)
-        if(carArrow == 35){
+        if(carArrow == 32){
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
-            })             
+            })
+            $.fn.fullpage.setAllowScrolling(true)
         } else if (carArrow == 22){
             $(".stage-5-words h2").css({
                 "opacity": "1",
-            })                  
+            })         
         }
     }
 // stage-6
@@ -710,9 +720,9 @@
         foodInfoSrcY = foodInfoCurFrame * foodInfoHeight; 
         ctx_6.clearRect(foodInfoX, foodInfoY, foodInfoWidth+10, foodInfoHeight+10);
         ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
-        if(foodInfoEnd == 44){
+        if(foodInfoEnd == 29){
             clearInterval(SIDdrawFoodInfo);
-        } else if(foodInfoEnd == 30){
+        } else if(foodInfoEnd == 22){
             foodInfoEnd++
             $("#stage-6").css({
                 "opacity": "0",
@@ -743,14 +753,14 @@
         foodSafeSrcY = foodSafeCurFrame * foodSafeHeight; 
         ctx_6_1.clearRect(foodSafeX, foodSafeY, foodSafeWidth+10, foodSafeHeight+10);
         ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
-        if(foodSafeEnd == 42){
+        if(foodSafeEnd == 27){
             clearInterval(SIDdrawFoodSafe);
             $("#stage-6_3, #stage-6_3_bg").css({
                 "opacity": "1",
                 "transform": "translate(0, 0)",
             });            
             SIDdrawCpu = setInterval(drawCpu, 125)            
-        } else if(foodSafeEnd == 32){
+        } else if(foodSafeEnd == 24){
             console.log("food Stop")
             $("#stage-6_1").css({
                 "opacity": "0",
@@ -782,7 +792,7 @@
         speechSrcY = speechCurFrame * speechHeight; 
         ctx_6_2.clearRect(speechX, speechY, speechWidth+10, speechHeight+10);
         ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
-        if(speechEnd == 47){
+        if(speechEnd == 30){
             clearInterval(SIDdrawSpeech);
             $("#stage-6_4").css({
                 "opacity": "1",
@@ -793,22 +803,23 @@
                     "opacity": "1",
                     "transform": 'translate(0, 0px)',
                 })
-            }, 2000)
+            }, 888)
             setTimeout(function(){
                 $(".downArrow").css({
-                    "opacity": 1,
+                    "display": "block",
                     "color": "black",
-                })                 
-            }, 2444)
+                })
+                $.fn.fullpage.setAllowScrolling(true) 
+            }, 1888)
             SIDdrawDoctor = setInterval(drawDoctor, 83)
-        } else if(speechEnd == 39){
+        } else if(speechEnd == 27){
             $(".stage-6-words p").eq(0).css({
                 "opacity": "0",
                 "transform": 'translate(0, -50px)',
             })
             $("#music-camera")[0].pause();
             speechEnd++
-        } else if(speechEnd == 36) {
+        } else if(speechEnd == 26) {
             console.log("speech Stop")
             $("#stage-6_2").css({
                 "opacity": "0",
@@ -903,9 +914,10 @@
             } else if(roomCurFrame == roomFrameCount -1){
                 clearInterval(SIDdrawRoom);
                 $(".downArrow").css({
-                    "opacity": 1,
+                    "display": "block",
                     "color": "white",
-                })                
+                })     
+                $.fn.fullpage.setAllowScrolling(true)           
             }
         }
     }    
@@ -933,10 +945,11 @@
         if(bedCurFrame == bedFrameCount -1){
             clearInterval(SIDdrawBed);
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
-            })                
-        } else if(bedCurFrame == 8){
+            })           
+            $.fn.fullpage.setAllowScrolling(true)     
+        } else if(bedCurFrame == 4){
             $(".stage-8-words h2").css({
                 "transform": "translate(0, 0)",
                 "opacity": "1",
@@ -970,11 +983,12 @@
         ctx_9.clearRect(smokeX, smokeY, smokeWidth+10, smokeHeight+10);
         ctx_9.drawImage(smoke, smokeSrcX, smokeSrcY, smokeWidth, smokeHeight, smokeX, smokeY, smokeWidth, smokeHeight);
         smokeArrow++
-        if(smokeArrow == 30){
+        if(smokeArrow == 14){
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
             })                     
+            $.fn.fullpage.setAllowScrolling(true)
         }
         console.log("smoke GO");
     }
@@ -1045,19 +1059,6 @@
         }         
     }
 
-    function drawStrollFade(){
-        clearInterval(SIDdrawStroll);
-        strollToFade -= 0.03;
-        strollCurFrame = ++strollCurFrame % strollFrameCount; 
-        strollSrcY = strollCurFrame * strollHeight; 
-        ctx_10.clearRect(strollX, strollY, strollWidth+10, strollHeight+10);
-        ctx_10.globalAlpha = strollToFade;
-        ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
-        if(strollToFade < 0.01){
-            clearInterval(SIDdrawStrollToFade);
-            $("#music-stroll")[0].pause();
-        }
-    };
 
     var waveWidth = 145; 
     var waveHeight = 287; 
@@ -1073,31 +1074,36 @@
 
     function drawWave(){
         //Updating the frame index 
+        console.log("waving")
         $("#music-stroll")[0].pause();
-        waveCurFrame = ++waveCurFrame % waveFrameCount; 
+        waveCurFrame++; 
         waveSrcY = waveCurFrame * waveHeight; 
         ctx_10.clearRect(waveX, waveY, waveWidth+10, waveHeight+10);
         ctx_10.drawImage(wave, waveSrcX, waveSrcY, waveWidth, waveHeight, waveX, waveY, waveWidth, waveHeight);
         clearInterval(SIDdrawStroll);
-        if(waveCurFrame == waveFrameCount -1){
+        if(waveCurFrame == waveFrameCount -1 && thanksIndex == 0){
             clearInterval(SIDdrawWave);
+            waveCurFrame = 0; 
+            $(".stage-10-words").css({
+                "opacity": 0,
+                "tranistion": "translate(0, -50px)",
+            })
             SIDdrawStroll = setInterval(drawStroll, 125);
             $(".thanks").eq(thanksIndex).css({
                 "opacity": "0",
                 "transform": "translateX(-10%)",
             })
-            if(thanksIndex < 1){
-                $(".stage-10-words").css({
-                    "opacity": 0,
-                    "tranistion": "translate(0, -50px)",
-                })                     
-            } else {
-                $(".downArrow").css({
-                    "opacity": 1,
-                    "color": "black",
-                })                
-            }
+            $(".downArrow").css({
+                "display": "block",
+                "color": "black",
+            })
+            $.fn.fullpage.setAllowScrolling(true)                                                    
             thanksIndex++
+        } else if (waveCurFrame == 23 && thanksIndex == 1){
+            clearInterval(SIDdrawWave);
+        } else if (waveCurFrame == waveFrameCount -1 && thanksIndex == 1){
+            clearInterval(SIDdrawWave);
+            console.log("fading")
         }
     }
 
@@ -1171,52 +1177,25 @@
         if(washCurFrame == washFrameCount -1){
             clearInterval(SIDdrawWash);
             console.log("stop wash");
+             
+        } else if (washCurFrame == 20){
             $(".downArrow").css({
-                "opacity": 1,
+                "display": "block",
                 "color": "black",
-            })                            
+            })
+            $.fn.fullpage.setAllowScrolling(true)               
         }
     }
-// start.src = "src/image/animate-sprite/stage-2-start.jpg";
-// end.src = "src/image/animate-sprite/stage-2-end.jpg";
-// walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
-// walkBack.src = "src/image/animate-sprite/stage-3-walkback.png"; 
-// kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
-// foodInfo.src = "src/image/animate-sprite/stage-6-foodInfo.png";
-// foodSafe.src = "src/image/animate-sprite/stage-6-foodSafe.png";
-// speech.src = "src/image/animate-sprite/stage-6-speech.png";      
-// car.src = "src/image/animate-sprite/stage-5-car.jpg";
-// doctor.src = "src/image/animate-sprite/stage-6-doctor.png";
-// cpu.src = "src/image/animate-sprite/stage-6-cpu.png";                
-// room.src = "src/image/animate-sprite/stage-7-room.jpg";
-// bed.src = "src/image/animate-sprite/stage-8-bed.jpg";
-// smoke.src = "src/image/animate-sprite/stage-9-smoke.png";
-// stroll.src = "src/image/animate-sprite/stage-10-stroll.png";
-// wave.src = "src/image/animate-sprite/stage-10-wave.png";                
-// man.src = "src/image/animate-sprite/stage-11-man.jpg";
-// woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
-// wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
-// // stage-bg-src            
-// tree.src = 'src/image/animate-sprite/stage-3-bg.png'
-// labTool.src = "src/image/animate-sprite/stage-6-lab-bg.png";
-// labLocker.src = "src/image/animate-sprite/stage-6-lab-bg2.png";
-// table.src = "src/image/animate-sprite/stage-9-bg.png";
-// present.src = "src/image/animate-sprite/stage-11-bg.png";
 
-
-    // $('.fullpage').css({
-    //     "height": h,
-    // })
     $('.fullpage').fullpage({
-        // navigation: false,
-        // navigation: true,
+        navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
-        // scrollBar: true,
-        lazyLoading: true,
+        lazyLoading: true,        
         afterLoad: function(anchorLink, index){
+            animeIndex = index;
             console.log("afterLoad:" + index)
-            // console.log("style:"+$('.fp-tableCell').children().removeAttr('style'))
+            $.fn.fullpage.setAllowScrolling(false)
             $("#section-"+index).css({
                 "opacity": "1",
                 "z-index": 50,
@@ -1224,13 +1203,31 @@
             $("#head").addClass('Bgc-TP')
             bar_witdh = (index) / ($(".fullpage").children().length-1) * 100
             $('#indicator-bar').css('width', bar_witdh+'%')
-            $("#indicator").removeClass("mainColor")          
+            $("#indicator").removeClass("mainColor")      
+            ga("send", {
+                "hitType": "event",
+                "eventCategory": "插畫(15張)",
+                "eventAction": "scroll",
+                "eventLabel": "看到第"+ index +"張",
+            });                               
             if(index == 1){
                 $("#stage-1")[0].play();
                 $(".fixed_pic").css("opacity", "1");               
                 $.fn.fullpage.setAutoScrolling(true);
+                $.fn.fullpage.setAllowScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
-                $.fn.fullpage.setScrollingSpeed(777);        
+                $.fn.fullpage.setScrollingSpeed(777);
+                if(localStorage.getItem("udn-readed") !== null){
+                    console.log("looked");
+                    $(".skip").css({
+                        "display": "block",
+                    })
+                } else {
+                    $(".downArrow").css({
+                        "display": "block",
+                        "color": "white",
+                    })                                  
+                }
             }
             if(index == 2 ){
                 start.src = "src/image/animate-sprite/stage-2-start.jpg";
@@ -1243,9 +1240,10 @@
                     "transform": "translate(0, 0)",
                 })
                 $(".downArrow").css({
-                    "opacity": 1,
+                    "display": "block",
                     "color": "white",
-                })                           
+                })              
+                $.fn.fullpage.setAllowScrolling(true)             
             }
             if(index == 3){
                 kitchen.src = "src/image/animate-sprite/stage-4-kitchen.jpg";
@@ -1261,9 +1259,10 @@
                     "transform": "translate(0, 0)",
                 })
                 $(".downArrow").css({
-                    "opacity": 1,
+                    "display": "block",
                     "color": "white",
-                })                
+                })         
+                $.fn.fullpage.setAllowScrolling(true)       
             }
             if(index == 4){
                 car.src = "src/image/animate-sprite/stage-5-car.jpg";
@@ -1333,12 +1332,10 @@
                     "transform": "translate(0, 0)",
                     "opacity": "1",
                 })
-                setTimeout(function(){
-                    $("#stage-4").css({
-                        "transform": "translate(0, 0)",
-                        "opacity": "1",                    
-                    })
-                }, 1000)
+                $("#stage-4").css({
+                    "transform": "translate(0, 0)",
+                    "opacity": "1",                    
+                })
                 $("#music-cooking")[0].play();
                 SIDdrawKitchen = setInterval(drawKitchen, 125);          
             }
@@ -1360,17 +1357,6 @@
                 $(".stage-5-words p").css({
                     "opacity": "1",
                 })
-                // setTimeout(function(){
-                //     $(".stage-5-words h2").css({
-                //         "opacity": "1",
-                //     })                                        
-                // }, 3000)
-                // setTimeout(function(){
-                //     $(".downArrow").css({
-                //         "opacity": 1,
-                //         "color": "black",
-                //     }) 
-                // }, 5444)
                 $("#music-driving")[0].play();
                 SIDdrawCar = setInterval(drawCar, 125);        
             }
@@ -1379,6 +1365,7 @@
                 woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
                 wash.src = "src/image/animate-sprite/stage-12-wash.jpg";                
                 //reset Stage-5
+                carArrow = 0
                 ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
                 clearInterval(SIDdrawCar);
                 $("#stage-5").removeAttr('style')
@@ -1415,13 +1402,13 @@
                     SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
                     SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
                     SIDdrawSpeech = setInterval(drawSpeech, 83);                    
-                }, 4000)
+                }, 1433)
                 setTimeout(function(){
                     $(".stage-6-words p").eq(0).css({
                         "opacity": "1",
                         "transform": 'translate(0, 0)',
                     })
-                }, 2666)                     
+                }, 1666)                     
             }
             if(index == 9){
                 console.log("switch off");
@@ -1465,44 +1452,34 @@
                         "transform": "translate(0, 0)",
                     })
                     SIDdrawBed = setInterval(drawBed, 125);    
-                }, 1000)
+                }, 777)
                 
             }
             if(index == 11){
                 console.log("smoke");
                 // reset stage-8
                 $(".stage-8-words p").removeAttr('style');
+                $(".stage-8-words h2").removeAttr('style');
                 $("#stage-8").removeAttr('style');
                 ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
 
-                $(".stage-9-words p").eq(0).css({
+                $(".stage-9-words p").css({
                     "opacity": "1",
                     "transform": "translate(0, 0)",
                 })
-                ctx_9_bg.drawImage(table, 0, 0, 413, 416, 12, 250, 413, 416);                
+                ctx_9_bg.drawImage(table, 0, 0, 413, 416, 12, 250, 413, 416);         
+                SIDdrawSmoke = setInterval(drawSmoke, 125);       
                 setTimeout(function(){
                     $("#stage-9, #stage-9_bg").css({
                         "opacity": "1",
                         "transform": "translate(0, 0)",                    
                     })
-                    SIDdrawSmoke = setInterval(drawSmoke, 125);
                 }, 1222)
-                setTimeout(function(){
-                    $(".stage-9-words p").eq(1).css({
-                        "opacity": "1",
-                        "transform": "translate(0, 0)",
-                    })                    
-                }, 2888)
-                setTimeout(function(){
-                    $(".downArrow").css({
-                        "opacity": 1,
-                        "color": "black",
-                    })                                    
-                }, 3333)
             }
             if(index == 12){
                 console.log("thanks");
                 // reset stage-9
+                smokeArrow = 0;
                 ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
                 ctx_9_bg.clearRect(0, 0, stage_9_bg.width+100, stage_9_bg.height+100);
                 $(".stage-9-words p").removeAttr('style');
@@ -1516,8 +1493,8 @@
                 // reset stage-10
                 toWave = 0;
                 thanksIndex = 0;
-                strollToFade = 1;
-                ctx_10.globalAlpha = strollToFade;
+                waveCurFrame = 0;
+                console.log(toWave, thanksIndex)
                 ctx_10.clearRect(0, 0, stage_10.width, stage_10.height);
                 $(".thanks").removeAttr('style');
                 $(".stage-10-words").removeAttr('style');
@@ -1539,7 +1516,7 @@
                     })                    
                     clearInterval(SIDdrawMan);
                     SIDdrawWoman = setInterval(drawWoman, 125);
-                }, 2500);
+                }, 2000);
                 setTimeout(function(){
                     $("#stage-11_1").css({
                         "opacity": "0",
@@ -1548,13 +1525,14 @@
                         "opacity": '1',
                     })                    
                     clearInterval(SIDdrawWoman);
-                }, 5000)
+                }, 4500)
                 setTimeout(function(){
                     $(".downArrow").css({
-                        "opacity": 1,
+                        "display": "block",
                         "color": "black",
-                    })                
-                }, 5555)
+                    })
+                    $.fn.fullpage.setAllowScrolling(true)    
+                }, 4666)
             }
             if(index == 14){
                 // reset stage-11
@@ -1570,19 +1548,17 @@
                 setTimeout(function(){
                     $(".stage-12-words p").eq(1).css({
                         "opacity": 1,
-                    })                    
+                    })
+                    $("#stage-12").css({
+                        "opacity": 1,
+                    })
+                    SIDdrawWash = setInterval(drawWash, 125);                               
                 }, 1000)
                 setTimeout(function(){
                     $(".stage-12-words p").eq(2).css({
                         "opacity": 1,
                     })                    
-                }, 2000)
-                setTimeout(function(){
-                    $("#stage-12").css({
-                        "opacity": 1,
-                    })
-                    SIDdrawWash = setInterval(drawWash, 125);            
-                }, 1666)                                
+                }, 2000)                               
             }
             if(index == 15){
                 //reset stage-12
@@ -1597,44 +1573,57 @@
                     "transform": "translate(0, -20%)",
                     "opacity": 1,
                 })
+                $.fn.fullpage.setAutoScrolling(false);
+                $.fn.fullpage.setFitToSection(false);   
+                $("html, body").css({
+                    "overflow-x": "hidden",
+                    "height": "initail",
+                })                                                    
                 setTimeout(function(){
                     $(".stage-13").eq(1).css({
                         "opacity": "1",
-                    })         
-                }, 2000)
+                    })  
+                    $(".stage-13-words h2").css({
+                        "opacity": "1",
+                    })       
+                    if($(window).scrollTop() == $(".section").eq(0).offset().top){
+                        $(".downArrow").css({
+                            "display": "block",
+                            "color": "black",
+                        })
+                        console.log("yes")
+                    }
+                    $.fn.fullpage.setAllowScrolling(true)                                             
+                }, 1666)
                 setTimeout(function(){
                     $(".stage-13").eq(2).css({
                         "opacity": "1",
-                    })
-                    $(".stage-13-words h2").css({
-                        "opacity": "1",
-                    })                               
-                }, 4000)
-                setTimeout(function(){
-                    $(".downArrow").css({
-                        "opacity": 1,
-                        "color": "black",
-                    })  
-                    $.fn.fullpage.setAutoScrolling(false);
-                    $.fn.fullpage.setFitToSection(false);
-                    $("html, body").css({
-                        "overflow-x": "hidden",
-                        "height": "initail",
                     })                              
-                }, 4888)             
-            }          
+                }, 3333)        
+                localStorage.setItem("udn-readed","readed")         
+            }
         },
         onLeave: function(index, nextIndex, direction){
             console.log("onLeave:" + index, nextIndex, direction);
             resetAll();
             $(".downArrow").css({
-                "opacity": 0,
-            })             
+                "display": "none",
+            })  
+            $(".skip").css({
+                "display": "none",
+            })                       
             $("#section-"+index).css({
                 "opacity": 0,
                 "z-index": 0,
             })
-
+            if(direction == "up"){
+                ga("send", {
+                    "hitType": "event",
+                    "eventCategory": "動畫回上一頁",
+                    "eventAction": "scroll",
+                    "eventLabel": "第幾"+ index +"張,回頭看",
+                });                
+            }
             if($("#indicator").css("opacity") != 1){
                 $("#indicator").css({
                     "opacity": 1,
@@ -1688,6 +1677,8 @@
             }
             if(index == 7){
                 if(direction == "up"){
+                    carArrow = 0
+                    clearInterval(SIDdrawCar);
                     ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
                     $("#stage-5").removeAttr('style')
                     $(".stage-5-words p").removeAttr('style');
@@ -1748,13 +1739,15 @@
                 if(direction == "up"){
                     ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
                     $(".stage-8-words p").removeAttr('style');
+                    $(".stage-8-words h2").removeAttr('style');
                     $("#stage-8").removeAttr('style');                    
                 }
             }
             if(index == 11){
                 if(direction == "up"){
+                    smokeArrow = 0;
                     ctx_9.clearRect(0, 0, stage_9.width, stage_9.height);
-                    ctx_9_bg.clearRect(0, 0, stage_9_bg.width, stage_9_bg.height);
+                    ctx_9_bg.clearRect(0, 0, stage_9_bg.width+300, stage_9_bg.height+300);
                     $(".stage-9-words p").removeAttr('style');
                     $("#stage-9").removeAttr('style');
                     $("#stage-9_bg").removeAttr('style');    
@@ -1764,14 +1757,18 @@
                 if(direction == "up"){
                     toWave = 0;
                     thanksIndex = 0;
-                    strollToFade = 1;
-                    ctx_10.globalAlpha = strollToFade;
+                    waveCurFrame = 0;
+                    console.log(toWave, thanksIndex)
                     ctx_10.clearRect(0, 0, stage_10.width, stage_10.height);
                     $(".thanks").removeAttr('style');
                     $(".stage-10-words").removeAttr('style');
                     $(".stage-10-words p").removeAttr('style');                   
                 } else{
-                    SIDdrawStrollToFade = setInterval(drawStrollFade, 125);
+                    SIDdrawWave = setInterval(drawWave, 125)
+                    $(".thanks").eq(thanksIndex).css({
+                        "opacity": "0",
+                        "transform": "translateX(-10%)",
+                    })                    
                 }
             }
             if(index == 13){
@@ -1792,19 +1789,11 @@
             }
             if(index == 15){
                 if(direction == "up"){
+                    $(".stage-13-words h2").removeAttr('style');
                     $(".stage-13-words p").removeAttr('style');
-                    $(".stage-13").removeAttr('style');
-                    $(".fullpage").css({
-                        "z-index": "auto",
-                    })                     
+                    $(".stage-13").removeAttr('style');                   
                 }
             }
-            // if(index == 16){
-            //     if(direction == "up"){
-            //         $.fn.fullpage.setAutoScrolling(true);
-            //         $.fn.fullpage.setFitToSection(true);                     
-            //     }
-            // }
             if(nextIndex == 3){
                 $(".fixed_pic").css("opacity", "1");
             }
@@ -1813,6 +1802,40 @@
             }
         },
     }); 
-    // console.log(navigator.userAgent)
+    $(".downArrow").click(function(e){
+        e.preventDefault();
+        $.fn.fullpage.moveSectionDown();
+        ga("send", {
+            "hitType": "event",
+            "eventCategory": "下一頁",
+            "eventAction": "click",
+            "eventLabel": "第幾"+ animeIndex +"點了下一頁箭頭",
+        });
+        if(animeIndex == 15){
+            $("html, body").animate({
+                scrollTop: $(".content").eq(0).offset().top
+            }, 888)
+        }
+    })
+    $(".skip").click(function(e){
+        e.preventDefault();
+        $.fn.fullpage.setAutoScrolling(false);
+        $.fn.fullpage.setFitToSection(false);         
+        // $.fn.fullpage.moveTo(15);
+        $("html, body").animate({
+            scrollTop: $(".content").eq(0).offset().top
+        }, 888)        
+        ga("send", {
+            "hitType": "event",
+            "eventCategory": "skip",
+            "eventAction": "click",
+            "eventLabel": "點擊跳過動畫(skip)",
+        });                 
+        $(this).css({"display": "none",})
+        $(".fixed_pic").css({"opacity": 0,})
+    })    
 
+    if(isFacebookApp()){
+        alert("2height: "+$("html").height()+ "width: "+ $("html").width()) 
+    }
 }));
