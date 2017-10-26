@@ -1858,7 +1858,7 @@
         })
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function(){
-            if($(window).scrollTop() < scrollTop: $(".content").eq(0).offset().top){
+            if($(window).scrollTop() < $(".content").eq(0).offset().top){
                 onResize();       
             }
         });
