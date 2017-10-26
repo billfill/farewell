@@ -224,10 +224,10 @@ $(document).ready(function () {
     if (isFacebookApp()) {
         if(iOSVersion(11)){
             $(".downArrow").css({
-                "bottom": "148px",
+                "bottom": "158px",
             });
             $(".skip").css({
-                "bottom": "148px",
+                "bottom": "158px",
             });  
             $(".whiteP").css({
                 "line-height": "1.5",

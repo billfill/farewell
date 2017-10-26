@@ -219,22 +219,19 @@ $(document).ready(function () {
             window.open("https://lineit.line.me/share/ui?url=" + window.location.href);
         }
     });
-    $('.intro').css({
-        "margin-top": "-20%"
-    });
     if (isFacebookApp()) {
         if (iOSVersion(11)) {
             $(".downArrow").css({
-                "bottom": "148px"
+                "bottom": "158px"
             });
             $(".skip").css({
-                "bottom": "148px"
+                "bottom": "158px"
             });
             $(".whiteP").css({
                 "line-height": "1.5"
             });
             $('.intro').css({
-                "margin-top": "-20%"
+                "margin-top": "-30%"
             });
         } else {
             $(".downArrow").css({
