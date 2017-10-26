@@ -1848,10 +1848,10 @@
 
     if(isFacebookApp()){
         $(".downArrow").css({
-            "bottom": "20%",
+            "bottom": "17%",
         })
         $(".skip").css({
-            "bottom": "20%",
+            "bottom": "17%",
         })
         $(".section").css({
             "margin-top": "-50px"
