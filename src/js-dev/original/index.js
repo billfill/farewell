@@ -228,14 +228,16 @@ $(document).ready(function () {
             });
             $(".skip").css({
                 "bottom": "108px",
-            });           
+            });        
+            alert("10")   
         } else {
             $(".downArrow").css({
                 "bottom": "148px",
             });
             $(".skip").css({
                 "bottom": "148px",
-            });         
+            });   
+            alert("11")      
         }
         $(".whiteP").css({
             "line-height": "1.5",
