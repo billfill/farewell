@@ -227,17 +227,20 @@ $(document).ready(function () {
             $(".skip").css({
                 "bottom": "148px"
             });
+            $(".whiteP").css({
+                "line-height": "1.5"
+            });
         } else {
             $(".downArrow").css({
-                "bottom": "108px"
+                "bottom": "128px"
             });
             $(".skip").css({
-                "bottom": "108px"
+                "bottom": "128px"
+            });
+            $(".whiteP").css({
+                "line-height": "1.2"
             });
         }
-        $(".whiteP").css({
-            "line-height": "1.5"
-        });
         $(".section").css({
             "margin-top": "-6%"
         });
