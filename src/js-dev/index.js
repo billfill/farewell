@@ -209,7 +209,7 @@ $(document).ready(function () {
         $(".section").css({
             "margin-top": "-6%"
         });
-        $(".whiteP br").css({
+        $(".whiteP > p > br").css({
             "line-height": "0px"
         });
         // for compensate facebook in-app browser resize()
