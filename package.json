@@ -4,15 +4,18 @@
   "description": "for start",
   "main": "gulpfile.js",
   "dependencies": {
+    "babel-core": "^6.26.0",
     "fontawesome": "^4.7.2",
     "gulp": "^3.9.1",
     "gulp-compass": "^2.1.0",
     "gulp-connect": "^5.0.0",
+    "gulp-sequence": "^0.4.6",
     "jquery": "^3.2.1",
     "jquery-touchswipe": "^1.6.15"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
+    "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^7.0.0",
