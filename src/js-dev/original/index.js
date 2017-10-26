@@ -196,10 +196,10 @@ $(document).ready(function () {
 
     if (isFacebookApp()) {
         $(".downArrow").css({
-            "bottom": "15vh"
+            "bottom": "20vh"
         });
         $(".skip").css({
-            "bottom": "15vh"
+            "bottom": "20vh"
         });
         $(".section").css({
             "margin-top": "-5%"
