@@ -216,7 +216,7 @@ $(document).ready(function () {
         }
     });
     if (isFacebookApp()) {
-        if(iOSVersion){
+        if(iOSVersion(10)){
             $(".downArrow").css({
                 "bottom": "148px",
             });
@@ -229,7 +229,6 @@ $(document).ready(function () {
             $(".whiteP").css({
                 "line-height": "1.5",
             })        
-            // for compensate facebook in-app browser resize()
             window.addEventListener("resize", function () {
                 if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
                     onResize();
