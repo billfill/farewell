@@ -216,6 +216,13 @@ $(document).ready(function () {
     if (isFacebookApp()) {
         if (iOSVersion(10)) {
             $(".downArrow").css({
+                "bottom": "108px"
+            });
+            $(".skip").css({
+                "bottom": "108px"
+            });
+        } else {
+            $(".downArrow").css({
                 "bottom": "148px"
             });
             $(".skip").css({
@@ -237,13 +244,6 @@ $(document).ready(function () {
                     $(window).scrollTop(0);
                 }, 888);
             };
-        } else {
-            $(".downArrow").css({
-                "bottom": "108px"
-            });
-            $(".skip").css({
-                "bottom": "108px"
-            });
         }
     }
 

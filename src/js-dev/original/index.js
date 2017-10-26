@@ -177,6 +177,12 @@ $(document).ready(function () {
         $("#music-street")[0].pause();
     }
 
+    function onResize() {
+        setTimeout(function () {
+            $(window).scrollTop(0);
+        }, 888);
+    };  
+
     var w = $(window).width();
     var h = $(window).height();
     var total_height = $('body').height() - h;
@@ -222,31 +228,26 @@ $(document).ready(function () {
             });
             $(".skip").css({
                 "bottom": "108px",
-            });
+            });           
         } else {
             $(".downArrow").css({
                 "bottom": "148px",
             });
             $(".skip").css({
                 "bottom": "148px",
-            });
-            $(".section").css({
-                "margin-top": "-6%",
-            });
-            $(".whiteP").css({
-                "line-height": "1.5",
-            })        
-            window.addEventListener("resize", function () {
-                if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
-                    onResize();
-                }
-            });
-            function onResize() {
-                setTimeout(function () {
-                    $(window).scrollTop(0);
-                }, 888);
-            };            
+            });         
         }
+        $(".whiteP").css({
+            "line-height": "1.5",
+        })
+        $(".section").css({
+            "margin-top": "-6%",
+        });                     
+        window.addEventListener("resize", function () {
+            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+                onResize();
+            }
+        });           
     }
 
     $(".voice-state img").on("click", function () {
