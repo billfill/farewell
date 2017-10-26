@@ -1862,7 +1862,7 @@
         });
     
         function onResize(){
-         document.querySelector("html").style.height = window.innerHeight + "px";
+         // document.querySelector("html").style.height = window.innerHeight + "px";
          setTimeout(function(){$(window).scrollTop(0)}, 500);
         };            
     }
