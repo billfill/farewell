@@ -221,6 +221,9 @@ $(document).ready(function () {
             window.open("https://lineit.line.me/share/ui?url=" + window.location.href);
         }
     });
+            $('.intro').css({
+                "margin-top": "-20%",
+            })        
     if (isFacebookApp()) {
         if(iOSVersion(11)){
             $(".downArrow").css({
@@ -232,7 +235,7 @@ $(document).ready(function () {
             $(".whiteP").css({
                 "line-height": "1.5",
             }) 
-            $('.page-black').css({
+            $('.intro').css({
                 "margin-top": "-20%",
             })                                        
         } else {
@@ -245,7 +248,7 @@ $(document).ready(function () {
             $(".whiteP").css({
                 "line-height": "1.2",
             })
-            $('.page-black').css({
+            $('.intro').css({
                 "margin-top": "-20%",
             })      
         }
