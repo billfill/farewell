@@ -944,11 +944,12 @@
         ctx_8.drawImage(bed, bedSrcX, bedSrcY, bedWidth, bedHeight, bedX, bedY, bedWidth, bedHeight);
         if(bedCurFrame == bedFrameCount -1){
             clearInterval(SIDdrawBed);
+        } else if (bedCurFrame == 18){
             $(".downArrow").css({
                 "display": "block",
                 "color": "black",
             })           
-            $.fn.fullpage.setAllowScrolling(true)     
+            $.fn.fullpage.setAllowScrolling(true) 
         } else if(bedCurFrame == 4){
             $(".stage-8-words h2").css({
                 "transform": "translate(0, 0)",
@@ -1017,8 +1018,6 @@
         ctx_10.clearRect(strollX, strollY, strollWidth+10, strollHeight+10);
         ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
         toWave ++
-        console.log("toWave: "+toWave )
-        console.log(thanksIndex)
         if(toWave == 48 && thanksIndex < 2){
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
@@ -1074,7 +1073,6 @@
 
     function drawWave(){
         //Updating the frame index 
-        console.log("waving")
         $("#music-stroll")[0].pause();
         waveCurFrame++; 
         waveSrcY = waveCurFrame * waveHeight; 
@@ -1101,10 +1099,15 @@
             thanksIndex++
         } else if (waveCurFrame == 23 && thanksIndex == 1){
             clearInterval(SIDdrawWave);
+            $(".downArrow").css({
+                "display": "block",
+                "color": "black",
+            })            
         } else if (waveCurFrame == waveFrameCount -1 && thanksIndex == 1){
             clearInterval(SIDdrawWave);
             console.log("fading")
         }
+        console.log(waveCurFrame)
     }
 
 // stage-11
@@ -1345,6 +1348,7 @@
                 wave.src = "src/image/animate-sprite/stage-10-wave.png";                
                 // reset Stage-4
                 ctx_4.clearRect(0, 0, stage_4.width, stage_4.height)
+                kitchenArrow = 0;
                 $(".stage-4-words p").removeAttr('style')
                 $("#stage-4").removeAttr('style')             
 
@@ -1458,6 +1462,7 @@
             if(index == 11){
                 console.log("smoke");
                 // reset stage-8
+                bedCurFrame = 0
                 $(".stage-8-words p").removeAttr('style');
                 $(".stage-8-words h2").removeAttr('style');
                 $("#stage-8").removeAttr('style');
@@ -1563,6 +1568,7 @@
             if(index == 15){
                 //reset stage-12
                 ctx_12.clearRect(0, 0, stage_12.width, stage_12.height);
+                washCurFrame = 0;
                 $(".stage-12-words p").removeAttr('style');
                 $("#stage-12").removeAttr('style');
 
@@ -1670,6 +1676,7 @@
             }
             if(index == 6){
                 if(direction == "up"){
+                    kitchenArrow = 0;
                     ctx_4.clearRect(kitchenX, kitchenY, stage_4.width, stage_4.height)
                     $(".stage-4-words p").removeAttr('style')
                     $("#stage-4").removeAttr('style')                        
@@ -1737,6 +1744,7 @@
             }
             if(index == 10){
                 if(direction == "up"){
+                    bedCurFrame = 0;
                     ctx_8.clearRect(0, 0, stage_8.width, stage_8.height);
                     $(".stage-8-words p").removeAttr('style');
                     $(".stage-8-words h2").removeAttr('style');
@@ -1764,7 +1772,9 @@
                     $(".stage-10-words").removeAttr('style');
                     $(".stage-10-words p").removeAttr('style');                   
                 } else{
-                    SIDdrawWave = setInterval(drawWave, 125)
+                    if(thanksIndex == 1 && waveCurFrame > 22){
+                        SIDdrawWave = setInterval(drawWave, 125)
+                    }
                     $(".thanks").eq(thanksIndex).css({
                         "opacity": "0",
                         "transform": "translateX(-10%)",
@@ -1782,6 +1792,7 @@
             }
             if(index == 14){
                 if(direction == "up"){
+                    washCurFrame = 0;
                     ctx_12.clearRect(0, 0, stage_12.width, stage_12.height);
                     $(".stage-12-words p").removeAttr('style');
                     $("#stage-12").removeAttr('style');                    
