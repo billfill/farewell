@@ -222,22 +222,22 @@ $(document).ready(function () {
         }
     });
     if (isFacebookApp()) {
-        if(iOSVersion(10)){
-            $(".downArrow").css({
-                "bottom": "108px",
-            });
-            $(".skip").css({
-                "bottom": "108px",
-            });        
-            alert("10")   
-        } else {
+        if(iOSVersion(11)){
             $(".downArrow").css({
                 "bottom": "148px",
             });
             $(".skip").css({
                 "bottom": "148px",
             });   
-            alert("11")      
+            alert("11")               
+        } else {
+            $(".downArrow").css({
+                "bottom": "108px",
+            });
+            $(".skip").css({
+                "bottom": "108px",
+            });        
+            alert("10")      
         }
         $(".whiteP").css({
             "line-height": "1.5",
