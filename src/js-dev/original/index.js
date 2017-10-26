@@ -104,13 +104,13 @@ $(document).ready(function () {
         $("#music-cooking")[0].muted = false;
         $("#music-cooking")[0].volume = 0.6;
         $("#music-driving")[0].muted = false;
-        $("#music-driving")[0].volume = 0.6;
+        $("#music-driving")[0].volume = 0.3;
         $("#music-camera")[0].muted = false;
-        $("#music-camera")[0].volume = 0.6;
+        $("#music-camera")[0].volume = 0.3;
         $("#music-switch")[0].muted = false;
         $("#music-switch")[0].volume = 0.6;
         $("#music-stroll")[0].muted = false;
-        $("#music-stroll")[0].volume = 0.6;
+        $("#music-stroll")[0].volume = 0.3;
         $("#music-street")[0].muted = false;
         $("#music-street")[0].volume = 0.6;
     }
@@ -202,7 +202,7 @@ $(document).ready(function () {
             "bottom": "17%"
         });
         $(".section").css({
-            "margin-top": "-8%"
+            "margin-top": "-5%"
         });
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
