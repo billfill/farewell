@@ -198,7 +198,9 @@ $(document).ready(function () {
             window.open("https://lineit.line.me/share/ui?url=" + window.location.href);
         }
     });
-
+    $(".whiteP").css({
+        "line-height": "1.5"
+    });
     if (isFacebookApp()) {
         $(".downArrow").css({
             "bottom": "148px"
@@ -208,9 +210,6 @@ $(document).ready(function () {
         });
         $(".section").css({
             "margin-top": "-6%"
-        });
-        $(".whiteP > p > br").css({
-            "line-height": "0px"
         });
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {

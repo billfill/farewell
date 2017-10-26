@@ -199,7 +199,7 @@ $(document).ready(function () {
         }
     });
         $(".whiteP").css({
-            "line-height": "1.2",
+            "line-height": "1.5",
         })
     if (isFacebookApp()) {
         $(".downArrow").css({
