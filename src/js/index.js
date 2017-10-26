@@ -1837,10 +1837,13 @@
 
     if(isFacebookApp()){
         $(".downArrow").css({
-            "bottom": "15%",
+            "bottom": "20%",
         })
         $(".skip").css({
-            "bottom": "15%",
+            "bottom": "20%",
+        })
+        $(".section").css({
+            "margin-top": "-50px"
         })
     }
 }));
