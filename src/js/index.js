@@ -1856,5 +1856,14 @@
         $(".section").css({
             "margin-top": "-50px"
         })
+        // for compensate facebook in-app browser resize()
+        window.addEventListener("resize", function(){
+         onResize();
+        });
+    
+        function onResize(){
+         document.querySelector("html").style.height = window.innerHeight + "px";
+         setTimeout(function(){$(window).scrollTop(0)}, 500);
+        };            
     }
 }));
