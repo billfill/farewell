@@ -233,7 +233,7 @@ $(document).ready(function () {
                 "line-height": "1.5",
             }) 
             $('.page-black').css({
-                "margin-top": "-10%",
+                "margin-top": "-20%",
             })                                        
         } else {
             $(".downArrow").css({
@@ -246,7 +246,7 @@ $(document).ready(function () {
                 "line-height": "1.2",
             })
             $('.page-black').css({
-                "margin-top": "-10%",
+                "margin-top": "-20%",
             })      
         }
         $(".section").css({
