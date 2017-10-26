@@ -201,13 +201,14 @@ $(document).ready(function () {
 
     if (isFacebookApp()) {
         $(".downArrow").css({
-            "bottom": "18vh"
+            "bottom": "20vh"
         });
         $(".skip").css({
-            "bottom": "18vh"
+            "bottom": "20vh"
         });
         $(".section").css({
-            "margin-top": "-7%"
+            "margin-top": "-7%",
+            "transform": "scale(.95)"
         });
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
