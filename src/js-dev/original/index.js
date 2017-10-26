@@ -231,7 +231,10 @@ $(document).ready(function () {
             });  
             $(".whiteP").css({
                 "line-height": "1.5",
-            })                          
+            }) 
+            $('.page-black').css({
+                "margin-top": "-10%",
+            })                                        
         } else {
             $(".downArrow").css({
                 "bottom": "138px",
@@ -243,8 +246,7 @@ $(document).ready(function () {
                 "line-height": "1.2",
             })
             $('.page-black').css({
-                'justify-content': "flex-start",
-                'padding-top': "10%"
+                "margin-top": "-10%",
             })      
         }
         $(".section").css({

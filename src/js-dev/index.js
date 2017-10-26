@@ -232,13 +232,17 @@ $(document).ready(function () {
             });
         } else {
             $(".downArrow").css({
-                "bottom": "128px"
+                "bottom": "138px"
             });
             $(".skip").css({
-                "bottom": "128px"
+                "bottom": "138px"
             });
             $(".whiteP").css({
                 "line-height": "1.2"
+            });
+            $('.page-black').css({
+                'justify-content': "flex-start",
+                'padding-top': "10%"
             });
         }
         $(".section").css({
