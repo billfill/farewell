@@ -202,8 +202,8 @@
         }
         .stage-2-words{
             position: absolute;
+            top: 10%;
             right: 20px;
-            bottom: 65px;
             transition: opacity 1.2s ease-in-out;
             opacity: 0;
             z-index: 15;
