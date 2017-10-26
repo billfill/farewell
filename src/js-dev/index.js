@@ -201,10 +201,10 @@ $(document).ready(function () {
 
     if (isFacebookApp()) {
         $(".downArrow").css({
-            "bottom": "143px"
+            "bottom": "148px"
         });
         $(".skip").css({
-            "bottom": "143px"
+            "bottom": "148px"
         });
         $(".section").css({
             "margin-top": "-6%"

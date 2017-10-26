@@ -208,8 +208,11 @@ $(document).ready(function () {
         });
         $(".section").css({
             "margin-top": "-6%",
-            // "transform": "scale(.)",
+            "transform": "scale(.95)",
         });
+        $("p>br").css({
+            "lineheight": "5px",
+        })
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
             if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
