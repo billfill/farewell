@@ -1592,7 +1592,7 @@
                     $(".stage-13-words h2").css({
                         "opacity": "1",
                     })       
-                    if($(window).scrollTop() <= $(".section").eq(0).offset().top){
+                    if($(window).scrollTop() <= 15){
                         $(".downArrow").css({
                             "display": "block",
                             "color": "black",
@@ -1858,7 +1858,9 @@
         })
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function(){
-         onResize();
+            if($(window).scrollTop() < scrollTop: $(".content").eq(0).offset().top){
+                onResize();       
+            }
         });
         function onResize(){
          // document.querySelector("html").style.height = window.innerHeight + "px";
