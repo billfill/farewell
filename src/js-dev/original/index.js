@@ -209,8 +209,8 @@ $(document).ready(function () {
         $(".section").css({
             "margin-top": "-6%",
         });
-        $("p>br").css({
-            "line-height": "5px",
+        $(".whiteP br").css({
+            "line-height": "0px",
         })
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
