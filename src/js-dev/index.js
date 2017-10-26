@@ -202,7 +202,7 @@ $(document).ready(function () {
             "bottom": "17%"
         });
         $(".section").css({
-            "margin-top": "-50px"
+            "margin-top": "-10%"
         });
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
