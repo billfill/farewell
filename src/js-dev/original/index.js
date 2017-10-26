@@ -34,6 +34,22 @@ $(document).ready(function () {
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
+    function iOSVersion(targetVersion) {
+        if (/iP(hone|od|ad)/.test(navigator.userAgent)) {
+            // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+            var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+            if(parseInt(v[1], 10) >= targetVersion){
+                return true
+            }
+            else{
+                return false
+            }
+            // return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
+        else{
+            return false
+        }
+    }
     function isFacebookApp() {
         if(iOS == true){
             var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -50,6 +66,7 @@ $(document).ready(function () {
             return false;
         }
     }
+
     function moviePlay(id) {
         $('#movie-' + id).get(0).play();
         if (progress[id - 1] == null) {
@@ -198,30 +215,39 @@ $(document).ready(function () {
             window.open("https://lineit.line.me/share/ui?url=" + window.location.href);
         }
     });
-        $(".whiteP").css({
-            "line-height": "1.5",
-        })
     if (isFacebookApp()) {
-        $(".downArrow").css({
-            "bottom": "148px",
-        });
-        $(".skip").css({
-            "bottom": "148px",
-        });
-        $(".section").css({
-            "margin-top": "-6%",
-        });
-        // for compensate facebook in-app browser resize()
-        window.addEventListener("resize", function () {
-            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
-                onResize();
-            }
-        });
-        function onResize() {
-            setTimeout(function () {
-                $(window).scrollTop(0);
-            }, 888);
-        };
+        if(iOSVersion){
+            $(".downArrow").css({
+                "bottom": "148px",
+            });
+            $(".skip").css({
+                "bottom": "148px",
+            });
+            $(".section").css({
+                "margin-top": "-6%",
+            });
+            $(".whiteP").css({
+                "line-height": "1.5",
+            })        
+            // for compensate facebook in-app browser resize()
+            window.addEventListener("resize", function () {
+                if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+                    onResize();
+                }
+            });
+            function onResize() {
+                setTimeout(function () {
+                    $(window).scrollTop(0);
+                }, 888);
+            };
+        } else {
+            $(".downArrow").css({
+                "bottom": "108px",
+            });
+            $(".skip").css({
+                "bottom": "108px",
+            });
+        }
     }
 
     $(".voice-state img").on("click", function () {
