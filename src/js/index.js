@@ -1592,7 +1592,7 @@
                     $(".stage-13-words h2").css({
                         "opacity": "1",
                     })       
-                    if($(window).scrollTop() == $(".section").eq(0).offset().top){
+                    if($(window).scrollTop() <= $(".section").eq(0).offset().top){
                         $(".downArrow").css({
                             "display": "block",
                             "color": "black",
@@ -1856,15 +1856,13 @@
         $(".section").css({
             "margin-top": "-50px"
         })
-        alert($(window).scrollTop);
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function(){
          onResize();
         });
-    
         function onResize(){
          // document.querySelector("html").style.height = window.innerHeight + "px";
-         setTimeout(function(){$(window).scrollTop(0)}, 500);
+         setTimeout(function(){$(window).scrollTop(0)}, 888);
         };            
     }
 }));
