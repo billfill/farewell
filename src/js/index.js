@@ -1856,6 +1856,7 @@
         $(".section").css({
             "margin-top": "-50px"
         })
+        alert($(window).scrollTop);
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function(){
          onResize();
