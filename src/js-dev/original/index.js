@@ -208,7 +208,6 @@ $(document).ready(function () {
         });
         $(".section").css({
             "margin-top": "-6%",
-            "transform": "scale(.95)",
         });
         $("p>br").css({
             "lineheight": "5px",

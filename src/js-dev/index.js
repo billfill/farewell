@@ -207,8 +207,11 @@ $(document).ready(function () {
             "bottom": "148px"
         });
         $(".section").css({
-            "margin-top": "-6%"
-            // "transform": "scale(.)",
+            "margin-top": "-6%",
+            "transform": "scale(.95)"
+        });
+        $("p>br").css({
+            "lineheight": "5px"
         });
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
