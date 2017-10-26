@@ -1592,7 +1592,7 @@
                     $(".stage-13-words h2").css({
                         "opacity": "1",
                     })       
-                    if($(window).scrollTop() <= 15){
+                    if($(window).scrollTop() < $(".content").eq(0).offset().top){
                         $(".downArrow").css({
                             "display": "block",
                             "color": "black",
