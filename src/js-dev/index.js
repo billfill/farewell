@@ -207,8 +207,7 @@ $(document).ready(function () {
             "bottom": "148px"
         });
         $(".section").css({
-            "margin-top": "-6%",
-            "transform": "scale(.95)"
+            "margin-top": "-6%"
         });
         $("p>br").css({
             "lineheight": "5px"

@@ -210,7 +210,7 @@ $(document).ready(function () {
             "margin-top": "-6%",
         });
         $("p>br").css({
-            "lineheight": "5px",
+            "line-height": "5px",
         })
         // for compensate facebook in-app browser resize()
         window.addEventListener("resize", function () {
