@@ -231,7 +231,7 @@ $(document).ready(function () {
         } else {
             window.open("https://lineit.line.me/share/ui?url=" + window.location.href);
         }
-    });          
+    });              
     if (isFacebookApp()) {
         $(".stage-6-words p").eq(0).css({
             "top" : "15%",
