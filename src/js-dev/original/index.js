@@ -1883,7 +1883,7 @@ $(document).ready(function () {
             "margin-top": "-128px",
         })          
         window.addEventListener("resize", function () {
-            if (animeIndex < 15) {
+            if (animeIndex < 3) {
                 onResize();
             }
         });         
