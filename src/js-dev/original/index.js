@@ -247,7 +247,7 @@ $(document).ready(function () {
             "margin-top": "-128px",
         })          
         window.addEventListener("resize", function () {
-            if ($(window).scrollTop() < $(".content").eq(0).offset().top && animeIndex < 15) {
+            if (animeIndex < 15) {
                 onResize();
             }
         });         
@@ -1911,6 +1911,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.fn.fullpage.setAutoScrolling(false);
         $.fn.fullpage.setFitToSection(false);
+        animeIndex == 15
         $("html, body").animate({
             scrollTop: $(".content").eq(0).offset().top
         }, 888);
