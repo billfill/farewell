@@ -63,6 +63,18 @@
 #stage-1::-webkit-media-controls-start-playback-button {
   display: none;
 }
+.contentVideo{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.ill{
+    display: block;
+    margin: 0 auto;
+    padding-top: 64px;
+    height: auto;
+    max-width: 200px;
+}
 .headPhone{
     width: 100px;
     height: 100px;
@@ -607,14 +619,14 @@
         line-height: 1.5;
     }
 }
-@media screen and (min-width: 768px) and (max-width: 1023px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
     .fullpage{
         .section{
             .taxi{
-                top: 0;
+                top: 5%;
             }
             .bouzu{
-                top: 0;
+                top: 5%;
             }
         }
     }
@@ -627,6 +639,13 @@
         display: block;
         width: auto;
         height: 200%;
+    }
+    .ill{
+        position: absolute;
+        padding-top: 3%;
+        top: 5%;
+        right: 0;
+        max-width: 100px;
     }
     .fullpage{
         .section{

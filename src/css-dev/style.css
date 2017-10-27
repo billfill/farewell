@@ -460,7 +460,7 @@ footer a {
 		top: 50%;
 		left: 50%;
 		font-size: 60px;
-		color: #FFB93E;
+		color: #be5406;
 		margin-left: -12.5px;
     	margin-top: -30px;
 		transition: opacity 0.2s ease;
@@ -479,7 +479,7 @@ footer a {
 		pointer-events: none;
 	}
 	.volume{
-		color: #9fa0a0;
+		color: #be5406;
 		z-index: 999;
 		position: absolute;
 		bottom: -24px;
@@ -489,10 +489,10 @@ footer a {
 		position: absolute;
 		left: 47px;
 		bottom: -30px;
-		color: #9fa0a0;
+		color: #be5406;
 	}
 	.replay{
-		color: #9fa0a0;
+		color: #be5406;
 		z-index: 999;
 		position: absolute;
 		bottom: -26px;
@@ -504,7 +504,7 @@ footer a {
 	.progress-bar{
 		height: 4px;
 		width: 0;
-		background-color: #FFB93E;
+		background-color: #be5406;
 		transition: width 0.6s linear;
     }
     .quote-contain{
@@ -613,7 +613,7 @@ footer a {
 		top: 50%;
 		left: 50%;
 		font-size: 60px;
-		color: #FFB93E;
+		color: #be5406;
 		margin-left: -12.5px;
     	margin-top: -30px;
 		transition: opacity 0.2s ease;
@@ -632,7 +632,7 @@ footer a {
 		pointer-events: none;
 	}
 	.volume{
-		color: #9fa0a0;
+		color: #be5406;
 		z-index: 999;
 		position: absolute;
 		bottom: -24px;
@@ -642,10 +642,10 @@ footer a {
 		position: absolute;
 		left: 47px;
 		bottom: -30px;
-		color: #9fa0a0;
+		color: #be5406;
 	}
 	.replay{
-		color: #9fa0a0;
+		color: #be5406;
 		z-index: 999;
 		position: absolute;
 		bottom: -26px;
@@ -657,7 +657,7 @@ footer a {
 	.progress-bar{
 		height: 4px;
 		width: 0;
-		background-color: #FFB93E;
+		background-color: #be5406;
 		transition: width 0.6s linear;
     }
 

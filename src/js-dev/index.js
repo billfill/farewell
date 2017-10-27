@@ -235,10 +235,10 @@ $(document).ready(function () {
             });
         } else {
             $(".downArrow").css({
-                "bottom": "138px"
+                "bottom": "143px"
             });
             $(".skip").css({
-                "bottom": "138px"
+                "bottom": "143px"
             });
             $(".whiteP").css({
                 "line-height": "1.2"

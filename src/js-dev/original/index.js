@@ -233,7 +233,7 @@ $(document).ready(function () {
                 "line-height": "1.5",
             }) 
             $('.intro').css({
-                "margin-top": "-30%",
+                "margin-top": "-25%",
             })                                        
         } else {
             $(".downArrow").css({
@@ -246,7 +246,7 @@ $(document).ready(function () {
                 "line-height": "1.2",
             })
             $('.intro').css({
-                "margin-top": "-20%",
+                "margin-top": "-15%",
             })      
         }
         $(".section").css({
@@ -320,24 +320,40 @@ $(document).ready(function () {
         if (scroll_now > $(".content").eq(0).offset().top - 0.07 * h && scroll_now < $(".content").eq(0).offset().top) {
             $("#head").removeClass("Bgc-TP");
             $("#indicator").addClass("mainColor");
-            // var voiceSrc = $(".voice-state img").attr("src");
-            // $("#music-main")[0].pause();
-            // if (voiceSrc == 'src/image/on.png') {
-            //     $(".voice-state img").attr('src', 'src/image/off.png');
-            //     voiceOff();
-            // }
         }
         if (scroll_now > $(".section").eq(0).offset().top) {
             $(".downArrow").css({
                 "display": "none"
             });
         }
+        if(scroll_now > $("#movie-1").offset().top - h*0.5 && scroll_now < $("#movie-1").offset().top + h*0.5){
+            moviePlay(1);
+        }
+        if(scroll_now > $("#movie-1").offset().top + h*0.2 || scroll_now <  $("#movie-1").offset().top - h*0.8){
+            moviePause(1);
+        }
     });
     if (w >= 1024) {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
+        $("#movie-1").attr("controls", "true");
     } else {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
     }
+    $('.volume[data-target="1"]').click(function(){
+        movieVolume(1);
+    })
+    $('.replay[data-target="1"]').click(function(){
+        movieReplay(1);
+    })
+    $("#movie-1").click(function(){
+        console.log($("#movie-1")[0])
+        if($("#movie-1")[0].paused){
+            moviePlay(1);    
+        } else {
+            moviePause(1);
+        }
+    })  
+
     //Width and height for our canvas
     var canvasWidth = 375;
     var canvasHeight = 667;
@@ -1495,7 +1511,7 @@ $(document).ready(function () {
                 $(".stage-10-words").removeAttr('style');
                 $(".stage-10-words p").removeAttr('style');
 
-                $(".stage-11-words p").eq(0).css({
+                $(".stage-11-words p").css({
                     "opacity": '1'
                 });
 
@@ -1505,18 +1521,12 @@ $(document).ready(function () {
                     $("#stage-11").css({
                         "opacity": "0"
                     });
-                    $(".stage-11-words p").eq(1).css({
-                        "opacity": '1'
-                    });
                     clearInterval(SIDdrawMan);
                     SIDdrawWoman = setInterval(drawWoman, 125);
                 }, 2000);
                 setTimeout(function () {
                     $("#stage-11_1").css({
                         "opacity": "0"
-                    });
-                    $(".stage-11-words p").eq(2).css({
-                        "opacity": '1'
                     });
                     clearInterval(SIDdrawWoman);
                 }, 4500);
@@ -1830,4 +1840,7 @@ $(document).ready(function () {
         $(this).css({ "display": "none" });
         $(".fixed_pic").css({ "opacity": 0 });
     });
+    // $(".contentVideo").click(function(){
+    //     $(this)[0].play(0);
+    // })
 });
