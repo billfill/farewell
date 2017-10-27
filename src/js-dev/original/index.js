@@ -60,7 +60,7 @@ $(document).ready(function () {
     }
 
     ver = iOSversion();
-    alert(ver.typeOf, ver)
+    alert(ver)
     function isFacebookApp() {
         if(iOS == true){
             var ua = navigator.userAgent || navigator.vendor || window.opera;
