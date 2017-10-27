@@ -61,7 +61,6 @@ $(document).ready(function () {
 
     ver = iOSversion();
 
-    alert(typeof ver[0] + typeof ver[1]);
     function isFacebookApp() {
         if (iOS == true) {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -234,7 +233,7 @@ $(document).ready(function () {
         }
     });
     if (isFacebookApp()) {
-        if (iOSVersion(11)) {
+        if (ver[0] == 11) {
             $(".downArrow").css({
                 "bottom": "158px"
             });
@@ -247,20 +246,58 @@ $(document).ready(function () {
             $('.intro').css({
                 "margin-top": "-25%"
             });
-        } else {
-            $(".downArrow").css({
-                "bottom": "143px"
-            });
-            $(".skip").css({
-                "bottom": "143px"
-            });
-            $(".whiteP").css({
-                "line-height": "1.2"
-            });
-            $('.intro').css({
-                "margin-top": "-15%"
-            });
+        } else if (ver[0] == 10) {
+            if (ver[1] <= 2) {
+                $(".downArrow").css({
+                    "bottom": "66px"
+                });
+                $(".skip").css({
+                    "bottom": "66px"
+                });
+                alert("pei yu");
+            } else {
+                $(".downArrow").css({
+                    "bottom": "143px"
+                });
+                $(".skip").css({
+                    "bottom": "143px"
+                });
+                $(".whiteP").css({
+                    "line-height": "1.2"
+                });
+                $('.intro').css({
+                    "margin-top": "-15%"
+                });
+                alert("10.3.n");
+            }
         }
+        // if(iOSVersion(11)){
+        // $(".downArrow").css({
+        //     "bottom": "158px",
+        // });
+        // $(".skip").css({
+        //     "bottom": "158px",
+        // });  
+        // $(".whiteP").css({
+        //     "line-height": "1.5",
+        // }) 
+        // $('.intro').css({
+        //     "margin-top": "-25%",
+        // })                                        
+        // } else {
+        //     $(".downArrow").css({
+        //         "bottom": "143px",
+        //     });
+        //     $(".skip").css({
+        //         "bottom": "143px",
+        //     });     
+        //     $(".whiteP").css({
+        //         "line-height": "1.2",
+        //     })
+        //     $('.intro').css({
+        //         "margin-top": "-15%",
+        //     })      
+        // }
         $(".section").css({
             "margin-top": "-6%"
         });
