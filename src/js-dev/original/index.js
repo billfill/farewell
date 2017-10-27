@@ -257,7 +257,7 @@ $(document).ready(function () {
             })
             $('.intro').css({
                 "margin-top": "-15%",
-            })                     
+            })                                 
             if(ver[1] <= 2 ){
                 $(".downArrow").css({
                     "bottom": "16px",
@@ -275,7 +275,8 @@ $(document).ready(function () {
             }
         }
         $(".stage-6-words p").eq(0).css({
-            "bottom" : "80%",
+            "top" : "30%",
+            "left": "-15%",
         })
         $(".cover_Title").css({
             'padding-top': "15%",
