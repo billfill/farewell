@@ -275,7 +275,8 @@ $(document).ready(function () {
             }
         }
         $(".stage-6-words p").eq(0).css({
-            "bottom": "80%"
+            "top": "30%",
+            "left": "-15%"
         });
         $(".cover_Title").css({
             'padding-top': "15%"
