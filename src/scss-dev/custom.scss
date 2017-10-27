@@ -250,6 +250,7 @@
             }
         }
         #stage-4{
+            top: -5%;
             transform: translate(30px, 0);
             opacity: 0;
             transition: 2s;
@@ -282,6 +283,7 @@
             }
         }
         #stage-5{
+            top: -5%;
             transform: translate(-75%, -20%);
             transition: 3s ease-in-out;
             opacity: 0;
@@ -619,7 +621,11 @@
         line-height: 1.5;
     }
 }
-@media screen and (min-width: 768px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .canvas_container{
+        width: calc(100% - 200px);
+        height: 80%;
+    }
     .fullpage{
         .section{
             .taxi{
@@ -634,19 +640,20 @@
 @media screen and (min-width:1024px){
     .canvas_container{
         width: 880px;
+        height: 90%;
     }    
     #stage-1{
         display: block;
         width: auto;
         height: 200%;
     }
-    .ill{
-        position: absolute;
-        padding-top: 3%;
-        top: 5%;
-        right: 0;
-        max-width: 100px;
-    }
+    // .ill{
+    //     position: absolute;
+    //     padding-top: 3%;
+    //     top: 5%;
+    //     right: 0;
+    //     max-width: 100px;
+    // }
     .fullpage{
         .section{
             .cover_Title{

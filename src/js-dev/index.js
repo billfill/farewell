@@ -251,7 +251,7 @@ $(document).ready(function () {
             "margin-top": "-6%"
         });
         $(".fixed_pic").css({
-            "margin-top": "-108px"
+            "margin-top": "-128px"
         });
         window.addEventListener("resize", function () {
             if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
