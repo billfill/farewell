@@ -252,6 +252,12 @@ $(document).ready(function () {
                 "margin-top": "-25%"
             });
         } else if (ver[0] == 10) {
+            $(".whiteP").css({
+                "line-height": "1.2"
+            });
+            $('.intro').css({
+                "margin-top": "-15%"
+            });
             if (ver[1] <= 2) {
                 $(".downArrow").css({
                     "bottom": "66px"
@@ -265,12 +271,6 @@ $(document).ready(function () {
                 });
                 $(".skip").css({
                     "bottom": "143px"
-                });
-                $(".whiteP").css({
-                    "line-height": "1.2"
-                });
-                $('.intro').css({
-                    "margin-top": "-15%"
                 });
             }
         }

@@ -260,10 +260,10 @@ $(document).ready(function () {
             })                     
             if(ver[1] <= 2 ){
                 $(".downArrow").css({
-                    "bottom": "66px",
+                    "bottom": "46px",
                 });
                 $(".skip").css({
-                    "bottom": "66px",
+                    "bottom": "46px",
                 });           
             } else {
                 $(".downArrow").css({
@@ -274,6 +274,9 @@ $(document).ready(function () {
                 });      
             }
         }
+        $(".stage-6-words p").eq(0).css({
+            "bottom" : "80%",
+        })
         $(".cover_Title").css({
             'padding-top': "15%",
         })
@@ -385,8 +388,8 @@ $(document).ready(function () {
     var canvasWidthPC = 880;
     var canvasHeightPC = 495;
 
-    var canvasWidthPad = 810;
-    var canvasHeightPad = 1166;
+    var canvasWidthPad = 578;
+    var canvasHeightPad = 820;
 
     var canvasWidthRoom = 520;
     var canvasHeightRoom = 667;
@@ -604,6 +607,9 @@ $(document).ready(function () {
     if (w >= 1024) {
         walk1X = 880;
         walk1Y = 425;
+    } else if (w >= 768 && w < 1024) {
+        walk1X = 550;
+        walk1Y = 660;
     } else {
         walk1X = 390;
         walk1Y = 575;
@@ -635,6 +641,25 @@ $(document).ready(function () {
                 }
                 walk1X -= 5;
             }
+        } else if (w >= 768 && w < 1024) {
+            if (walk1X < 350) {
+                ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
+                clearInterval(SIDdrawWalk1);
+                SIDdrawWalkBack = setInterval(drawWalkBack, 83);
+            } else {
+                if (walk1X < 400) {
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                if (walk1X < 500) {
+                    $(".downArrow").css({
+                        "display": "block",
+                        "color": "black"
+                    });
+                    $.fn.fullpage.setAllowScrolling(true);
+                }
+                walk1X -= 4;
+            }
+            console.log("pad walk")            
         } else {
             if (walk1X < 150) {
                 ctx_3.clearRect(walk1X, walk1Y, walk1Width, walk1Height);
@@ -668,6 +693,9 @@ $(document).ready(function () {
     if (w >= 1024) {
         walkBackX = 560;
         walkBackY = 417;
+    } else if (w >= 768 && w < 1024) {
+        walkBackX = 350;
+        walkBackY = 670;        
     } else {
         walkBackX = 180;
         walkBackY = 565;
@@ -696,6 +724,21 @@ $(document).ready(function () {
                 }
                 walkBackX += 3;
             }
+        } else if (w >= 768 && w < 1024) {
+            if (walkBackX > 420) {
+                ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
+                clearInterval(SIDdrawWalkBack);
+                $("#music-walk")[0].pause();
+            } else {
+                if (walkBackX > 350 && walkBackX < 360) {
+                    ctx_3.globalAlpha += 0.3;
+                } else if (walkBackX > 360 && walkBackX < 280) {
+                    ctx_3.globalAlpha = 1;
+                } else if (walkBackX > 380 && walkBackX < 420) {
+                    ctx_3.globalAlpha -= 0.05;
+                }
+                walkBackX += 2.5;
+            }            
         } else {
             if (walkBackX > 270) {
                 ctx_3.clearRect(walkBackX, walkBackY, walkBackWidth, walkBackHeight);
@@ -722,6 +765,7 @@ $(document).ready(function () {
     var treeY = 230;
 
     var tree = new Image();
+    var padTree = new Image();
     // stage-4
 
     var kitchenWidth = 375;
@@ -1275,6 +1319,8 @@ $(document).ready(function () {
                 $.fn.fullpage.setAllowScrolling(true);
                 $.fn.fullpage.setFitToSection(true);
                 $.fn.fullpage.setScrollingSpeed(777);
+                start.src = "src/image/animate-sprite/stage-2-start.jpg";
+                end.src = "src/image/animate-sprite/stage-2-end.jpg";                
                 if (localStorage.getItem("udn-readed") !== null) {
                     $(".skip").css({
                         "display": "block"
@@ -1287,11 +1333,10 @@ $(document).ready(function () {
                 }
             }
             if (index == 2) {
-                start.src = "src/image/animate-sprite/stage-2-start.jpg";
-                end.src = "src/image/animate-sprite/stage-2-end.jpg";
                 walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
                 walkBack.src = "src/image/animate-sprite/stage-3-walkback.png";
                 tree.src = 'src/image/animate-sprite/stage-3-bg.png';
+                padTree.src = "src/image/animate-sprite/stage-3pod.png";    
 
                 $(".page-black").eq(0).css({
                     "transform": "translate(0, 0)"
@@ -1359,7 +1404,7 @@ $(document).ready(function () {
                     ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight);
                 }
                 if (w >= 768 && w < 1023) {
-                    ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 0, 600, treeWidth, treeHeight);
+                    ctx_3_1.drawImage(padTree, 0, 0, 578, 820, 0, 0, 578, 820);
                     console.log("pad tree")
                 }
                 if (w < 768){
