@@ -61,7 +61,7 @@ $(document).ready(function () {
 
     ver = iOSversion();
 
-    alert(typeof ver[0],typeof ver[1])
+    alert(typeof ver[0] + typeof ver[1])
     function isFacebookApp() {
         if(iOS == true){
             var ua = navigator.userAgent || navigator.vendor || window.opera;
