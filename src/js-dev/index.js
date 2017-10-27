@@ -34,20 +34,34 @@ $(document).ready(function () {
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
-    function iOSVersion(targetVersion) {
-        if (/iP(hone|od|ad)/.test(navigator.userAgent)) {
-            // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+    // function iOSVersion(targetVersion) {
+    //     if (/iP(hone|od|ad)/.test(navigator.userAgent)) {
+    //         // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+    //         var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    //         if(parseInt(v[1], 10) >= targetVersion){
+    //             return true
+    //         }
+    //         else{
+    //             return false
+    //         }
+    //         // return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+    //     }
+    //     else{
+    //         return false
+    //     }
+    // }
+
+    function iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+            // supports iOS 2.0 and later: <https://bit.ly/TJjs1V>
             var v = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
-            if (parseInt(v[1], 10) >= targetVersion) {
-                return true;
-            } else {
-                return false;
-            }
-            // return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
-        } else {
-            return false;
+            return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
         }
     }
+
+    iOSver = iOSversion();
+    console.log(iOSver);
+    alert(iOSver.typeOf);
     function isFacebookApp() {
         if (iOS == true) {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -346,7 +360,6 @@ $(document).ready(function () {
         movieReplay(1);
     });
     $("#movie-1").click(function () {
-        console.log($("#movie-1")[0]);
         if ($("#movie-1")[0].paused) {
             moviePlay(1);
         } else {
@@ -360,6 +373,9 @@ $(document).ready(function () {
 
     var canvasWidthPC = 880;
     var canvasHeightPC = 495;
+
+    var canvasWidthPad = 810;
+    var canvasHeightPad = 1166;
 
     var canvasWidthRoom = 520;
     var canvasHeightRoom = 667;
@@ -382,7 +398,14 @@ $(document).ready(function () {
         stage_3.height = canvasHeightPC;
         stage_3_1.width = canvasWidthPC;
         stage_3_1.height = canvasHeightPC;
-    } else {
+    }
+    if (w >= 768 && w < 1023) {
+        stage_3.width = canvasWidthPad;
+        stage_3.height = canvasHeightPad;
+        stage_3_1.width = canvasWidthPad;
+        stage_3_1.height = canvasHeightPad;
+    }
+    if (w < 768) {
         stage_3.width = canvasWidth;
         stage_3.height = canvasHeight;
         stage_3_1.width = canvasWidth;
@@ -688,7 +711,6 @@ $(document).ready(function () {
     var treeY = 230;
 
     var tree = new Image();
-
     // stage-4
 
     var kitchenWidth = 375;
@@ -1324,10 +1346,14 @@ $(document).ready(function () {
                 $("#music-walk")[0].play();
                 if (w >= 1024) {
                     ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 35, 126, treeWidth, treeHeight);
-                } else {
+                }
+                if (w >= 768 && w < 1023) {
+                    ctx_3_1.drawImage(tree, 0, 0, treeWidth, treeHeight, 0, 600, treeWidth, treeHeight);
+                    console.log("pad tree");
+                }
+                if (w < 768) {
                     ctx_3_1.drawImage(tree, treeSrcX, treeSrcY, treeWidth, treeHeight, treeX, treeY, treeWidth, treeHeight);
                 }
-
                 SIDdrawWalk1 = setInterval(drawWalk1To, 83);
                 $.fn.fullpage.setScrollingSpeed(1777);
             }

@@ -59,9 +59,8 @@ $(document).ready(function () {
         }
     }
 
-    iOSver = iOSversion();
-    console.log(iOSver)
-    alert(iOSver.typeOf)
+    ver = iOSversion();
+    alert(ver.typeOf)
     function isFacebookApp() {
         if(iOS == true){
             var ua = navigator.userAgent || navigator.vendor || window.opera;
