@@ -253,15 +253,14 @@ $(document).ready(function () {
             "margin-top": "-6%",
         });
         $(".fixed_pic").css({
-            "margin-top": "-10%",
-        })                 
+            "margin-top": "-15%",
+        })       
         window.addEventListener("resize", function () {
             if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
                 onResize();
             }
         });           
-    }
-
+    }      
     $(".voice-state img").on("click", function () {
         var voiceSrc = $(this).attr("src");
         $(this).removeClass('blink');
