@@ -250,16 +250,15 @@ $(document).ready(function () {
         $(".section").css({
             "margin-top": "-6%"
         });
-
+        $(".fixed_pic").css({
+            "margin-top": "-108px"
+        });
         window.addEventListener("resize", function () {
             if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
                 onResize();
             }
         });
     }
-    $(".fixed_pic").css({
-        "margin-top": "-10%"
-    });
     $(".voice-state img").on("click", function () {
         var voiceSrc = $(this).attr("src");
         $(this).removeClass('blink');

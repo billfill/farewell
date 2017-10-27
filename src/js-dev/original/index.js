@@ -253,7 +253,7 @@ $(document).ready(function () {
             "margin-top": "-6%",
         });
         $(".fixed_pic").css({
-            "margin-top": "-15%",
+            "margin-top": "-108px",
         })       
         window.addEventListener("resize", function () {
             if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
