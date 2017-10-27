@@ -247,7 +247,7 @@ $(document).ready(function () {
             "margin-top": "-128px",
         })          
         window.addEventListener("resize", function () {
-            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+            if ($(window).scrollTop() < $(".content").eq(0).offset().top && animeIndex < 15) {
                 onResize();
             }
         });         

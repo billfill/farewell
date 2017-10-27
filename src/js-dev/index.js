@@ -233,8 +233,21 @@ $(document).ready(function () {
         }
     });
     if (isFacebookApp()) {
+        $(".stage-6-words p").eq(0).css({
+            "top": "10%",
+            "left": "-5%"
+        });
+        $(".cover_Title").css({
+            'padding-top': "15%"
+        });
+        $(".section").css({
+            "margin-top": "-6%"
+        });
+        $(".fixed_pic").css({
+            "margin-top": "-128px"
+        });
         window.addEventListener("resize", function () {
-            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+            if ($(window).scrollTop() < $(".content").eq(0).offset().top && animeIndex < 15) {
                 onResize();
             }
         });
@@ -274,19 +287,6 @@ $(document).ready(function () {
                 });
             }
         }
-        $(".stage-6-words p").eq(0).css({
-            "top": "15%",
-            "left": "-15%"
-        });
-        $(".cover_Title").css({
-            'padding-top': "15%"
-        });
-        $(".section").css({
-            "margin-top": "-6%"
-        });
-        $(".fixed_pic").css({
-            "margin-top": "-128px"
-        });
     }
     $(".voice-state img").on("click", function () {
         var voiceSrc = $(this).attr("src");
