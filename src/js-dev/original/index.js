@@ -260,10 +260,10 @@ $(document).ready(function () {
             })                     
             if(ver[1] <= 2 ){
                 $(".downArrow").css({
-                    "bottom": "36px",
+                    "bottom": "16px",
                 });
                 $(".skip").css({
-                    "bottom": "36px",
+                    "bottom": "16px",
                 });           
             } else {
                 $(".downArrow").css({
