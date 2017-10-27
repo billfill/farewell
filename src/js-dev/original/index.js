@@ -233,6 +233,11 @@ $(document).ready(function () {
         }
     });          
     if (isFacebookApp()) {
+        window.addEventListener("resize", function () {
+            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+                onResize();
+            }
+        });         
         if(ver[0] == 11){
             $(".downArrow").css({
                 "bottom": "158px",
@@ -254,7 +259,6 @@ $(document).ready(function () {
                 $(".skip").css({
                     "bottom": "66px",
                 }); 
-                alert("pei yu")
             } else {
                 $(".downArrow").css({
                     "bottom": "143px",
@@ -268,47 +272,17 @@ $(document).ready(function () {
                 $('.intro').css({
                     "margin-top": "-15%",
                 })   
-                alert("10.3.n")   
             }
         }
-        // if(iOSVersion(11)){
-            // $(".downArrow").css({
-            //     "bottom": "158px",
-            // });
-            // $(".skip").css({
-            //     "bottom": "158px",
-            // });  
-            // $(".whiteP").css({
-            //     "line-height": "1.5",
-            // }) 
-            // $('.intro').css({
-            //     "margin-top": "-25%",
-            // })                                        
-        // } else {
-        //     $(".downArrow").css({
-        //         "bottom": "143px",
-        //     });
-        //     $(".skip").css({
-        //         "bottom": "143px",
-        //     });     
-        //     $(".whiteP").css({
-        //         "line-height": "1.2",
-        //     })
-        //     $('.intro').css({
-        //         "margin-top": "-15%",
-        //     })      
-        // }
+        $(".cover_Title").css({
+            'padding-top': "15%",
+        })
         $(".section").css({
             "margin-top": "-6%",
         });
         $(".fixed_pic").css({
             "margin-top": "-128px",
-        })       
-        window.addEventListener("resize", function () {
-            if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
-                onResize();
-            }
-        });           
+        })                 
     }      
     $(".voice-state img").on("click", function () {
         var voiceSrc = $(this).attr("src");
