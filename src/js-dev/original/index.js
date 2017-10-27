@@ -234,8 +234,8 @@ $(document).ready(function () {
     });          
     if (isFacebookApp()) {
         $(".stage-6-words p").eq(0).css({
-            "top" : "10%",
-            "left": "-5%",
+            "top" : "20%",
+            "left": "-10%",
         })
         $(".cover_Title").css({
             'padding-top': "15%",
