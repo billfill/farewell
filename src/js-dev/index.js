@@ -1589,7 +1589,7 @@ $(document).ready(function () {
                     "transform": "translate(0, -20%)",
                     "opacity": 1
                 });
-                $.fn.fullpage.setAutoScrolling(false);
+                // $.fn.fullpage.setAutoScrolling(false);
                 $.fn.fullpage.setFitToSection(false);
                 $("html, body").css({
                     "overflow-x": "hidden",
@@ -1614,9 +1614,6 @@ $(document).ready(function () {
                         "opacity": "1"
                     });
                 }, 3333);
-                setTimeout(function () {
-                    $.fn.fullpage.setAllowScrolling(true);
-                }, 5000);
                 localStorage.setItem("udn-readed", "readed");
             }
         },
@@ -1849,7 +1846,7 @@ $(document).ready(function () {
             "hitType": "event",
             "eventCategory": "skip",
             "eventAction": "click",
-            "eventLabel": "點擊跳過動畫(skip)"
+            "eventLabel": "直接看報導(skip)"
         });
         $(this).css({ "display": "none" });
         $(".fixed_pic").css({ "opacity": 0 });
@@ -1868,7 +1865,8 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px"
         });
-        window.addEventListener("resize", function () {
+        alert(animeIndex);
+        $(window).resize(function () {
             if (animeIndex < 3) {
                 onResize();
             }

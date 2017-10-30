@@ -1846,7 +1846,7 @@ $(document).ready(function () {
             "hitType": "event",
             "eventCategory": "skip",
             "eventAction": "click",
-            "eventLabel": "點擊跳過動畫(skip)"
+            "eventLabel": "直接看報導(skip)"
         });
         $(this).css({ "display": "none" });
         $(".fixed_pic").css({ "opacity": 0 });
@@ -1865,11 +1865,12 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px",
         })          
-        window.addEventListener("resize", function () {
+        alert(animeIndex)
+        $(window).resize(function() {
             if (animeIndex < 3) {
                 onResize();
             }
-        });         
+        });             
         if(ver[0] == 11){
             $(".downArrow").css({
                 "bottom": "158px",
