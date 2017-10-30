@@ -53,6 +53,12 @@ $(document).ready(function () {
         }
     }
 
+    function onResize() {
+        setTimeout(function () {
+            $(window).scrollTop(0);
+        }, 666);
+    };
+
     function detectmob() {
         if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
             return true;
@@ -75,15 +81,12 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px"
         });
-        window.addEventListener("resize", function () {
-            if (animeIndex == 1) {
-                onResize();
-                alert("animeIndex: " + animeIndex);
-            }
-        });
-        $(window).resize(function () {
-            $('span').text(x += 1);
-        });
+        // window.addEventListener("resize", function () {
+        //     if (animeIndex == 1 && window.scrollTop() == 0) {
+        //         onResize();
+        //         alert("animeIndex: "+ animeIndex)
+        //     }
+        // });       
         if (ver[0] == 11) {
             $(".downArrow").css({
                 "bottom": "158px"
@@ -230,12 +233,6 @@ $(document).ready(function () {
         $("#music-stroll")[0].pause();
         $("#music-street")[0].pause();
     }
-
-    function onResize() {
-        setTimeout(function () {
-            $(window).scrollTop(0);
-        }, 666);
-    };
 
     var w = $(window).width();
     var h = $(window).height();
@@ -1320,6 +1317,9 @@ $(document).ready(function () {
                         "color": "white"
                     });
                 }
+                if ($(window).scrollTop() !== 0) {
+                    $(window).scrollTop(0);
+                }
             }
             if (index == 2) {
                 walk1.src = "src/image/animate-sprite/stage-3-walk1.png";
@@ -1898,7 +1898,6 @@ $(document).ready(function () {
         e.preventDefault();
         $.fn.fullpage.setAutoScrolling(false);
         $.fn.fullpage.setFitToSection(false);
-        animeIndex == 15;
         $("html, body").animate({
             scrollTop: $(".content").eq(0).offset().top
         }, 888);
