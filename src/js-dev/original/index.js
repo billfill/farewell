@@ -1649,8 +1649,8 @@ $(document).ready(function () {
                     "transform": "translate(0, -20%)",
                     "opacity": 1
                 });
-                $.fn.fullpage.setAutoScrolling(false);
-                $.fn.fullpage.setFitToSection(false);
+                // $.fn.fullpage.setAutoScrolling(false);
+                // $.fn.fullpage.setFitToSection(false);
                 $("html, body").css({
                     "overflow-x": "hidden",
                     "height": "initail"
@@ -1667,6 +1667,9 @@ $(document).ready(function () {
                             "display": "block",
                             "color": "black"
                         });
+                        $(".skip").css({
+                            "display": "block",
+                        });                        
                     }
                 }, 1666);
                 setTimeout(function () {
