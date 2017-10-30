@@ -39,16 +39,11 @@ $(document).ready(function () {
 
     if (w >= 1024) {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
-        // $("#stage-1").attr("width", "1980");
-        // $("#stage-1").attr("height", "1050");
         $("#movie-1").attr("controls", "true");
         console.log("456")
     } else {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
-        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-11-bg.png");
-        // $("#stage-1").attr("width", "375");
-        // $("#stage-1").attr("height", "667");        
-        console.log("123")
+        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-11-bg.png");  
     }
 
     function iOSversion() {
