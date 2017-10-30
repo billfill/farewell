@@ -172,9 +172,9 @@ $(document).ready(function () {
     }
 
     function onResize() {
-        // setTimeout(function () {
-        //     $(window).scrollTop(0);
-        // }, 888);
+        setTimeout(function () {
+            $(window).scrollTop(0);
+        }, 666);
     };  
 
     var w = $(window).width();
@@ -1589,7 +1589,7 @@ $(document).ready(function () {
                     "transform": "translate(0, -20%)",
                     "opacity": 1
                 });
-                // $.fn.fullpage.setAutoScrolling(false);
+                $.fn.fullpage.setAutoScrolling(false);
                 $.fn.fullpage.setFitToSection(false);
                 $("html, body").css({
                     "overflow-x": "hidden",
@@ -1852,7 +1852,6 @@ $(document).ready(function () {
         $(".fixed_pic").css({ "opacity": 0 });
     });
     if (isFacebookApp()) {
-        alert("animeIndex: "+ animeIndex)
         $(".stage-6-words p").eq(0).css({
             "top" : "15%",
             "left": "-15%",
@@ -1867,8 +1866,9 @@ $(document).ready(function () {
             "margin-top": "-128px",
         })          
         window.addEventListener("resize", function () {
-            if (animeIndex < 3) {
+            if (animeIndex == 1) {
                 onResize();
+                alert("animeIndex: "+ animeIndex)
             }
         });    
         $(window).resize(function() {

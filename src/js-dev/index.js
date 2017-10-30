@@ -1852,6 +1852,7 @@ $(document).ready(function () {
         $(".fixed_pic").css({ "opacity": 0 });
     });
     if (isFacebookApp()) {
+        alert("animeIndex: " + animeIndex);
         $(".stage-6-words p").eq(0).css({
             "top": "15%",
             "left": "-15%"
@@ -1865,11 +1866,13 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px"
         });
-        alert(animeIndex);
-        $(window).resize(function () {
+        window.addEventListener("resize", function () {
             if (animeIndex < 3) {
                 onResize();
             }
+        });
+        $(window).resize(function () {
+            $('span').text(x += 1);
         });
         if (ver[0] == 11) {
             $(".downArrow").css({
