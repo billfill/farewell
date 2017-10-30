@@ -1318,7 +1318,9 @@ $(document).ready(function () {
                     });
                 }
                 if($(window).scrollTop() !== 0) {
-                    $(window).scrollTop(0);
+                    setTimeout(function(){
+                        $(window).scrollTop(0);
+                    }, 888)
                 }
             }
             if (index == 2) {
