@@ -647,7 +647,8 @@
     #stage-1{
         display: block;
         width: auto;
-        height: 200%;
+        height: 150%;
+        object-fit: unset;
     }
     .fullpage{
         .section{

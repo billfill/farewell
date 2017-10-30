@@ -34,6 +34,19 @@ $(document).ready(function () {
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
+    var w = $(window).width();
+    var h = $(window).height();
+
+    if (w >= 1024) {
+        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
+        $("#movie-1").attr("controls", "true");
+        console.log("456");
+    } else {
+        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
+        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-11-bg.png");
+        console.log("123");
+    }
+
     function iOSversion() {
         if (/iP(hone|od|ad)/.test(navigator.platform)) {
             // supports iOS 2.0 and later: <https://bit.ly/TJjs1V>
@@ -52,12 +65,6 @@ $(document).ready(function () {
             return false;
         }
     }
-
-    function onResize() {
-        setTimeout(function () {
-            $(window).scrollTop(0);
-        }, 666);
-    };
 
     function detectmob() {
         if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
@@ -81,12 +88,6 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px"
         });
-        // window.addEventListener("resize", function () {
-        //     if (animeIndex == 1 && window.scrollTop() == 0) {
-        //         onResize();
-        //         alert("animeIndex: "+ animeIndex)
-        //     }
-        // });       
         if (ver[0] == 11) {
             $(".downArrow").css({
                 "bottom": "158px"
@@ -234,8 +235,6 @@ $(document).ready(function () {
         $("#music-street")[0].pause();
     }
 
-    var w = $(window).width();
-    var h = $(window).height();
     var total_height = $('body').height() - h;
     var headTop = w >= 768 ? '6px' : '4px';
     var title = $('title').text();
@@ -346,12 +345,6 @@ $(document).ready(function () {
             moviePause(1);
         }
     });
-    if (w >= 1024) {
-        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
-        $("#movie-1").attr("controls", "true");
-    } else {
-        $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
-    }
     $('.volume[data-target="1"]').click(function () {
         movieVolume(1);
     });
@@ -1115,14 +1108,14 @@ $(document).ready(function () {
         ctx_10.clearRect(strollX, strollY, strollWidth + 10, strollHeight + 10);
         ctx_10.drawImage(stroll, strollSrcX, strollSrcY, strollWidth, strollHeight, strollX, strollY, strollWidth, strollHeight);
         toWave++;
-        if (toWave == 48 && thanksIndex < 2) {
+        if (toWave == 32 && thanksIndex < 2) {
             SIDdrawWave = setInterval(drawWave, 125);
             toWave = 0;
             $(".thanks").eq(thanksIndex).css({
                 "opacity": "1",
                 "transform": "translateX(0)"
             });
-        } else if (toWave == 36) {
+        } else if (toWave == 28) {
             $(".stage-10-words p").css({
                 "opacity": 0
             });
@@ -1131,7 +1124,7 @@ $(document).ready(function () {
                 "opacity": 1,
                 "transform": "translate(0, 0)"
             });
-        } else if (toWave == 14) {
+        } else if (toWave == 12) {
             $(".stage-10-words p").eq(1).css({
                 "opacity": 1,
                 "transform": "translate(0, 0)"
@@ -1145,7 +1138,7 @@ $(document).ready(function () {
                     "transform": "translateX(0)"
                 });
             }
-        } else if (toWave == 22) {
+        } else if (toWave == 18) {
             $(".stage-10-words p").eq(2).css({
                 "opacity": 1,
                 "transform": "translate(0, 0)"
