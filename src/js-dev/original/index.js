@@ -1589,7 +1589,7 @@ $(document).ready(function () {
                     "transform": "translate(0, -20%)",
                     "opacity": 1
                 });
-                $.fn.fullpage.setAutoScrolling(false);
+                // $.fn.fullpage.setAutoScrolling(false);
                 $.fn.fullpage.setFitToSection(false);
                 $("html, body").css({
                     "overflow-x": "hidden",
@@ -1613,9 +1613,6 @@ $(document).ready(function () {
                     $(".stage-13").eq(2).css({
                         "opacity": "1"
                     });
-                    setTimeout(function(){
-                        $.fn.fullpage.setAllowScrolling(true);
-                    }, 1000)
                 }, 3333);
                 localStorage.setItem("udn-readed", "readed");
             }

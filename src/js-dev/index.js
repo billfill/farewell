@@ -34,23 +34,6 @@ $(document).ready(function () {
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
-    // function iOSVersion(targetVersion) {
-    //     if (/iP(hone|od|ad)/.test(navigator.userAgent)) {
-    //         // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
-    //         var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-    //         if(parseInt(v[1], 10) >= targetVersion){
-    //             return true
-    //         }
-    //         else{
-    //             return false
-    //         }
-    //         // return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
-    //     }
-    //     else{
-    //         return false
-    //     }
-    // }
-
     function iOSversion() {
         if (/iP(hone|od|ad)/.test(navigator.platform)) {
             // supports iOS 2.0 and later: <https://bit.ly/TJjs1V>
@@ -192,7 +175,6 @@ $(document).ready(function () {
         // setTimeout(function () {
         //     $(window).scrollTop(0);
         // }, 888);
-        $(window).scrollTop(0);
     };
 
     var w = $(window).width();
@@ -1626,13 +1608,15 @@ $(document).ready(function () {
                             "color": "black"
                         });
                     }
-                    $.fn.fullpage.setAllowScrolling(true);
                 }, 1666);
                 setTimeout(function () {
                     $(".stage-13").eq(2).css({
                         "opacity": "1"
                     });
                 }, 3333);
+                setTimeout(function () {
+                    $.fn.fullpage.setAllowScrolling(true);
+                }, 5000);
                 localStorage.setItem("udn-readed", "readed");
             }
         },
@@ -1884,14 +1868,11 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px"
         });
-        // window.addEventListener("resize", function () {
-        //     if (animeIndex < 3) {
-        //         onResize();
-        //     }
-        // });         
-        if (animeIndex == 1) {
-            $(window).scrollTop(0);
-        }
+        window.addEventListener("resize", function () {
+            if (animeIndex < 3) {
+                onResize();
+            }
+        });
         if (ver[0] == 11) {
             $(".downArrow").css({
                 "bottom": "158px"
