@@ -664,7 +664,7 @@
                 position: relative;
                 width: 50%;
                 right: 0;
-                bottom: 0;
+                top: 5%;
                 display: flex;
             }
             #stage-3{
@@ -707,7 +707,7 @@
             }
             .stage-6-words{
                 p:first-child{
-                    bottom: 50%;
+                    top: 50%;
                     left: -30%;
                 }
                 p:nth-child(2){

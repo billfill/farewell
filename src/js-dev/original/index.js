@@ -39,11 +39,12 @@ $(document).ready(function () {
 
     if (w >= 1024) {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1PC.mp4");
+        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-1bg-pc.png");  
         $("#movie-1").attr("controls", "true");
         console.log("456")
     } else {
         $("#stage-1").attr("src", "src/image/animate-sprite/stage-1Mob.mp4");
-        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-11-bg.png");  
+        $("#stage-1").attr("poster", "src/image/animate-sprite/stage-1bg-mob.png");  
     }
 
     function iOSversion() {
@@ -1444,52 +1445,51 @@ $(document).ready(function () {
                 SIDdrawCar = setInterval(drawCar, 125);
             }
             if (index == 8) {
-                // man.src = "src/image/animate-sprite/stage-11-man.jpg";
-                // woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
-                // wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
-                // //reset Stage-5
-                // carArrow = 0;
-                // ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
-                // clearInterval(SIDdrawCar);
-                // $("#stage-5").removeAttr('style');
-                // $(".stage-5-words p").removeAttr('style');
-                // $(".stage-5-words h2").removeAttr('style');
+                man.src = "src/image/animate-sprite/stage-11-man.jpg";
+                woman.src = "src/image/animate-sprite/stage-11-woman.jpg";
+                wash.src = "src/image/animate-sprite/stage-12-wash.jpg";
+                //reset Stage-5
+                carArrow = 0;
+                ctx_5.clearRect(0, 0, stage_5.width, stage_5.height);
+                clearInterval(SIDdrawCar);
+                $("#stage-5").removeAttr('style');
+                $(".stage-5-words p").removeAttr('style');
+                $(".stage-5-words h2").removeAttr('style');
 
-                // ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
-                // ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
-                // ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
-                // ctx_6_3_bg.drawImage(labTool, 0, 0, 360, 395, 75, 150, 360, 395);
-                // ctx_6_4.drawImage(labLocker, 0, 0, 124, 208, 0, 459, 124, 208);
+                ctx_6.drawImage(foodInfo, foodInfoSrcX, foodInfoSrcY, foodInfoWidth, foodInfoHeight, foodInfoX, foodInfoY, foodInfoWidth, foodInfoHeight);
+                ctx_6_1.drawImage(foodSafe, foodSafeSrcX, foodSafeSrcY, foodSafeWidth, foodSafeHeight, foodSafeX, foodSafeY, foodSafeWidth, foodSafeHeight);
+                ctx_6_2.drawImage(speech, speechSrcX, speechSrcY, speechWidth, speechHeight, speechX, speechY, speechWidth, speechHeight);
+                ctx_6_3_bg.drawImage(labTool, 0, 0, 360, 395, 75, 150, 360, 395);
+                ctx_6_4.drawImage(labLocker, 0, 0, 124, 208, 0, 459, 124, 208);
 
-                // $("#stage-6").css({
-                //     "opacity": "1",
-                //     "transform": "translate(0, 0)"
-                // });
-                // setTimeout(function () {
-                //     $("#stage-6_1").css({
-                //         "opacity": "1",
-                //         "transform": "translate(0, 0)"
-                //     });
-                // }, 222);
-                // setTimeout(function () {
-                //     $("#stage-6_2").css({
-                //         "opacity": "1",
-                //         "transform": "translate(0, 0)"
-                //     });
-                // }, 555);
-                // setTimeout(function () {
-                //     $("#music-camera")[0].play();
-                //     SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
-                //     SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
-                //     SIDdrawSpeech = setInterval(drawSpeech, 83);
-                // }, 1433);
-                // setTimeout(function () {
-                //     $(".stage-6-words p").eq(0).css({
-                //         "opacity": "1",
-                //         "transform": 'translate(0, 0)'
-                //     });
-                // }, 1666);
-                alert("test");
+                $("#stage-6").css({
+                    "opacity": "1",
+                    "transform": "translate(0, 0)"
+                });
+                setTimeout(function () {
+                    $("#stage-6_1").css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)"
+                    });
+                }, 222);
+                setTimeout(function () {
+                    $("#stage-6_2").css({
+                        "opacity": "1",
+                        "transform": "translate(0, 0)"
+                    });
+                }, 555);
+                setTimeout(function () {
+                    $("#music-camera")[0].play();
+                    SIDdrawFoodInfo = setInterval(drawFoodInfo, 83);
+                    SIDdrawFoodSafe = setInterval(drawFoodSafe, 83);
+                    SIDdrawSpeech = setInterval(drawSpeech, 83);
+                }, 1433);
+                setTimeout(function () {
+                    $(".stage-6-words p").eq(0).css({
+                        "opacity": "1",
+                        "transform": 'translate(0, 0)'
+                    });
+                }, 1666);
             }
             if (index == 9) {
                 // reset stage-6
