@@ -1276,7 +1276,7 @@ $(document).ready(function () {
     }
 
     $('.fullpage').fullpage({
-        navigation: true,
+        // navigation: true,
         recordHistory: false,
         scrollingSpeed: 777,
         lazyLoading: true,
@@ -1312,7 +1312,8 @@ $(document).ready(function () {
                 end.src = "src/image/animate-sprite/stage-2-end.jpg";
                 if (localStorage.getItem("udn-readed") !== null) {
                     $(".skip").css({
-                        "display": "block"
+                        "display": "block",
+                        "opacity": 1
                     });
                 } else {
                     $(".downArrow").css({
@@ -1673,6 +1674,13 @@ $(document).ready(function () {
                         });
                     }
                 }, 3333);
+                setTimeout(function () {
+                    if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+                        $(".skip").css({
+                            "opacity": 1
+                        });
+                    }
+                }, 3500);
                 localStorage.setItem("udn-readed", "readed");
             }
         },
@@ -1682,7 +1690,8 @@ $(document).ready(function () {
                 "display": "none"
             });
             $(".skip").css({
-                "display": "none"
+                "display": "none",
+                "opacity": 0
             });
             $("#section-" + index).css({
                 "opacity": 0,
@@ -1906,7 +1915,7 @@ $(document).ready(function () {
             "eventAction": "click",
             "eventLabel": "直接看報導(skip)"
         });
-        $(this).css({ "display": "none" });
+        $(this).css({ "display": "none", "opacity": 0 });
         $(".fixed_pic").css({ "opacity": 0 });
     });
 });
