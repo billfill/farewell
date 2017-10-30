@@ -1649,8 +1649,8 @@ $(document).ready(function () {
                     "transform": "translate(0, -20%)",
                     "opacity": 1
                 });
-                $.fn.fullpage.setAutoScrolling(false);
-                $.fn.fullpage.setFitToSection(false);
+                // $.fn.fullpage.setAutoScrolling(false);
+                // $.fn.fullpage.setFitToSection(false);
                 $("html, body").css({
                     "overflow-x": "hidden",
                     "height": "initail"
@@ -1662,17 +1662,16 @@ $(document).ready(function () {
                     $(".stage-13-words h2").css({
                         "opacity": "1"
                     });
-                    if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
-                        $(".downArrow").css({
-                            "display": "block",
-                            "color": "black"
-                        });
-                    }
                 }, 1666);
                 setTimeout(function () {
                     $(".stage-13").eq(2).css({
                         "opacity": "1"
                     });
+                    if ($(window).scrollTop() < $(".content").eq(0).offset().top) {
+                        $(".skip").css({
+                            "display": "block"
+                        });
+                    }
                 }, 3333);
                 localStorage.setItem("udn-readed", "readed");
             }

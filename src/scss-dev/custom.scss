@@ -101,6 +101,8 @@
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1);    
     border: 1px solid #fff;
     border-radius: 16px;
+    transition: opacity 1s;
+    opacity: 0;
     p{
         color: #fff;
     }
