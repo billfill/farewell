@@ -59,6 +59,7 @@
 #stage-1{
     display: block;
     width: 100%;
+    object-fit: fill;
 }
 #stage-1::-webkit-media-controls-start-playback-button {
   display: none;
