@@ -189,9 +189,10 @@ $(document).ready(function () {
     }
 
     function onResize() {
-        setTimeout(function () {
-            $(window).scrollTop(0);
-        }, 888);
+        // setTimeout(function () {
+        //     $(window).scrollTop(0);
+        // }, 888);
+        $(window).scrollTop(0);
     };  
 
     var w = $(window).width();
@@ -1242,6 +1243,7 @@ $(document).ready(function () {
         lazyLoading: true,
         afterLoad: function (anchorLink, index) {
             animeIndex = index;
+            console.log(animeIndex)
             $.fn.fullpage.setAllowScrolling(false);
             $("#section-" + index).css({
                 "opacity": "1",
@@ -1882,11 +1884,14 @@ $(document).ready(function () {
         $(".fixed_pic").css({
             "margin-top": "-128px",
         })          
-        window.addEventListener("resize", function () {
-            if (animeIndex < 3) {
-                onResize();
-            }
-        });         
+        // window.addEventListener("resize", function () {
+        //     if (animeIndex < 3) {
+        //         onResize();
+        //     }
+        // });         
+        if(animeIndex == 1){
+            $(window).scrollTop(0);
+        }
         if(ver[0] == 11){
             $(".downArrow").css({
                 "bottom": "158px",
