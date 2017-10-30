@@ -60,7 +60,67 @@ $(document).ready(function () {
             return false;
         }
     }
-
+    // for FB-app
+    if (isFacebookApp()) {
+        $(".stage-6-words p").eq(0).css({
+            "top" : "15%",
+            "left": "-15%",
+        })
+        $(".cover_Title").css({
+            'padding-top': "15%",
+        })
+        $(".section").css({
+            "margin-top": "-6%",
+        });
+        $(".fixed_pic").css({
+            "margin-top": "-128px",
+        })          
+        window.addEventListener("resize", function () {
+            if (animeIndex == 1) {
+                onResize();
+                alert("animeIndex: "+ animeIndex)
+            }
+        });    
+        $(window).resize(function() {
+            $('span').text(x+=1);
+        });             
+        if(ver[0] == 11){
+            $(".downArrow").css({
+                "bottom": "158px",
+            });
+            $(".skip").css({
+                "bottom": "158px",
+            });  
+            $(".whiteP").css({
+                "line-height": "1.5",
+            }) 
+            $('.intro').css({
+                "margin-top": "-25%",
+            })  
+        } else if (ver[0] == 10){
+            $(".whiteP").css({
+                "line-height": "1.2",
+            })
+            $('.intro').css({
+                "margin-top": "-15%",
+            })                                 
+            if(ver[1] <= 2 ){
+                $(".downArrow").css({
+                    "bottom": "16px",
+                });
+                $(".skip").css({
+                    "bottom": "16px",
+                });           
+            } else {
+                $(".downArrow").css({
+                    "bottom": "143px",
+                });
+                $(".skip").css({
+                    "bottom": "143px",
+                });      
+            }
+        }               
+    } 
     function moviePlay(id) {
         $('#movie-' + id).get(0).play();
         if (progress[id - 1] == null) {
@@ -1851,64 +1911,4 @@ $(document).ready(function () {
         $(this).css({ "display": "none" });
         $(".fixed_pic").css({ "opacity": 0 });
     });
-    if (isFacebookApp()) {
-        $(".stage-6-words p").eq(0).css({
-            "top" : "15%",
-            "left": "-15%",
-        })
-        $(".cover_Title").css({
-            'padding-top': "15%",
-        })
-        $(".section").css({
-            "margin-top": "-6%",
-        });
-        $(".fixed_pic").css({
-            "margin-top": "-128px",
-        })          
-        window.addEventListener("resize", function () {
-            if (animeIndex == 1) {
-                onResize();
-                alert("animeIndex: "+ animeIndex)
-            }
-        });    
-        $(window).resize(function() {
-            $('span').text(x+=1);
-        });             
-        if(ver[0] == 11){
-            $(".downArrow").css({
-                "bottom": "158px",
-            });
-            $(".skip").css({
-                "bottom": "158px",
-            });  
-            $(".whiteP").css({
-                "line-height": "1.5",
-            }) 
-            $('.intro').css({
-                "margin-top": "-25%",
-            })  
-        } else if (ver[0] == 10){
-            $(".whiteP").css({
-                "line-height": "1.2",
-            })
-            $('.intro').css({
-                "margin-top": "-15%",
-            })                                 
-            if(ver[1] <= 2 ){
-                $(".downArrow").css({
-                    "bottom": "16px",
-                });
-                $(".skip").css({
-                    "bottom": "16px",
-                });           
-            } else {
-                $(".downArrow").css({
-                    "bottom": "143px",
-                });
-                $(".skip").css({
-                    "bottom": "143px",
-                });      
-            }
-        }               
-    } 
 });
