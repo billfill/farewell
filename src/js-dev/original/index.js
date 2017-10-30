@@ -1299,6 +1299,7 @@ $(document).ready(function () {
                 "eventLabel": "看到第" + index + "張"
             });
             if (index == 1) {
+                $(window).scrollTop(0);
                 $("#stage-1")[0].play();
                 $(".fixed_pic").css("opacity", "1");
                 $.fn.fullpage.setAutoScrolling(true);
@@ -1316,11 +1317,6 @@ $(document).ready(function () {
                         "display": "block",
                         "color": "white"
                     });
-                }
-                if($(window).scrollTop() !== 0) {
-                    setTimeout(function(){
-                        $(window).scrollTop(0);
-                    }, 888)
                 }
             }
             if (index == 2) {
